@@ -177,7 +177,7 @@ const Home = () => {
             } as React.CSSProperties & { '--drift': string }}
           />
           <h2 className="text-3xl font-serif font-light coffee-text mb-2 tracking-wide">
-            daily special
+            freshly poured
           </h2>
           <p className="coffee-text font-light text-sm">featured projects fresh from the kitchen</p>
         </div>
