@@ -1,0 +1,239 @@
+@import "tailwindcss";
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+@import 'swiper/css/navigation';
+
+/* Coffee shop aesthetic utilities - Plain CSS */
+.coffee-bg {
+  background-color: #F5F5DC;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .coffee-bg {
+  background-color: #302421;
+}
+
+.coffee-text {
+  color: #302421;
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .coffee-text {
+  color: #F5F5DC;
+}
+
+.coffee-accent {
+  color: #A4B494;
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .coffee-accent {
+  color: #E2725B;
+}
+
+.chalkboard {
+  background-color: #1e293b;
+  color: #F5F5DC;
+  position: relative;
+  overflow: hidden;
+  background-image: 
+    linear-gradient(90deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent),
+    linear-gradient(0deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent);
+  background-size: 50px 50px;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.dark .chalkboard {
+  background-color: #1e293b;
+}
+
+.coffee-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1.5rem;
+  border: 1px solid rgba(245, 245, 220, 0.2);
+}
+
+.dark .coffee-card {
+  background-color: #1e293b;
+  border-color: rgba(48, 36, 33, 0.2);
+}
+
+.coffee-button {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: #302421;
+  background-color: #F5F5DC;
+  border: 2px solid #302421;
+}
+
+.coffee-button:hover {
+  transform: scale(1.05);
+}
+
+.coffee-button:active {
+  transform: scale(0.95);
+}
+
+.dark .coffee-button {
+  color: #F5F5DC;
+  background-color: #302421;
+  border-color: #F5F5DC;
+}
+
+.coffee-button-secondary {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: #302421;
+  border: 2px solid #302421;
+  background-color: transparent;
+}
+
+.coffee-button-secondary:hover {
+  background-color: rgba(48, 36, 33, 0.1);
+}
+
+.dark .coffee-button-secondary {
+  color: #F5F5DC;
+  border-color: #F5F5DC;
+}
+
+.dark .coffee-button-secondary:hover {
+  background-color: rgba(245, 245, 220, 0.1);
+}
+
+.stain-ring {
+  border-radius: 9999px;
+  opacity: 0.2;
+  filter: blur(1rem);
+  background: radial-gradient(circle, rgba(139, 115, 85, 0.5) 0%, transparent 70%);
+}
+
+.corkboard {
+  position: relative;
+  background-color: #92400e;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.03) 2px,
+      rgba(255, 255, 255, 0.03) 4px
+    );
+}
+
+.dark .corkboard {
+  background-color: #78350f;
+}
+
+.pin {
+  position: absolute;
+  width: 1rem;
+  height: 2rem;
+  background-color: #dc2626;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset -1px -1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.sticky-note-coffee {
+  padding: 1rem;
+  border-radius: 0.125rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transform: rotate(1deg);
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sticky-note-coffee:hover {
+  transform: rotate(0deg);
+}
+
+/* Vertical Slider Styling */
+.vertical-slider {
+  appearance: slider-vertical;
+  -webkit-appearance: slider-vertical;
+}
+
+.vertical-slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E2725B, #A4B494);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.vertical-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.vertical-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E2725B, #A4B494);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.vertical-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.vertical-slider::-moz-range-track {
+  background: transparent;
+  border: none;
+}
+
+.dark .vertical-slider::-webkit-slider-thumb {
+  background: linear-gradient(135deg, #A4B494, #E2725B);
+}
+
+.dark .vertical-slider::-moz-range-thumb {
+  background: linear-gradient(135deg, #A4B494, #E2725B);
+}
+
+/* Steam animation for atmospheric effect */
+.steam-particle {
+  animation: steam 3s ease-in forwards;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for coffee theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5dc;
+}
+
+::-webkit-scrollbar-track:dark {
+  background: #302421;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8b7355;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b5344;
+}
+
