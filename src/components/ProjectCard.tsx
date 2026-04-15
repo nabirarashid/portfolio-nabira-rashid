@@ -21,8 +21,7 @@ const ProjectCard = ({ name, description, link, techStack = [], details }: Props
   const colors = drinkColors;
 
   return (
-    <div className="w-full h-full rounded-sm shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-cafe-espresso/10 dark:border-cafe-cream/10 flex flex-col">
-      {/* Colored top bar - represents drink type */}
+    <div className="w-full h-full rounded-sm shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-cafe-espresso/10 dark:border-cafe-cream/10 flex flex-col relative">
       <div 
         style={{ backgroundColor: colors.accent }}
         className="h-3 w-full"

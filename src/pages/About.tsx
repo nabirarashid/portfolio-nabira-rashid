@@ -6,7 +6,38 @@ import MusicVideo from "../components/MusicVideo";
 
 const About = () => {
   return (
-    <div className="coffee-bg min-h-screen transition-colors duration-500">
+    <div className="coffee-bg min-h-screen transition-colors duration-500 relative">
+      {/* Coffee stain decorations */}
+      <img 
+        src="/assets/website/coffee stain.png" 
+        alt="coffee stain" 
+        className="coffee-stain w-36 h-36 pointer-events-none"
+        style={{ top: '80px', left: '40px', width: '144px', height: '144px' }}
+      />
+      <img 
+        src="/assets/website/coffee stain.png" 
+        alt="coffee stain" 
+        className="coffee-stain w-40 h-40 pointer-events-none transform -scale-x-100"
+        style={{ bottom: '128px', right: '32px', width: '160px', height: '160px' }}
+      />
+      <img 
+        src="/assets/website/coffee stain.png" 
+        alt="coffee stain" 
+        className="coffee-stain pointer-events-none"
+        style={{ top: '50%', right: '5%', width: '110px', height: '110px', opacity: 0.12 }}
+      />
+      <img 
+        src="/assets/website/coffee stain.png" 
+        alt="coffee stain" 
+        className="coffee-stain pointer-events-none transform -scale-x-100"
+        style={{ top: '35%', left: '8%', width: '90px', height: '90px', opacity: 0.1 }}
+      />
+      <img 
+        src="/assets/website/coffee stain.png" 
+        alt="coffee stain" 
+        className="coffee-stain pointer-events-none"
+        style={{ bottom: '15%', right: '40%', width: '70px', height: '70px', opacity: 0.08 }}
+      />
       {/* Chalkboard Header */}
       <div className="chalkboard py-20 flex items-center justify-center">
         <div className="max-w-4xl mx-auto text-center px-8 z-10">

@@ -3,6 +3,137 @@
 @import 'swiper/css/pagination';
 @import 'swiper/css/navigation';
 
+/* Coffee bean cursor - PERSISTENT GLOBAL OVERRIDE - ALL EDGE CASES */
+html, body {
+  height: 100%;
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* Universal selector - everything */
+* {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* Main container and coffee-bg CRITICAL for scrolling */
+.coffee-bg,
+.coffee-bg * {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* All heading elements */
+h1, h2, h3, h4, h5, h6 {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* All text elements */
+p, span, div, section, article, main, aside, nav, header, footer {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* All interactive elements */
+a, 
+button, 
+[role="button"], 
+input, 
+textarea, 
+select,
+[onclick],
+.cursor-pointer,
+label {
+  cursor: url("/assets/website/smollest-bean.png"), pointer !important;
+}
+
+/* Media elements */
+img, 
+svg, 
+canvas, 
+video, 
+picture {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* Pseudo-elements - critical for React re-renders */
+*::before,
+*::after {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* All state selectors */
+*:hover,
+*:focus,
+*:active,
+*:focus-visible,
+a:hover,
+a:focus,
+a:active,
+button:hover,
+button:focus,
+button:active {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* Component-specific classes - EXPANDED for scroll issues */
+.chalkboard,
+.chalkboard *,
+.steam-puff,
+.coffee-stain,
+.typewriter,
+.grid,
+.max-w-6xl,
+.px-8,
+.py-16,
+.py-20,
+.pt-24,
+.pb-16 {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* Text input - specific cursor type */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+  cursor: url("/assets/website/smollest-bean.png"), text !important;
+}
+
+/* Disabled state - still use bean */
+input:disabled,
+button:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* Forms and form elements */
+form, fieldset, legend {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* List elements */
+ul, ol, li {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* Table elements */
+table, thead, tbody, tfoot, tr, td, th {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* Any element with data attributes */
+[data-cursor],
+[data-tooltip],
+[data-element] {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+}
+
+/* Overflow and scroll containers - CRITICAL for scroll persistence */
+* {
+  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+  scroll-behavior: auto;
+}
+
 /* Coffee shop aesthetic utilities - Plain CSS */
 .coffee-bg {
   background-color: #F5F5DC;
@@ -235,5 +366,53 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #6b5344;
+}
+
+/* Steam rise animation */
+@keyframes steamRise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) translateX(var(--drift)) scale(0.5);
+  }
+}
+
+/* Cup spin animation */
+@keyframes cupSpin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+/* Hover steam effect */
+.steam-hover {
+  position: relative;
+}
+
+.steam-puff {
+  position: absolute;
+  pointer-events: none;
+  animation: steamRise 1.5s ease-out forwards;
+}
+
+.cup-spin {
+  animation: cupSpin 1s ease-in-out forwards;
+}
+
+/* Coffee stain decoration */
+.coffee-stain {
+  opacity: 0.15;
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
 }
 

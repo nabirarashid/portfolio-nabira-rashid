@@ -4,7 +4,32 @@ import Typewriter from "typewriter-effect";
 
 const Projects = () => {
   return (
-    <div className="coffee-bg min-h-screen transition-colors duration-500">
+    <div className="coffee-bg min-h-screen transition-colors duration-500 relative">
+      {/* Coffee stain decorations */}
+      <img 
+        src="/assets/website/coffee stain.png" 
+        alt="coffee stain" 
+        className="coffee-stain w-40 h-40 pointer-events-none"
+        style={{ top: '33%', right: '48px', width: '160px', height: '160px' }}
+      />
+      <img 
+        src="/assets/website/coffee stain.png" 
+        alt="coffee stain" 
+        className="coffee-stain w-32 h-32 pointer-events-none transform -scale-x-100"
+        style={{ bottom: '25%', left: '24px', width: '128px', height: '128px' }}
+      />
+      <img 
+        src="/assets/website/coffee stain.png" 
+        alt="coffee stain" 
+        className="coffee-stain pointer-events-none"
+        style={{ top: '20%', left: '15%', width: '100px', height: '100px', opacity: 0.12 }}
+      />
+      <img 
+        src="/assets/website/coffee stain.png" 
+        alt="coffee stain" 
+        className="coffee-stain pointer-events-none transform -scale-x-100"
+        style={{ bottom: '40%', right: '10%', width: '80px', height: '80px', opacity: 0.1 }}
+      />
       {/* Chalkboard Header */}
       <div className="chalkboard py-20 flex items-center justify-center">
         <div className="max-w-4xl mx-auto text-center px-8 z-10">
