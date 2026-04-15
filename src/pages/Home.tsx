@@ -57,7 +57,7 @@ const Home = () => {
 
             {/* Description */}
             <div className="bg-black/20 border border-cafe-cream/20 rounded-sm p-8 mb-12 backdrop-blur-sm">
-              <p className="text-base text-cafe-cream leading-relaxed opacity-90">
+              <p className="text-base text-cafe-cream leading-relaxed opacity-90 font-light">
                 an ib student from oakville with a passion for computer science, technology, and music. i love making new friends and creating cool things. let's chat!
               </p>
             </div>
