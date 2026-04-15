@@ -32,7 +32,7 @@ const projects: Project[] = [
     title: "homegrown",
     description: "a local product discovery and seller platform.",
     techStack: ["react", "tailwindcss", "firebase", "maps api"],
-    link: "#",
+    link: "https://homegrownapp.shop/",
     details: `connects users with local businesses by enabling product discovery and seller listings based on location and filters.`,
   },
   {
@@ -53,17 +53,30 @@ const projects: Project[] = [
     title: "segmentation registration research",
     description:
       "research project on medical image segmentation and registration.",
-    link: "#",
+    link: "https://github.com/nabirarashid/medical-image-registration-ablation",
     techStack: ["python", "pytorch", "matplotlib"],
     details: `explored machine learning techniques for improving segmentation and alignment of medical images (mri/ct).`,
   },
   {
-    title: "rag + langchain ai agents",
-    description:
-      "experiments with langchain, ollama, chromadb, and tool calling.",
-    link: "#",
-    techStack: ["python", "langchain", "ollama", "chroma db", "gemini api"],
-    details: `built rag pipelines with chromadb, tested local llms using ollama, and implemented tool use via gemini.`,
+    title: "codecompass",
+    description: "ai-powered tech stack recommender with detailed analysis and cost estimates.",
+    link: "https://github.com/nabirarashid/langgraph-codecompass",
+    techStack: ["next.js", "python", "fastapi", "langgraph", "deepseek ai", "firecrawl", "tailwindcss"],
+    details: `describe your project in natural language and get personalized tech stack recommendations with component analysis, cost estimates, learning curves, and industry-specific insights. built with langgraph for multi-step ai workflows, deepseek for language processing, and firecrawl for real-time web research.`,
+  },
+  {
+    title: "mcp-complex",
+    description: "advanced web scraping with deepseek ai and bright data.",
+    link: "https://github.com/nabirarashid/mcp-scrape",
+    techStack: ["python", "deepseek ai", "bright data", "mcp", "langgraph"],
+    details: `intelligent web scraper that combines deepseek ai with bright data's mcp tools for sophisticated web automation. bypasses captchas, handles javascript-heavy sites, manages authentication, and performs complex browser interactions. integrated with claude desktop and works as a standalone python script.`,
+  },
+  {
+    title: "rythmhacks",
+    description: "modern hackathon platform and hacker dashboard.",
+    link: "https://rythmhacks-site.vercel.app/",
+    techStack: ["next.js", "react", "typescript", "tailwindcss", "mongodb", "jwt auth"],
+    details: `streamlined hackathon platform for our music and algorithm-themed event. hackers can apply, track status, view schedules, and access resources in one place. features guided application flows, personalized dashboards, and responsive design. organizers can efficiently manage applications and event data through intuitive admin interfaces.`,
   },
 ];
 
