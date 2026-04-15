@@ -52,10 +52,10 @@ const projects: Project[] = [
   {
     title: "segmentation registration research",
     description:
-      "research project on medical image segmentation and registration.",
+      "systematic ablation study on medical image registration architectures and regularization.",
     link: "https://github.com/nabirarashid/medical-image-registration-ablation",
-    techStack: ["python", "pytorch", "matplotlib"],
-    details: `explored machine learning techniques for improving segmentation and alignment of medical images (mri/ct).`,
+    techStack: ["python", "pytorch", "numpy", "scipy", "nibabel", "wandb"],
+    details: `evaluated four deep learning model variants on the oasis brain mri dataset to isolate the impact of architectural vs regularization components. found that regularization losses drive a 21.3% mse improvement with 99% reduction in unrealistic deformations, achieving sub-voxel accuracy while maintaining computational efficiency.`,
   },
   {
     title: "codecompass",
