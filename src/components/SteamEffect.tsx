@@ -37,7 +37,7 @@ export const SteamEffect: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-64 pointer-events-none overflow-hidden">
+    <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 pointer-events-none overflow-hidden w-24 h-48 md:w-32 md:h-64">
       {particles.map(particle => (
         <SteamParticle
           key={particle.id}

@@ -92,8 +92,8 @@ const Navbar = () => {
                   }}
                   className={`text-sm font-light tracking-wide transition-all duration-300 lowercase text-left ${
                     activeItem === item.name
-                      ? 'coffee-text'
-                      : 'coffee-text/60 hover:coffee-text'
+                      ? 'coffee-text dark:text-cafe-cream'
+                      : 'coffee-text dark:text-cafe-cream/60 hover:coffee-text dark:hover:text-cafe-cream'
                   }`}
                 >
                   {item.name}
@@ -102,7 +102,7 @@ const Navbar = () => {
             </div>
             <button
               onClick={() => window.location.href = 'mailto:nabira.rashidm@gmail.com'}
-              className="w-full px-6 py-2 border border-cafe-espresso dark:border-cafe-cream coffee-text hover:bg-cafe-espresso/10 dark:hover:bg-cafe-cream/10 transition-all duration-300 font-light tracking-wide text-sm lowercase"
+              className="w-full px-6 py-2 border border-cafe-espresso dark:border-cafe-cream coffee-text dark:text-cafe-cream hover:bg-cafe-espresso/10 dark:hover:bg-cafe-cream/10 transition-all duration-300 font-light tracking-wide text-sm lowercase"
             >
               let's chat
             </button>
