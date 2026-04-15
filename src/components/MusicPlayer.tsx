@@ -27,7 +27,7 @@ export const MusicPlayer: React.FC = () => {
         </div>
 
         <p className="coffee-text font-light text-xs text-center">
-          acoustic, study beats, and late nights with good friends ☕
+          study beats that keep me up on late nights when coffee can't ☕
         </p>
       </div>
     </div>

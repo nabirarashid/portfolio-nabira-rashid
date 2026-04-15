@@ -30,19 +30,21 @@ const Home = () => {
             <div className="mb-16">
               <p className="text-sm text-cafe-cream opacity-70 mb-4 tracking-widest uppercase">now brewing</p>
               <div className="flex items-center justify-center gap-6 mb-8">
-                {/* Coffee Cup Image */}
-                <div className="relative w-32 h-40 hidden sm:flex items-center justify-center">
-                  <div className="relative w-28 h-28">
-                    {/* Handle */}
-                    <div className="absolute top-1/4 -left-6 w-8 h-10 border-6 rounded-l-full -z-10" style={{ borderColor: '#A0826D' }} />
-                    {/* Coffee cup circle */}
-                    <img 
-                      src="/assets/website/pfp.jpg" 
-                      alt="nabira"
-                      className="w-full h-full rounded-full object-cover shadow-lg border-4 relative z-10"
-                      style={{ borderColor: '#A0826D' }}
-                    />
-                  </div>
+                {/* Coffee Cup with Face on Top */}
+                <div className="relative w-40 h-48 hidden sm:flex items-center justify-center">
+                  {/* Coffee cup image */}
+                  <img 
+                    src="/assets/website/new coffee cup.webp" 
+                    alt="coffee cup"
+                    className="w-full h-full object-contain"
+                  />
+                  {/* Face positioned above coffee cup */}
+                  <img 
+                    src="/assets/website/pfp.jpg" 
+                    alt="nabira"
+                    className="absolute left-1/2 w-24 h-24 rounded-full object-cover shadow-lg border-4"
+                    style={{ borderColor: '#A0826D', transform: 'translateX(-46%)', top: '2.875rem' }}
+                  />
                 </div>
                 <h2 className="text-4xl lg:text-5xl font-serif font-light tracking-wide text-cafe-cream">
                   nabira rashid
@@ -70,6 +72,7 @@ const Home = () => {
                       "exploring hackathons",
                       "crafting with code",
                       "making new friends",
+                      "finding coffee chats"
                     ],
                     autoStart: true,
                     loop: true,

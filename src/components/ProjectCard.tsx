@@ -30,8 +30,8 @@ const ProjectCard = ({ name, description, link, techStack = [], details }: Props
       
       {/* Content area */}
       <div 
-        style={!isDark ? { backgroundColor: colors.light } : {}}
-        className="p-6 bg-white dark:bg-slate-800 flex-1 flex flex-col">
+        style={!isDark ? { backgroundColor: colors.light } : { backgroundColor: '#1a0f0a' }}
+        className="p-6 bg-white flex-1 flex flex-col">
         <div className="flex flex-col justify-start items-start gap-6 h-full">
           {/* Title */}
           <div className="coffee-text dark:text-cafe-cream text-2xl font-serif font-light">

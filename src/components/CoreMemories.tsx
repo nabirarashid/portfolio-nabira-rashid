@@ -58,20 +58,24 @@ const photos = [
     src: "/assets/website/prom.JPG",
     caption: "prom 24",
   },
+  {
+    src: "/assets/website/semi.jpg",
+    caption: "semi 25 with my babies",
+  },
 ];
 
 const CoreMemories = () => {
   return (
-    <div className="w-full px-4 py-12 coffee-bg">
+    <div className="w-full px-4 py-6 coffee-bg">
       {/* Title */}
-      <div className="max-w-6xl mx-auto mb-6">
+      <div className="max-w-6xl mx-auto mb-3">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-serif font-light coffee-text mb-3 tracking-wide">
             wall of memories
           </h2>
           <div className="w-12 h-0.5 bg-gradient-to-r from-cafe-matcha to-cafe-terracotta dark:from-cafe-terracotta dark:to-cafe-matcha mx-auto" />
         </div>
-        <p className="coffee-text dark:text-cafe-cream font-light text-center text-sm opacity-60 dark:opacity-100">
+        <p className="coffee-text dark:text-cafe-cream font-light text-center text-sm opacity-60 dark:opacity-100 mb-8">
           snapshots from moments that matter
         </p>
       </div>
