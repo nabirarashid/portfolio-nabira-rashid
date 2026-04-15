@@ -55,7 +55,7 @@ const projects: Project[] = [
       "systematic ablation study on medical image registration architectures and regularization.",
     link: "https://github.com/nabirarashid/medical-image-registration-ablation",
     techStack: ["python", "pytorch", "numpy", "scipy", "nibabel", "wandb"],
-    details: `evaluated four deep learning model variants on the oasis brain mri dataset to isolate the impact of architectural vs regularization components. found that regularization losses drive a 21.3% mse improvement with 99% reduction in unrealistic deformations, achieving sub-voxel accuracy while maintaining computational efficiency.`,
+    details: `evaluated deep learning model variants on oasis brain mri dataset to isolate architectural vs regularization impacts. found regularization losses drive 21.3% mse improvement with 99% reduction in unrealistic deformations while maintaining computational efficiency.`,
   },
   {
     title: "codecompass",
@@ -76,7 +76,7 @@ const projects: Project[] = [
     description: "modern hackathon platform and hacker dashboard.",
     link: "https://rythmhacks-site.vercel.app/",
     techStack: ["next.js", "react", "typescript", "tailwindcss", "mongodb", "jwt auth"],
-    details: `streamlined hackathon platform for our music and algorithm-themed event. hackers can apply, track status, view schedules, and access resources in one place. features guided application flows, personalized dashboards, and responsive design. organizers can efficiently manage applications and event data through intuitive admin interfaces.`,
+    details: `complete hackathon platform streamlining applications, hacker dashboards, scheduling, and event logistics. features guided application flows, personalized dashboards, and intuitive admin tools for organizers to manage participants and event data.`,
   },
 ];
 
