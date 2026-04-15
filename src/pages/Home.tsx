@@ -28,7 +28,7 @@ const Home = () => {
 
             {/* Intro Text */}
             <div className="mb-16">
-              <p className="text-sm text-cafe-cream opacity-70 mb-4 tracking-widest uppercase">now brewing</p>
+              <p className="text-sm text-cafe-cream opacity-70 mb-4 tracking-widest uppercase">freshly poured</p>
               <div className="flex items-center justify-center gap-6 mb-8">
                 {/* Coffee Cup with Face on Top */}
                 <div className="relative w-40 h-48 hidden sm:flex items-center justify-center">
@@ -94,7 +94,7 @@ const Home = () => {
       <div className="max-w-6xl mx-auto px-8 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-serif font-light coffee-text mb-2 tracking-wide">
-            now brewing
+            freshly poured
           </h2>
           <p className="coffee-text font-light text-sm">featured projects fresh from the kitchen</p>
         </div>

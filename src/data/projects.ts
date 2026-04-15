@@ -30,10 +30,10 @@ const projects: Project[] = [
   },
   {
     title: "homegrown",
-    description: "a local product discovery and seller platform.",
-    techStack: ["react", "tailwindcss", "firebase", "maps api"],
+    description: "swipe local, support community.",
+    techStack: ["react", "typescript", "tailwindcss", "firebase", "firestore"],
     link: "https://homegrownapp.shop/",
-    details: `connects users with local businesses by enabling product discovery and seller listings based on location and filters.`,
+    details: `discover local shops, restaurants, and services like swiping social media. 120+ local businesses with profiles and deals. like what you love, get personalized recommendations, support your community.`,
   },
   {
     title: "snapquest",
