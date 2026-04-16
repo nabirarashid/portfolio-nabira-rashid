@@ -14,7 +14,7 @@ export const AudioControl: React.FC = () => {
         aria-label="toggle lights"
       >
         <div className="text-lg">
-          {isDark ? '☀' : '☾'}
+          {isDark ? '☾\uFE0E' : '☀\uFE0E'}
         </div>
       </button>
     </div>

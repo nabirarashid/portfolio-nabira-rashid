@@ -3,135 +3,32 @@
 @import 'swiper/css/pagination';
 @import 'swiper/css/navigation';
 
-/* Coffee bean cursor - PERSISTENT GLOBAL OVERRIDE - ALL EDGE CASES */
-html, body {
-  height: 100%;
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+:root {
+  --bean-cursor-img: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAEFUExURUdwTL6lm9G5sbOckdTAt9S8sdXAuNrHv9a8r97Hv9vDuNK3qtnLwN/HvsKmmauRhtjAtLSYi31iUrifk7Cakd3EuquMfXZYR52DdIZqW4ZqW5+FeZZ7bnxdS3FRP25PPcCqoHFTQodqWnFSQaWKfohqWpJ2Z3VXRcizrNrEvtW/ud/KxGk6J62KeHhFLodfSYZnWsqyqZdsVJRnS25SRo5xZKiCa+XMwzgiGp1zWubQyKJ5YY5YN31hUxcODL+rpJ2EeejTzYNMMLWck0QwJ3hbTLOQfGAtGYxSLpt8b4NYQbqah1I0KFc+M62TiGRHOlwzJZVgP0wjF6OMgy4ZE3tRP3g8HEjlMocAAAApdFJOUwD+/hEbTDkIKvDOhAKoreRqVyHEm7rCUwoZ36OayIYycZrp4/V5y+bNwS3kOQAAAjpJREFUOMu1U1d7m0AQ5FCxbOHee02Bu6MeHQSiCgSo+///lJxip/izk6dkX2dnZm9vlmH+fXHtbmdvr9P+GN3o7m1vsazAgq1+6wNyd3tTEARWAWAhNzvvRFr9TehAXlBAXIR1oh723qp3jgUe8pB2BAGOqkESfv2tg+us1XmepxZQwR6q/SppdjZ+4G2qDgWWpQ280GioSrIxCQPQecV7x1SY+lOJoJDQfFnbBkmDIH6V6G05Js9D04QCFufzpUWMMVB0PSx2ey+4OXQcE0II1uxBIrkZAHETNuFT9zs+pGWajmKLU2swmGjqOJZXvqzr8i5t2Ng2Hco3WTo6hRPfdsFigkQxWpXlLl1Wd5PyHT7zxIrCsqRlcSFROJLkUj7iGOZOGEIlVpG1HFgE2xKOdVFyVU1TpTJcP7MfBEFBzZO6RpIkj7Gmy6Wqqeoo0g/XH9Zf+ESslpOylCS7iceZrWneaDaLIn09IsN0nuq5ZVVEsjPAs409G41mmuc9I3lx97Llw4llJX6RKZBXAuB6njbzRvlUDo9e1sgdkYE1MRQoKGPDdW13bU/5xeVrYrh9vdaJwiugMbCBMTa0CKW6fvUzUa2TWFmEOHRtw8AZNkb5RNYfPp39ysI+wC4R0Wpmu4YqIkRk//r0TZZ2DG9V5WL0/IzyKfHTLzfnb8PYPlHFHKE8nyKSpo/3t+/i3L5U0xVJfd9PH29uuQ/u4Wz/6vPFw8X1/enBHy+qdX5w0GI47i83x/yf+gbV5nFJApmdzwAAAABJRU5ErkJggg==");
+  --cursor-x: 0px;
+  --cursor-y: 0px;
 }
 
-/* Universal selector - everything */
-* {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
+/* Hide native cursor, use custom bean cursor overlay */
+html,
+body,
+body * {
+  cursor: none !important;
 }
 
-/* Main container and coffee-bg CRITICAL for scrolling */
-.coffee-bg,
-.coffee-bg * {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
-}
-
-/* All heading elements */
-h1, h2, h3, h4, h5, h6 {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
-}
-
-/* All text elements */
-p, span, div, section, article, main, aside, nav, header, footer {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
-}
-
-/* All interactive elements */
-a, 
-button, 
-[role="button"], 
-input, 
-textarea, 
-select,
-[onclick],
-.cursor-pointer,
-label {
-  cursor: url("/assets/website/smollest-bean.png"), pointer !important;
-}
-
-/* Media elements */
-img, 
-svg, 
-canvas, 
-video, 
-picture {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
-}
-
-/* Pseudo-elements - critical for React re-renders */
-*::before,
-*::after {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
-}
-
-/* All state selectors */
-*:hover,
-*:focus,
-*:active,
-*:focus-visible,
-a:hover,
-a:focus,
-a:active,
-button:hover,
-button:focus,
-button:active {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
-}
-
-/* Component-specific classes - EXPANDED for scroll issues */
-.chalkboard,
-.chalkboard *,
-.steam-puff,
-.coffee-stain,
-.typewriter,
-.grid,
-.max-w-6xl,
-.px-8,
-.py-16,
-.py-20,
-.pt-24,
-.pb-16 {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
-}
-
-/* Text input - specific cursor type */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="search"],
-textarea,
-select {
-  cursor: url("/assets/website/smollest-bean.png"), text !important;
-}
-
-/* Disabled state - still use bean */
-input:disabled,
-button:disabled,
-select:disabled,
-textarea:disabled {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
-}
-
-/* Forms and form elements */
-form, fieldset, legend {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
-}
-
-/* List elements */
-ul, ol, li {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
-}
-
-/* Table elements */
-table, thead, tbody, tfoot, tr, td, th {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
-}
-
-/* Any element with data attributes */
-[data-cursor],
-[data-tooltip],
-[data-element] {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
-}
-
-/* Overflow and scroll containers - CRITICAL for scroll persistence */
-* {
-  cursor: url("/assets/website/smollest-bean.png"), auto !important;
-  scroll-behavior: auto;
+.bean-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  transform: translate3d(calc(var(--cursor-x) - 11px), calc(var(--cursor-y) - 14px), 0);
+  background-image: var(--bean-cursor-img);
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 2147483647;
+  will-change: transform;
 }
 
 /* Coffee shop aesthetic utilities - Plain CSS */
@@ -297,7 +194,7 @@ table, thead, tbody, tfoot, tr, td, th {
   height: 16px;
   border-radius: 50%;
   background: linear-gradient(135deg, #E2725B, #A4B494);
-  cursor: pointer;
+  cursor: var(--bean-cursor) !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease;
 }
@@ -312,7 +209,7 @@ table, thead, tbody, tfoot, tr, td, th {
   height: 16px;
   border-radius: 50%;
   background: linear-gradient(135deg, #E2725B, #A4B494);
-  cursor: pointer;
+  cursor: var(--bean-cursor) !important;
   border: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease;
@@ -406,6 +303,19 @@ html {
 
 .cup-spin {
   animation: cupSpin 1s ease-in-out forwards;
+}
+
+.cup-logo {
+  display: inline-block;
+  transition: transform 0.2s ease-out;
+}
+
+.cup-logo:hover {
+  animation: cupSpin 1s ease-in-out forwards;
+}
+
+.cup-container:hover .cup-spin {
+  animation: cupSpin 1s ease-in-out !important;
 }
 
 /* Coffee stain decoration */

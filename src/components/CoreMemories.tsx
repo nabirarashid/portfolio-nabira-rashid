@@ -71,7 +71,7 @@ const CoreMemories = () => {
       <div className="max-w-6xl mx-auto mb-3">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-serif font-light coffee-text mb-3 tracking-wide">
-            ⋆୨୧˚ wall of memories ˚୨୧⋆
+            ୨୧ wall of memories ୨୧
           </h2>
           <div className="w-12 h-0.5 bg-gradient-to-r from-cafe-matcha to-cafe-terracotta dark:from-cafe-terracotta dark:to-cafe-matcha mx-auto" />
         </div>

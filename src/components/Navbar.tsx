@@ -1,25 +1,23 @@
-import { useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import { useTheme } from '../context/ThemeContext';
 
 const Navbar = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { isDark } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState('home');
   
   const navItems = [
-    { name: 'home', href: '/' },
-    { name: 'about', href: '/about' },
-    { name: 'projects', href: '/projects' }
+    { name: 'home', id: 'home-section' },
+    { name: 'about', id: 'about-section' },
+    { name: 'projects', id: 'projects-section' }
   ];
 
-  const getActiveItem = () => {
-    if (location.pathname === '/') return 'home';
-    return location.pathname.slice(1);
+  const scrollToSection = (id: string, name: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveItem(name);
+      setMobileMenuOpen(false);
+    }
   };
-
-  const activeItem = getActiveItem();
 
   return (
     <nav className="sticky top-0 z-50 coffee-bg border-b border-cafe-espresso/20 dark:border-cafe-cream/20 shadow-sm transition-colors duration-500">
@@ -28,10 +26,10 @@ const Navbar = () => {
           
           {/* Logo */}
           <button 
-            onClick={() => navigate('/')}
+            onClick={() => scrollToSection('home-section', 'home')}
             className="flex items-center gap-3 group hover:opacity-70 transition-opacity duration-300"
           >
-            <div className="text-2xl">☕</div>
+            <div className="text-2xl cup-logo">☕</div>
             <div className="font-light coffee-text text-sm tracking-wide">
               nabira rashid
             </div>
@@ -42,7 +40,7 @@ const Navbar = () => {
             {navItems.map((item) => (
               <button
                 key={item.name}
-                onClick={() => navigate(item.href)}
+                onClick={() => scrollToSection(item.id, item.name)}
                 className={`text-sm font-light tracking-wide transition-all duration-300 lowercase ${
                   activeItem === item.name
                     ? 'coffee-text dark:text-cafe-cream border-b border-cafe-espresso dark:border-cafe-cream'
@@ -60,7 +58,7 @@ const Navbar = () => {
               onClick={() => window.location.href = 'mailto:nabira.rashidm@gmail.com'}
               className="px-6 py-2 border border-cafe-espresso dark:border-cafe-cream coffee-text hover:bg-cafe-espresso/10 dark:hover:bg-cafe-cream/10 transition-all duration-300 font-light tracking-wide text-sm lowercase"
             >
-              let's chat
+              let's chat ☻
             </button>
           </div>
 
@@ -86,10 +84,7 @@ const Navbar = () => {
               {navItems.map((item) => (
                 <button
                   key={item.name}
-                  onClick={() => {
-                    navigate(item.href);
-                    setMobileMenuOpen(false);
-                  }}
+                  onClick={() => scrollToSection(item.id, item.name)}
                   className={`text-sm font-light tracking-wide transition-all duration-300 lowercase text-left ${
                     activeItem === item.name
                       ? 'coffee-text dark:text-cafe-cream'
@@ -104,7 +99,7 @@ const Navbar = () => {
               onClick={() => window.location.href = 'mailto:nabira.rashidm@gmail.com'}
               className="w-full px-6 py-2 border border-cafe-espresso dark:border-cafe-cream coffee-text dark:text-cafe-cream hover:bg-cafe-espresso/10 dark:hover:bg-cafe-cream/10 transition-all duration-300 font-light tracking-wide text-sm lowercase"
             >
-              let's chat
+              let's chat ☻
             </button>
           </div>
         )}
