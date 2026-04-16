@@ -40,19 +40,19 @@ const StickyNote: React.FC<StickyNoteProps> = ({
         {/* Content area with subtle background */}
         <div 
           style={{
-            backgroundColor: isDark ? colors.light : colors.dark,
+            backgroundColor: isDark ? colors.dark : colors.light,
             borderLeftColor: colors.border
           }}
-          className="p-6 dark:border-l-4"
+          className="p-6 border-l-4"
         >
           <h3 
-            style={{ color: isDark ? colors.text : '#F5F5DC' }}
+            style={{ color: isDark ? '#F5F5DC' : colors.text }}
             className="text-xl font-serif font-light mb-2 tracking-wide"
           >
             {title}
           </h3>
           <p className="text-sm font-light leading-relaxed"
-            style={{ color: isDark ? colors.text : '#F5F5DC' }}
+            style={{ color: isDark ? '#F5F5DC' : colors.text }}
             dangerouslySetInnerHTML={{__html: content}} 
           />
         </div>
