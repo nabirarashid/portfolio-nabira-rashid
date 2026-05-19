@@ -7,7 +7,7 @@ const Footer = () => {
         {/* Main CTA and Contact Section */}
         <div className="text-center mb-12">
           <p className="text-cafe-cream font-serif text-lg font-light mb-2 drop-shadow-md">
-            thanks for stopping by
+            thanks for stopping by ⭑.ᐟ
           </p>
           <p className="text-cafe-cream font-serif text-xl font-light mb-8 tracking-wide drop-shadow-md">
             pull up a chair and let's create something together
@@ -48,7 +48,7 @@ const Footer = () => {
         {/* Footer Credits */}
         <div className="border-t border-cafe-cream/20 pt-8 text-center">
           <p className="text-cafe-cream/80 font-light text-sm drop-shadow-md">
-            nabira's cafe • made with coffee & creativity
+            nabira's cafe • made with lots of coffee
           </p>
         </div>
       </div>

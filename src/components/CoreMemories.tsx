@@ -68,8 +68,8 @@ const CoreMemories = () => {
   return (
     <div className="w-full px-4 py-6 coffee-bg">
       {/* Title */}
-      <div className="max-w-6xl mx-auto mb-3">
-        <div className="text-center mb-6">
+      <div className="max-w-6xl mx-auto mb-0">
+        <div className="text-center mb-2">
           <h2 className="text-3xl font-serif font-light coffee-text mb-3 tracking-wide">
             ✩ wall of memories ✩
           </h2>

@@ -9,7 +9,7 @@ const aboutinfo: AboutInfo[] = [
   {
     title: "hackathons",
     content:
-      "hackathons have been such an important part of my tech journey. they're where i've met the most inspirational people and pushed myself to build things i didn't know were possible",
+      "hackathons have been such an important part of my tech journey. they're where i've met the most inspirational people (especially women) and pushed myself to build things i didn't know were possible",
     mediaType: "image",
     media: "/assets/website/jamhacks.jpg",
   },
@@ -29,7 +29,7 @@ const aboutinfo: AboutInfo[] = [
   {
     title: "limitless learning initiative",
     content:
-      "i was the chairperson of this initiative that aims to bridge education gaps for students across Halton. raised over $4000+ through 8 public and school events",
+      "i was the chairperson of this initiative that aims to bridge education gaps for students across Halton. raised over $4000+ through 8 public and school events. this was my first big leadership project—connecting with diverse communities and learning how impactful it can be to give back",
     mediaType: "image",
     media: "/assets/website/krispy.jpg",
   },
@@ -41,9 +41,9 @@ const aboutinfo: AboutInfo[] = [
     media: "/assets/website/sfs.jpg",
   },
   {
-    title: "community involvement",
+    title: "oakville youth action committee",
     content:
-      "i used to be the social chairperson for the oakville youth action committee leading 60+ youth, and was on my school's student council. these experiences taught me a lot about community building and leadership",
+      "i used to be the social chairperson for the oakville youth action committee leading 60+ youth. through planning events and engaging with the community, i learned how powerful leadership is in a municipal space and developed a deeper appreciation for grassroots organizing",
     mediaType: "image",
     media: "/assets/website/oyac.JPEG",
   },

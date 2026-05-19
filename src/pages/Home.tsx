@@ -71,11 +71,17 @@ const Home = () => {
           className="coffee-stain pointer-events-none"
           style={{ bottom: '20%', left: '50%', width: '70px', height: '70px', opacity: 0.08 }}
         />
+        {/* Bottom gradient overlay */}
+        <div 
+          className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+          style={{
+            background: 'linear-gradient(to top, rgba(160, 130, 109, 0.12), transparent)'
+          }}
+        />
         {/* Chalkboard Hero Section */}
         <div className="relative overflow-hidden">
           <div className="chalkboard py-20 flex items-center justify-center relative">
             {/* Decorative elements */}
-            <div className="absolute bottom-12 left-12 opacity-10 text-8xl animate-float-slow">🎵</div>
 
             <div className="max-w-4xl mx-auto text-center px-8 z-10 pt-8">
               {/* Main Title */}
@@ -202,7 +208,7 @@ const Home = () => {
             <h2 className="text-3xl font-serif font-light coffee-text mb-2 tracking-wide">
               freshly poured .ᐟ.ᐟ
             </h2>
-            <p className="coffee-text font-light text-sm">featured projects fresh from the kitchen</p>
+            <p className="coffee-text font-light text-sm">featured projects fresh from the kitchen ⌗</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr -mt-2">

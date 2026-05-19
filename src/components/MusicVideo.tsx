@@ -21,11 +21,6 @@ const MusicVideo = () => {
           <p className="text-gray-600 mb-3 text-sm">
             Stage B - May 13th - 2 PM to 10 PM | Our timestamp is 5:40
           </p>
-          <div className="flex items-center gap-3 text-xs text-gray-500">
-            <span>🎵 MusicFest Canada</span>
-            <span>📅 May 13, 2025</span>
-            <span>🎤 Live Performance</span>
-          </div>
         </div>
       </div>
     </div>
