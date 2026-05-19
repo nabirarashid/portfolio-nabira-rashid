@@ -50,9 +50,6 @@ const Footer = () => {
           <p className="text-cafe-cream/80 font-light text-sm drop-shadow-md">
             nabira's cafe • made with coffee & creativity
           </p>
-          <p className="text-cafe-cream/70 text-xs font-light mt-2 drop-shadow-md">
-            react, tailwind, and a lot of ☕
-          </p>
         </div>
       </div>
     </footer>

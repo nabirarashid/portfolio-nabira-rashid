@@ -15,12 +15,17 @@ export const CurrentlyConsuming: React.FC = () => {
     {
       title: 'catgpt',
       category: 'instagram',
-      note: '@askcatgpt',
+      note: 'hot takes on ai @askcatgpt',
     },
     {
       title: 'northrop frye works',
       category: 'books',
-      note: 'had to read one for school but i loved it sm',
+      note: 'had to read one for school and loved it sm',
+    },
+    {
+      title: 'cinema',
+      category: 'film',
+      note: 'exploring worlds like little women and pride & prejudice',
     },
     {
       title: 'linkedin doomscrolling',
@@ -30,8 +35,8 @@ export const CurrentlyConsuming: React.FC = () => {
 
   return (
     <div className="flex-1 flex flex-col items-center">
-      <div className="text-center mb-8 w-full">
-        <p className="coffee-text font-light mb-6 text-center">ᯓ★ currently consuming</p>
+      <div className="text-center mb-3 w-full">
+        <p className="coffee-text font-light mb-3 text-center">ᯓ★ currently consuming</p>
       </div>
 
       <div className="space-y-3 w-full max-w-xs">
@@ -50,7 +55,7 @@ export const CurrentlyConsuming: React.FC = () => {
       </div>
 
       <p className="coffee-text font-light text-xs text-center mt-6">
-        always finding something new to enjoy 📖
+        always exploring and open to new recs ◡̈
       </p>
     </div>
   );

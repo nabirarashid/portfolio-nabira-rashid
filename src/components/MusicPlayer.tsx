@@ -30,7 +30,7 @@ export const MusicPlayer: React.FC = () => {
             </div>
 
             <p className="coffee-text font-light text-xs text-center">
-              study beats that keep me up on late nights when coffee can't ♬
+              music you will always catch me listening to ♬
             </p>
           </div>
 

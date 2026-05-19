@@ -121,18 +121,11 @@ const Home = () => {
                     <h2 className="text-5xl lg:text-7xl font-serif font-light tracking-wide text-cafe-cream">
                       nabira rashid
                     </h2>
-                    <p className="text-lg text-cafe-cream opacity-80 font-light mt-2 self-end">
-                      developer, creator, and coffee enthusiast
+                    <p className="text-base text-cafe-cream opacity-80 font-light mt-2 self-end">
+                      incoming cs @uwaterloo • creator • coffee enthusiast
                     </p>
                   </div>
                 </div>
-              </div>
-
-              {/* Description */}
-              <div className="bg-black/20 border border-cafe-cream/20 rounded-sm p-8 mb-12 backdrop-blur-sm">
-                <p className="text-base text-cafe-cream leading-relaxed opacity-90 font-light">
-                  an ib student from oakville with a passion for computer science, technology, and music. i love making new friends and creating cool things. let's chat!
-                </p>
               </div>
 
               {/* Typewriter */}
@@ -305,7 +298,7 @@ const Home = () => {
                   <StickyNote
                     title={info.title}
                     content={info.content}
-                    color={index % 2 === 0 ? "yellow" : "pink"}
+                    color="yellow"
                     alignment={index % 2 === 0 ? "left" : "right"}
                   />
                 </div>
