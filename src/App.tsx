@@ -40,7 +40,7 @@ const App = () => {
     <ThemeProvider>
       <AudioProvider>
         <div className="coffee-bg min-h-screen transition-colors duration-500">
-          <div className="bean-cursor" aria-hidden="true" />
+          <div className="bean-cursor hidden md:block" aria-hidden="true" />
           <Navbar />
           <Home />
           <Footer />
