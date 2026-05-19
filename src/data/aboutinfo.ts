@@ -43,7 +43,7 @@ const aboutinfo: AboutInfo[] = [
   {
     title: "oakville youth action committee",
     content:
-      "i used to be the social chairperson for the oakville youth action committee leading 60+ youth. through planning events and engaging with the community, i learned how powerful leadership is in a municipal space and developed a deeper appreciation for grassroots organizing",
+      "i was the social chairperson for the oakville youth action committee leading 60+ youth. planning events taught me the power of community engagement and grassroots organizing",
     mediaType: "image",
     media: "/assets/website/oyac.JPEG",
   },
