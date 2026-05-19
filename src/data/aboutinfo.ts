@@ -9,47 +9,41 @@ const aboutinfo: AboutInfo[] = [
   {
     title: "hackathons",
     content:
-      "i love hackathons! they're a great way to meet new people, learn new skills, and build cool projects. i've participated in several hackathons, including hack the north, uofthacks & jamhacks!",
+      "hackathons have been such an important part of my tech journey. they're where i've met the most inspirational people and pushed myself to build things i didn't know were possible",
     mediaType: "image",
     media: "/assets/website/jamhacks.jpg",
   },
   {
     title: "music",
     content:
-      "i love music! i play the alto saxophone and i'm part of my school's concert band. i also enjoy listening to music, especially gracie abrams and taylor swift :)",
+      "i used to play the alto saxophone and was part of my school's concert band. music offers such a different kind of creative expression compared to tech—it's a nice escape and keeps me grounded",
     mediaType: "video",
   },
   {
-    title: "ml & research",
+    title: "machine learning research",
     content:
-      "i'm really interested in machine learning and research! i'm currently working on research projects related to sentiment analysis and brain image alignment!",
+      "i previously worked on research projects related to sentiment analysis and brain image alignment. now i'm exploring and learning more about different applications of machine learning",
     mediaType: "image",
     media: "/assets/website/ml.jpg",
   },
   {
     title: "limitless learning initiative",
     content:
-      "i founded and am the chairperson of this initiative that aims to bridge education gaps for students across Halton. raised over $1200 in events so far and engaged with 300+ members of the public",
+      "i was the chairperson of this initiative that aims to bridge education gaps for students across Halton. raised over $4000+ through 8 public and school events",
     mediaType: "image",
     media: "/assets/website/krispy.jpg",
   },
   {
     title: "stem from scratch",
     content:
-      "not only do i love tech, but i also improving access to it! i'm the co-founder and president of stem from scratch, a student-led initiative that teaches coding to young students & shares STEM resources through monthly newsletters",
+      "i was the co-founder and president of stem from scratch, an initiative focused on making tech accessible. we taught coding to young students and shared STEM resources through monthly newsletters",
     mediaType: "image",
     media: "/assets/website/sfs.jpg",
   },
   {
-    title: "content creation",
-    content:
-      "i love creating content! i have an instagram profile where i post about my coding & ml journey, you should check it out @tech.with.nabira (<a href='https://www.instagram.com/tech.with.nabira/' target='_blank' rel='noopener noreferrer'>leave a follow!</a>)",
-    mediaType: "frame",
-  },
-  {
     title: "community involvement",
     content:
-      "i'm passionate about giving back to the community! i'm the social chairperson for the oakville youth action committee and on my school's student council too :0",
+      "i used to be the social chairperson for the oakville youth action committee leading 60+ youth, and was on my school's student council. these experiences taught me a lot about community building and leadership",
     mediaType: "image",
     media: "/assets/website/oyac.JPEG",
   },
