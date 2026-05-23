@@ -48,7 +48,7 @@ const Footer = () => {
         {/* Footer Credits */}
         <div className="border-t border-cafe-cream/20 pt-8 text-center">
           <p className="text-cafe-cream/80 font-light text-sm drop-shadow-md">
-            nabira's cafe • made with lots of coffee
+            nabira's cafe • made with lots of coffee ◡̈
           </p>
         </div>
       </div>

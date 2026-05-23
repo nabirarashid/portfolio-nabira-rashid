@@ -14,6 +14,10 @@ const Home = () => {
   const [cupHovered, setCupHovered] = useState(false);
   const [isSpinning, setIsSpinning] = useState(true);
 
+  const itemCupMap = aboutinfo.map(item =>
+    item.mediaType === 'image' ? '/assets/website/matchacup-removebg-preview.png' : null
+  );
+
   useEffect(() => {
     const shuffledProjects = [...projects].sort(() => 0.5 - Math.random());
     setDisplayedProjects(shuffledProjects.slice(0, 2));
@@ -166,10 +170,10 @@ const Home = () => {
         <div className="max-w-6xl mx-auto px-8 pt-24 pb-16">
           <div className="text-center mb-0 relative h-32">
             {/* Animated steam puffs from right side - continuous flow */}
-            <img 
-              src="/assets/website/steam.webp" 
+            <img
+              src="/assets/website/steam.webp"
               alt="steam"
-              className="steam-puff absolute"
+              className="steam-puff absolute hidden md:block"
               style={{
                 right: '430px',
                 top: '-28px',
@@ -179,10 +183,10 @@ const Home = () => {
                 '--drift': '40px',
               } as React.CSSProperties & { '--drift': string }}
             />
-            <img 
-              src="/assets/website/steam.webp" 
+            <img
+              src="/assets/website/steam.webp"
               alt="steam"
-              className="steam-puff absolute"
+              className="steam-puff absolute hidden md:block"
               style={{
                 right: '390px',
                 top: '-23px',
@@ -192,10 +196,10 @@ const Home = () => {
                 '--drift': '60px',
               } as React.CSSProperties & { '--drift': string }}
             />
-            <img 
-              src="/assets/website/steam.webp" 
+            <img
+              src="/assets/website/steam.webp"
               alt="steam"
-              className="steam-puff absolute"
+              className="steam-puff absolute hidden md:block"
               style={{
                 right: '360px',
                 top: '-25px',
@@ -297,7 +301,7 @@ const Home = () => {
             ) => (
               <div
                 key={index}
-                className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-12 mb-20 py-8 border-b-2 border-cafe-espresso/20 dark:border-cafe-cream last:border-b-0`}
+                className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-8 mb-10 py-4 border-b-2 border-cafe-espresso/20 dark:border-cafe-cream last:border-b-0`}
               >
                 {/* Content */}
                 <div className="flex-1">
@@ -312,19 +316,25 @@ const Home = () => {
                 {/* Media */}
                 <div className="flex-1 flex items-center justify-center">
                   {info.mediaType === "image" ? (
-                    <div className="relative w-full aspect-square max-w-sm">
+                    <div className="relative mx-auto" style={{ width: '288px', height: '288px' }}>
                       <div className="absolute -inset-4 bg-cafe-espresso/5 dark:bg-cafe-cream/5 rounded-lg blur-lg" />
+                      <img
+                        src={itemCupMap[index]!}
+                        alt="coffee cup"
+                        className="absolute inset-0 w-full h-full object-contain z-0"
+                      />
                       <img
                         src={info.media}
                         alt={`Media for ${info.title}`}
-                        className="w-full h-full
-                        object-cover
-                        rounded-sm shadow-lg
-                        hover:shadow-xl
-                        transition-all duration-300
-                        cursor-pointer
-                        border border-cafe-espresso/20 dark:border-cafe-cream/20
-                        relative z-10"
+                        className="absolute rounded-full object-cover shadow-md transition-all duration-300 z-10"
+                        style={{
+                          width: '78%',
+                          height: '78%',
+                          top: '50%',
+                          left: '50%',
+                          transform: 'translate(-50%, -50%)',
+                          border: '2.5px solid #A0826D',
+                        }}
                       />
                     </div>
                   ) : info.mediaType === "video" ? (

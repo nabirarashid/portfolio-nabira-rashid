@@ -1,4 +1,3 @@
-import { Heart } from "lucide-react";
 
 const photos = [
   {
@@ -27,10 +26,6 @@ const photos = [
     caption: "gr 11 semi formal",
   },
   {
-    src: "/assets/website/laugh.jpg",
-    caption: "tech bros",
-  },
-  {
     src: "/assets/website/htn.jpg",
     caption: "hack the north 24",
   },
@@ -41,10 +36,6 @@ const photos = [
   {
     src: "/assets/website/krispy.jpg",
     caption: "lli & krispy kreme sale",
-  },
-  {
-    src: "/assets/website/gasp.jpg",
-    caption: "teen builders",
   },
   {
     src: "/assets/website/hotchoc.jpg",
@@ -76,7 +67,7 @@ const CoreMemories = () => {
           <div className="w-12 h-0.5 bg-gradient-to-r from-cafe-matcha to-cafe-terracotta dark:from-cafe-terracotta dark:to-cafe-matcha mx-auto" />
         </div>
         <p className="coffee-text dark:text-cafe-cream font-light text-center text-sm opacity-60 dark:opacity-100 mb-8">
-          ᯓ the moments i hold dear to my heart
+          ᯓ the moments i hold dear to my heart (still being updated)
         </p>
       </div>
 

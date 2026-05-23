@@ -13,14 +13,14 @@ export const CurrentlyConsuming: React.FC = () => {
       category: 'podcast',
     },
     {
-      title: 'catgpt',
+      title: 'social media influencers',
       category: 'instagram',
-      note: 'hot takes on ai @askcatgpt',
+      note: 'hot takes on ai from @askcatgpt, @byjackprice etc.',
     },
     {
-      title: 'northrop frye works',
+      title: 'gothic lit',
       category: 'books',
-      note: 'had to read one for school and loved it sm',
+      note: 'obsessed with what works like dorian gray have to say about ambition and consequence',
     },
     {
       title: 'cinema',
