@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "fetch:substack": "node scripts/fetch-substack.mjs",
+    "prebuild": "npm run fetch:substack",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",

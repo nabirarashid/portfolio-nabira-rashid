@@ -1,40 +1,171 @@
 @import "tailwindcss";
-@import 'swiper/css';
-@import 'swiper/css/pagination';
-@import 'swiper/css/navigation';
 
-:root {
-  --bean-cursor-img: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAEFUExURUdwTL6lm9G5sbOckdTAt9S8sdXAuNrHv9a8r97Hv9vDuNK3qtnLwN/HvsKmmauRhtjAtLSYi31iUrifk7Cakd3EuquMfXZYR52DdIZqW4ZqW5+FeZZ7bnxdS3FRP25PPcCqoHFTQodqWnFSQaWKfohqWpJ2Z3VXRcizrNrEvtW/ud/KxGk6J62KeHhFLodfSYZnWsqyqZdsVJRnS25SRo5xZKiCa+XMwzgiGp1zWubQyKJ5YY5YN31hUxcODL+rpJ2EeejTzYNMMLWck0QwJ3hbTLOQfGAtGYxSLpt8b4NYQbqah1I0KFc+M62TiGRHOlwzJZVgP0wjF6OMgy4ZE3tRP3g8HEjlMocAAAApdFJOUwD+/hEbTDkIKvDOhAKoreRqVyHEm7rCUwoZ36OayIYycZrp4/V5y+bNwS3kOQAAAjpJREFUOMu1U1d7m0AQ5FCxbOHee02Bu6MeHQSiCgSo+///lJxip/izk6dkX2dnZm9vlmH+fXHtbmdvr9P+GN3o7m1vsazAgq1+6wNyd3tTEARWAWAhNzvvRFr9TehAXlBAXIR1oh723qp3jgUe8pB2BAGOqkESfv2tg+us1XmepxZQwR6q/SppdjZ+4G2qDgWWpQ280GioSrIxCQPQecV7x1SY+lOJoJDQfFnbBkmDIH6V6G05Js9D04QCFufzpUWMMVB0PSx2ey+4OXQcE0II1uxBIrkZAHETNuFT9zs+pGWajmKLU2swmGjqOJZXvqzr8i5t2Ng2Hco3WTo6hRPfdsFigkQxWpXlLl1Wd5PyHT7zxIrCsqRlcSFROJLkUj7iGOZOGEIlVpG1HFgE2xKOdVFyVU1TpTJcP7MfBEFBzZO6RpIkj7Gmy6Wqqeoo0g/XH9Zf+ESslpOylCS7iceZrWneaDaLIn09IsN0nuq5ZVVEsjPAs409G41mmuc9I3lx97Llw4llJX6RKZBXAuB6njbzRvlUDo9e1sgdkYE1MRQoKGPDdW13bU/5xeVrYrh9vdaJwiugMbCBMTa0CKW6fvUzUa2TWFmEOHRtw8AZNkb5RNYfPp39ysI+wC4R0Wpmu4YqIkRk//r0TZZ2DG9V5WL0/IzyKfHTLzfnb8PYPlHFHKE8nyKSpo/3t+/i3L5U0xVJfd9PH29uuQ/u4Wz/6vPFw8X1/enBHy+qdX5w0GI47i83x/yf+gbV5nFJApmdzwAAAABJRU5ErkJggg==");
-  --cursor-x: 0px;
-  --cursor-y: 0px;
+/* Class-based dark mode. Tailwind v4 defaults `dark:` to prefers-color-scheme,
+   which ignored the sun/moon toggle. This wires it back to the .dark class. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Palette + fonts. Previously declared in tailwind.config.js, which Tailwind v4
+   never loaded, so none of the cafe-* utilities emitted any CSS. */
+@theme {
+  --color-cafe-cream: #f5f5dc;
+  --color-cafe-espresso: #302421;
+  --color-cafe-navy: #1e293b;
+  --color-cafe-matcha: #a4b494;
+  --color-cafe-terracotta: #e2725b;
+  --color-cafe-mocha: #8b6f47;
+  --color-cafe-latte: #f4e8d8;
+  --color-cafe-taupe: #a0826d;
+
+  --color-coffee-50: #faf8f6;
+  --color-coffee-100: #f5f5dc;
+  --color-coffee-200: #e8e3d3;
+  --color-coffee-300: #d4c9b8;
+  --color-coffee-400: #c0b5a4;
+  --color-coffee-500: #8b7355;
+  --color-coffee-600: #6b5344;
+  --color-coffee-700: #4a3728;
+  --color-coffee-800: #302421;
+  --color-coffee-900: #1a0f0a;
+
+  --color-matcha: #a4b494;
+  --color-terracotta: #e2725b;
+
+  /* Playfair is the only webfont. Body and mono use the system stacks, which is
+     what the site rendered with before and what reads best against Playfair. */
+  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
-/* Hide native cursor, use custom bean cursor overlay */
-html,
-body,
-body * {
-  cursor: none !important;
+/* Body copy has one font. Everything that opts out does so explicitly. */
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: 0.005em;
+  /* The whole site reads lowercase, proper nouns included. Done in CSS rather
+     than in the copy so the real capitalisation survives in the markup for
+     screen readers and search, and so feed titles from Substack match too. */
+  text-transform: lowercase;
+}
+
+:root {
+  /* Espresso cup on a saucer. Inline SVG so it stays crisp at any DPR and the
+     colours can be tweaked by hand. */
+  --cup-cursor-img: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><ellipse cx="14" cy="25" rx="11.4" ry="2.9" fill="%23F5F5DC" stroke="%23302421" stroke-width="1.9"/><path d="M21.6 14.4c3.5 0 5.3 1.3 5.3 3.2s-1.8 3.2-5.3 3.2" fill="none" stroke="%23302421" stroke-width="2.1" stroke-linecap="round"/><path d="M4.7 10.6h17.5l-1.3 10.5a3.7 3.7 0 0 1-3.7 3.3H9.7a3.7 3.7 0 0 1-3.7-3.3z" fill="%23F5F5DC" stroke="%23302421" stroke-width="2.1" stroke-linejoin="round"/><ellipse cx="13.4" cy="10.8" rx="7.5" ry="1.9" fill="%235a4032"/></svg>');
+  --cursor-x: 0px;
+  --cursor-y: 0px;
+  --cursor-tilt: 0deg;
+  --cursor-scale: 1;
+}
+
+/* ============================================================
+   CUSTOM BEAN CURSOR
+   Only on devices with a real pointer. The old rule hid the native
+   cursor at every width while the bean itself was `hidden md:block`,
+   leaving narrow desktop windows with no visible cursor at all.
+   ============================================================ */
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  body * {
+    cursor: none !important;
+  }
 }
 
 .bean-cursor {
   position: fixed;
   left: 0;
   top: 0;
-  width: 32px;
-  height: 32px;
-  transform: translate3d(calc(var(--cursor-x) - 11px), calc(var(--cursor-y) - 14px), 0);
-  background-image: var(--bean-cursor-img);
-  background-size: 32px 32px;
+  width: 42px;
+  height: 42px;
+  /* Hotspot sits at the cup's upper left rim, so the pointer has a clear point
+     and the cup hangs down and to the right like a normal cursor. */
+  transform: translate3d(calc(var(--cursor-x) - 6px), calc(var(--cursor-y) - 12px), 0)
+    rotate(var(--cursor-tilt)) scale(var(--cursor-scale));
+  /* Pivots about the base of the cup, so the tilt reads as a cup leaning
+     rather than the whole sprite spinning. */
+  transform-origin: 30% 78%;
+  background-image: var(--cup-cursor-img);
+  background-size: 42px 42px;
   background-repeat: no-repeat;
+  filter: drop-shadow(0 3px 4px rgba(48, 36, 33, 0.35));
   pointer-events: none;
+  user-select: none;
   z-index: 2147483647;
   will-change: transform;
+  /* Stays hidden until the pointer first moves, otherwise a stray bean sits
+     parked in the top left corner on load. */
+  opacity: 0;
+  transition: scale 180ms ease-out, filter 180ms ease-out, opacity 160ms linear;
 }
 
-/* Coffee shop aesthetic utilities - Plain CSS */
+.bean-cursor[data-active="true"] {
+  opacity: 1;
+}
+
+/* Lifted a little higher when hovering something clickable. Kept modest now the
+   base cup is 42px, otherwise the hover state covers the text underneath it. */
+.bean-cursor[data-state="link"] {
+  --cursor-scale: 1.15;
+  filter: drop-shadow(0 6px 8px rgba(48, 36, 33, 0.4));
+}
+
+/* Pressed down, like the bean is being tamped */
+.bean-cursor[data-state="press"] {
+  --cursor-scale: 0.78;
+  filter: drop-shadow(0 1px 2px rgba(48, 36, 33, 0.45));
+}
+
+/* Steam rising off the cup over clickable things */
+.bean-cursor::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: -8px;
+  width: 8px;
+  height: 15px;
+  border-radius: 50% 50% 45% 45%;
+  background: linear-gradient(to top, rgba(90, 64, 50, 0.65), transparent);
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
+
+.dark .bean-cursor::after {
+  background: linear-gradient(to top, rgba(245, 245, 220, 0.7), transparent);
+}
+
+.bean-cursor[data-state="link"]::after {
+  opacity: 1;
+  animation: cursorPuff 1.1s ease-out infinite;
+}
+
+@keyframes cursorPuff {
+  0% {
+    opacity: 0;
+    transform: translateY(2px) scale(0.7);
+  }
+  35% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-11px) translateX(4px) scale(1.15);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .bean-cursor {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   SURFACES
+   ============================================================ */
 .coffee-bg {
-  background-color: #F5F5DC;
-  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #f5f5dc;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark .coffee-bg {
@@ -43,244 +174,387 @@ body * {
 
 .coffee-text {
   color: #302421;
-  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark .coffee-text {
-  color: #F5F5DC;
+  color: #f5f5dc;
 }
 
 .coffee-accent {
-  color: #A4B494;
-  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: #a4b494;
+  transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark .coffee-accent {
-  color: #E2725B;
+  color: #e2725b;
 }
 
 .chalkboard {
   background-color: #1e293b;
-  color: #F5F5DC;
+  color: #f5f5dc;
   position: relative;
   overflow: hidden;
-  background-image: 
-    linear-gradient(90deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent),
-    linear-gradient(0deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent);
-  background-size: 50px 50px;
-  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.dark .chalkboard {
-  background-color: #1e293b;
-}
-
-.coffee-card {
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 1.5rem;
-  border: 1px solid rgba(245, 245, 220, 0.2);
-}
-
-.dark .coffee-card {
-  background-color: #1e293b;
-  border-color: rgba(48, 36, 33, 0.2);
-}
-
-.coffee-button {
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  color: #302421;
-  background-color: #F5F5DC;
-  border: 2px solid #302421;
-}
-
-.coffee-button:hover {
-  transform: scale(1.05);
-}
-
-.coffee-button:active {
-  transform: scale(0.95);
-}
-
-.dark .coffee-button {
-  color: #F5F5DC;
-  background-color: #302421;
-  border-color: #F5F5DC;
-}
-
-.coffee-button-secondary {
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  color: #302421;
-  border: 2px solid #302421;
-  background-color: transparent;
-}
-
-.coffee-button-secondary:hover {
-  background-color: rgba(48, 36, 33, 0.1);
-}
-
-.dark .coffee-button-secondary {
-  color: #F5F5DC;
-  border-color: #F5F5DC;
-}
-
-.dark .coffee-button-secondary:hover {
-  background-color: rgba(245, 245, 220, 0.1);
-}
-
-.stain-ring {
-  border-radius: 9999px;
-  opacity: 0.2;
-  filter: blur(1rem);
-  background: radial-gradient(circle, rgba(139, 115, 85, 0.5) 0%, transparent 70%);
-}
-
-.corkboard {
-  position: relative;
-  background-color: #92400e;
-  background-image: 
-    repeating-linear-gradient(
+  background-image: linear-gradient(
+      90deg,
+      transparent 24%,
+      rgba(255, 255, 255, 0.04) 25%,
+      rgba(255, 255, 255, 0.04) 26%,
+      transparent 27%,
+      transparent 74%,
+      rgba(255, 255, 255, 0.04) 75%,
+      rgba(255, 255, 255, 0.04) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
       0deg,
-      transparent,
-      transparent 2px,
-      rgba(255, 255, 255, 0.03) 2px,
-      rgba(255, 255, 255, 0.03) 4px
+      transparent 24%,
+      rgba(255, 255, 255, 0.04) 25%,
+      rgba(255, 255, 255, 0.04) 26%,
+      transparent 27%,
+      transparent 74%,
+      rgba(255, 255, 255, 0.04) 75%,
+      rgba(255, 255, 255, 0.04) 76%,
+      transparent 77%,
+      transparent
     );
+  background-size: 56px 56px;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.16);
 }
 
-.dark .corkboard {
-  background-color: #78350f;
+/* Section header band. Coffee brown rather than the chalkboard navy, so the
+   headers read as their own layer without competing with the hero and footer. */
+.section-banner {
+  position: relative;
+  overflow: hidden;
+  background-color: #6f5844;
+  color: #f5f5dc;
+  background-image: linear-gradient(
+      90deg,
+      transparent 24%,
+      rgba(255, 255, 255, 0.035) 25%,
+      rgba(255, 255, 255, 0.035) 26%,
+      transparent 27%,
+      transparent 74%,
+      rgba(255, 255, 255, 0.035) 75%,
+      rgba(255, 255, 255, 0.035) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
+      0deg,
+      transparent 24%,
+      rgba(255, 255, 255, 0.035) 25%,
+      rgba(255, 255, 255, 0.035) 26%,
+      transparent 27%,
+      transparent 74%,
+      rgba(255, 255, 255, 0.035) 75%,
+      rgba(255, 255, 255, 0.035) 76%,
+      transparent 77%,
+      transparent
+    );
+  background-size: 56px 56px;
 }
 
-.pin {
+.dark .section-banner {
+  background-color: #4a3728;
+}
+
+/* Hairline edges so the band sits on the cream rather than floating on it */
+.section-banner::before,
+.section-banner::after {
+  content: "";
   position: absolute;
-  width: 1rem;
-  height: 2rem;
-  background-color: #dc2626;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: rgba(48, 36, 33, 0.18);
+}
+
+.section-banner::before {
+  top: 0;
+}
+
+.section-banner::after {
+  bottom: 0;
+}
+
+/* ============================================================
+   TYPOGRAPHY SCALE
+   One source of truth so every section headline matches.
+   ============================================================ */
+.display-xl {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2.75rem, 7vw, 4.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+}
+
+.display-lg {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+}
+
+/* Every card title, timeline role and list item shares this one size. */
+.entry-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 1.1875rem;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+}
+
+.entry-title--sm {
+  font-size: 1.0625rem;
+}
+
+/* Long titles (the substack cards) in the body face. Playfair is a display
+   face and gets clumsy at 19px across three wrapped lines, which short labels
+   like a job title never hit. */
+.card-title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+}
+
+.section-tagline {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  opacity: 0.62;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  opacity: 0.6;
+}
+
+.body-copy {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0.005em;
+}
+
+/* One button treatment, used by every button and button-shaped link. */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  padding: 0.625rem 1.5rem;
+  /* Derived from the text colour, so it works on cream and on the chalkboard
+     without every caller passing its own border classes. */
+  border: 1px solid color-mix(in oklab, currentColor 40%, transparent);
+  transition: background-color 300ms ease, border-color 300ms ease;
+}
+
+.btn-ghost:hover {
+  border-color: color-mix(in oklab, currentColor 70%, transparent);
+  background-color: color-mix(in oklab, currentColor 8%, transparent);
+}
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.07em;
+  text-transform: lowercase;
+}
+
+/* Consistent vertical rhythm between sections */
+.section-shell {
+  max-width: 64rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  padding-block: 5.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-shell {
+    padding-inline: 2rem;
+    padding-block: 7.5rem;
+  }
+}
+
+.section-shell--wide {
+  max-width: 72rem;
+}
+
+/* Used when a .section-banner already supplies the top of the section */
+.section-shell--tight {
+  padding-block-start: 4rem;
+}
+
+@media (min-width: 768px) {
+  .section-shell--tight {
+    padding-block-start: 5rem;
+  }
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-heading {
+    margin-bottom: 4.5rem;
+  }
+}
+
+/* Hairline divider under section headings */
+.rule-short {
+  width: 3rem;
+  height: 1px;
+  margin: 1.25rem auto 0;
+  background-color: currentColor;
+  opacity: 0.28;
+}
+
+/* ============================================================
+   RECEIPT / ORDER-HISTORY TIMELINE
+   ============================================================ */
+.receipt-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+}
+
+.receipt-rule {
+  border: 0;
+  border-top: 1px dashed currentColor;
+  opacity: 0.25;
+}
+
+/* Gutter is owned here so the rail, the dots and the text stay in step. */
+.timeline {
+  --timeline-gutter: 1.75rem;
+  position: relative;
+  padding-left: var(--timeline-gutter);
+}
+
+@media (min-width: 768px) {
+  .timeline {
+    --timeline-gutter: 2rem;
+  }
+}
+
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    currentColor 0%,
+    currentColor 82%,
+    transparent 100%
+  );
+  opacity: 0.22;
+}
+
+/* Sits on the rail, which is one gutter to the left of the entry text. */
+.timeline-dot {
+  position: absolute;
+  left: calc(var(--timeline-gutter) * -1);
+  top: 0.5rem;
+  width: 7px;
+  height: 7px;
   border-radius: 9999px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset -1px -1px 2px rgba(0, 0, 0, 0.3);
+  background-color: #8b6f47;
+  transform: translateX(-3px);
+  transition: transform 300ms ease-out, background-color 300ms ease-out;
 }
 
-.sticky-note-coffee {
-  padding: 1rem;
-  border-radius: 0.125rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transform: rotate(1deg);
-  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+.dark .timeline-dot {
+  background-color: #c0b5a4;
 }
 
-.sticky-note-coffee:hover {
-  transform: rotate(0deg);
+.timeline-entry:hover .timeline-dot {
+  transform: translateX(-3px) scale(1.45);
 }
 
-/* Vertical Slider Styling */
-.vertical-slider {
-  appearance: slider-vertical;
-  -webkit-appearance: slider-vertical;
+/* ============================================================
+   HERO STEAM WISPS
+   Pure CSS, no image assets.
+   ============================================================ */
+.steam-wisp {
+  position: absolute;
+  bottom: 100%;
+  width: 6px;
+  height: 46px;
+  border-radius: 9999px;
+  background: linear-gradient(to top, rgba(245, 245, 220, 0.5), rgba(245, 245, 220, 0));
+  filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: bottom center;
+  animation: steamWisp 6s ease-in-out infinite;
 }
 
-.vertical-slider::-webkit-slider-thumb {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #E2725B, #A4B494);
-  cursor: var(--bean-cursor) !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s ease;
-}
-
-.vertical-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-.vertical-slider::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #E2725B, #A4B494);
-  cursor: var(--bean-cursor) !important;
-  border: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s ease;
-}
-
-.vertical-slider::-moz-range-thumb:hover {
-  transform: scale(1.2);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-.vertical-slider::-moz-range-track {
-  background: transparent;
-  border: none;
-}
-
-.dark .vertical-slider::-webkit-slider-thumb {
-  background: linear-gradient(135deg, #A4B494, #E2725B);
-}
-
-.dark .vertical-slider::-moz-range-thumb {
-  background: linear-gradient(135deg, #A4B494, #E2725B);
-}
-
-/* Steam animation for atmospheric effect */
-.steam-particle {
-  animation: steam 3s ease-in forwards;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom scrollbar for coffee theme */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f5f5dc;
-}
-
-::-webkit-scrollbar-track:dark {
-  background: #302421;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #8b7355;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #6b5344;
-}
-
-/* Steam rise animation */
-@keyframes steamRise {
+@keyframes steamWisp {
   0% {
     opacity: 0;
-    transform: translateY(0) translateX(0) scale(1);
+    transform: translateY(6px) translateX(0) scaleX(1) scaleY(0.6);
   }
-  50% {
-    opacity: 0.6;
+  22% {
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 0.32;
+    transform: translateY(-34px) translateX(9px) scaleX(1.5) scaleY(1.05);
   }
   100% {
     opacity: 0;
-    transform: translateY(-60px) translateX(var(--drift)) scale(0.5);
+    transform: translateY(-72px) translateX(-7px) scaleX(2.1) scaleY(1.35);
   }
 }
 
-/* Cup spin animation */
+/* ============================================================
+   SCROLL REVEALS
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 750ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 750ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   CUP
+   ============================================================ */
 @keyframes cupSpin {
   0% {
     transform: rotateY(0deg);
@@ -288,17 +562,6 @@ html {
   100% {
     transform: rotateY(360deg);
   }
-}
-
-/* Hover steam effect */
-.steam-hover {
-  position: relative;
-}
-
-.steam-puff {
-  position: absolute;
-  pointer-events: none;
-  animation: steamRise 1.5s ease-out forwards;
 }
 
 .cup-spin {
@@ -314,15 +577,138 @@ html {
   animation: cupSpin 1s ease-in-out forwards;
 }
 
-.cup-container:hover .cup-spin {
-  animation: cupSpin 1s ease-in-out !important;
+/* Steam off the navbar cup on hover. Three wisps on a stagger, so the puff
+   keeps going for as long as the pointer rests there. */
+.logo-steam {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 30px;
+  height: 26px;
+  margin-left: -15px;
+  pointer-events: none;
 }
 
-/* Coffee stain decoration */
+.logo-steam span {
+  position: absolute;
+  bottom: 0;
+  width: 6px;
+  height: 20px;
+  border-radius: 9999px;
+  background: linear-gradient(to top, rgba(48, 36, 33, 0.8), transparent);
+  filter: blur(2.5px);
+  opacity: 0;
+  transform-origin: bottom center;
+}
+
+.dark .logo-steam span {
+  background: linear-gradient(to top, rgba(245, 245, 220, 0.85), transparent);
+}
+
+.logo-steam span:nth-child(1) {
+  left: 3px;
+}
+.logo-steam span:nth-child(2) {
+  left: 12px;
+}
+.logo-steam span:nth-child(3) {
+  left: 21px;
+}
+
+.logo-button:hover .logo-steam span {
+  animation: logoSteam 1.5s ease-out infinite;
+}
+
+.logo-button:hover .logo-steam span:nth-child(2) {
+  animation-delay: 0.28s;
+}
+.logo-button:hover .logo-steam span:nth-child(3) {
+  animation-delay: 0.56s;
+}
+
+@keyframes logoSteam {
+  0% {
+    opacity: 0;
+    transform: translateY(5px) scaleY(0.5) scaleX(1);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-24px) translateX(6px) scaleY(1.4) scaleX(1.9);
+  }
+}
+
+/* Coffee stain decoration, used sparingly now */
 .coffee-stain {
-  opacity: 0.15;
+  opacity: 0.12;
   user-select: none;
   pointer-events: none;
   position: absolute;
 }
 
+/* ============================================================
+   MISC
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5dc;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #302421;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8b7355;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b5344;
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .steam-wisp,
+  .logo-steam span,
+  .cup-spin,
+  .cup-logo:hover,
+  .bean-cursor[data-state="link"]::after {
+    animation: none !important;
+  }
+
+  .steam-wisp {
+    opacity: 0.18;
+  }
+
+
+  .bean-cursor {
+    transition: none;
+  }
+}

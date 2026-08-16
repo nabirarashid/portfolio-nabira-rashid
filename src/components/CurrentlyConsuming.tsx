@@ -1,4 +1,5 @@
-import React from 'react';
+import Reveal from "./Reveal";
+import SectionHeading from "./SectionHeading";
 
 interface MediaItem {
   title: string;
@@ -6,58 +7,67 @@ interface MediaItem {
   note?: string;
 }
 
-export const CurrentlyConsuming: React.FC = () => {
-  const mediaItems: MediaItem[] = [
-    {
-      title: 'yc startup podcast',
-      category: 'podcast',
-    },
-    {
-      title: 'social media influencers',
-      category: 'instagram',
-      note: 'hot takes on ai from @askcatgpt, @byjackprice etc.',
-    },
-    {
-      title: 'gothic lit',
-      category: 'books',
-      note: 'obsessed with what works like dorian gray have to say about ambition and consequence',
-    },
-    {
-      title: 'cinema',
-      category: 'film',
-      note: 'exploring worlds like little women and pride & prejudice',
-    },
-    {
-      title: 'linkedin doomscrolling',
-      category: 'social media',
-    },
-  ];
+const mediaItems: MediaItem[] = [
+  {
+    title: "classics",
+    category: "books",
+    note: "sense and sensibility, the picture of dorian gray, jane eyre. the kind of books that have survived for a reason",
+  },
+  {
+    title: "cinema across genres",
+    category: "film",
+    note: "rom-coms, murder mysteries, 80s shows, a bit of everything. different conventions, same human core: jealousy, love, revenge, just scaled up in wildly different contexts",
+  },
+  {
+    title: "social media doomscrolling",
+    category: "linkedin, substack & instagram",
+    note: "hot takes on ai from @askcatgpt, @byjackprice, and whoever else the algorithm decides i need at 1am",
+  },
+  {
+    title: "yc startup podcast",
+    category: "podcast",
+    note: "absorbing how startups actually get built, the messy parts included",
+  },
+];
 
+export const CurrentlyConsuming = () => {
   return (
-    <div className="flex-1 flex flex-col items-center">
-      <div className="text-center mb-3 w-full">
-        <p className="coffee-text font-light mb-3 text-center">ᯓ★ currently consuming</p>
-      </div>
+    <section id="consuming-section" className="coffee-bg relative">
+      <SectionHeading
+        title="currently consuming"
+        tagline="what's on the side of the desk lately"
+      />
 
-      <div className="space-y-3 w-full max-w-xs">
-        {mediaItems.map((item, index) => (
-          <div key={index} className="py-2 flex gap-3">
-            <span className="coffee-text text-sm mt-0.5 flex-shrink-0">•</span>
-            <div className="flex-1">
-              <p className="coffee-text font-light text-sm">{item.title}</p>
-              <p className="coffee-text text-xs font-light opacity-60">{item.category}</p>
+      <div className="section-shell section-shell--tight">
+        <ul className="mx-auto max-w-2xl">
+          {mediaItems.map((item, index) => (
+            <Reveal
+              as="li"
+              key={item.title}
+              delay={index * 70}
+              className="coffee-text border-b border-cafe-espresso/12 dark:border-cafe-cream/12 py-6 first:pt-0 last:border-b-0"
+            >
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                <h3 className="entry-title">
+                  {item.title}
+                </h3>
+                <span className="receipt-meta shrink-0 opacity-50">{item.category}</span>
+              </div>
+
               {item.note && (
-                <p className="coffee-text text-xs italic opacity-50 mt-0.5">{item.note}</p>
+                <p className="body-copy mt-2 max-w-xl text-sm opacity-60">{item.note}</p>
               )}
-            </div>
-          </div>
-        ))}
-      </div>
+            </Reveal>
+          ))}
+        </ul>
 
-      <p className="coffee-text font-light text-xs text-center mt-6">
-        always exploring and open to new recs ◡̈
-      </p>
-    </div>
+        <Reveal className="mt-12 text-center">
+          <p className="coffee-text body-copy text-xs tracking-[0.06em] opacity-55">
+            always exploring and open to new recs ◡̈
+          </p>
+        </Reveal>
+      </div>
+    </section>
   );
 };
 

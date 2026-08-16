@@ -1,59 +1,53 @@
-import { FaInstagram, FaGithub, FaEnvelope } from "react-icons/fa";
+import { FaInstagram, FaGithub, FaEnvelope, FaXTwitter } from "react-icons/fa6";
+
+const socials = [
+  {
+    label: "instagram",
+    href: "https://www.instagram.com/tech.with.nabira/",
+    Icon: FaInstagram,
+  },
+  { label: "x", href: "https://x.com/nabirarashid", Icon: FaXTwitter },
+  { label: "github", href: "https://github.com/nabirarashid/", Icon: FaGithub },
+  { label: "email", href: "mailto:nabira.rashidm@gmail.com", Icon: FaEnvelope },
+];
 
 const Footer = () => {
   return (
-    <footer className="chalkboard border-t border-cafe-cream/20 max-w-full px-8 py-12 transition-colors duration-500">
-      <div className="max-w-6xl mx-auto">
-        {/* Main CTA and Contact Section */}
-        <div className="text-center mb-12">
-          <p className="text-cafe-cream font-serif text-lg font-light mb-2 drop-shadow-md">
+    <footer className="chalkboard border-t border-cafe-cream/15 px-6 py-20 transition-colors duration-500">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-14 text-center">
+          <p className="text-cafe-cream body-copy text-sm opacity-70">
             thanks for stopping by ⭑.ᐟ
           </p>
-          <p className="text-cafe-cream font-serif text-xl font-light mb-8 tracking-wide drop-shadow-md">
+          <p className="text-cafe-cream mt-3 font-serif text-xl md:text-2xl font-normal tracking-[0.01em]">
             pull up a chair and let's create something together
           </p>
-          
-          {/* Social Links */}
-          <div className="flex gap-6 justify-center">
-            <a 
-              href="https://www.instagram.com/tech.with.nabira/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cafe-cream hover:text-cafe-matcha transition-colors duration-300"
-              title="instagram"
-            >
-              <FaInstagram className="w-5 h-5" />
-            </a>
-            <a 
-              href="https://github.com/nabirarashid/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cafe-cream hover:text-cafe-matcha transition-colors duration-300"
-              title="github"
-            >
-              <FaGithub className="w-5 h-5" />
-            </a>
-            <a 
-              href="mailto:nabira.rashidm@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cafe-cream hover:text-cafe-matcha transition-colors duration-300"
-              title="email"
-            >
-              <FaEnvelope className="w-5 h-5" />
-            </a>
+
+          <div className="mt-10 flex justify-center gap-8">
+            {socials.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("mailto:") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                className="text-cafe-cream opacity-70 transition-all duration-300 hover:opacity-100"
+                title={label}
+                aria-label={label}
+              >
+                <Icon className="h-5 w-5" />
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* Footer Credits */}
-        <div className="border-t border-cafe-cream/20 pt-8 text-center">
-          <p className="text-cafe-cream/80 font-light text-sm drop-shadow-md">
+        <div className="border-t border-cafe-cream/15 pt-8 text-center">
+          <p className="text-cafe-cream/70 body-copy text-xs tracking-[0.08em]">
             nabira's cafe • made with lots of coffee ◡̈
           </p>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
