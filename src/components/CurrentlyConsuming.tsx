@@ -16,7 +16,7 @@ const mediaItems: MediaItem[] = [
   {
     title: "cinema across genres",
     category: "film",
-    note: "rom-coms, murder mysteries, 80s shows, a bit of everything. different conventions, same human core: jealousy, love, revenge, just scaled up in wildly different contexts",
+    note: "rom-coms, murder mysteries, 80s shows. different genres all circling the same human experiences",
   },
   {
     title: "social media doomscrolling",
