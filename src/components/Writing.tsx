@@ -12,8 +12,11 @@ export interface SubstackPost {
   cover: string;
 }
 
-const SUBSTACK_URL = "https://nabirarashid.substack.com";
-const FEED_URL = `${SUBSTACK_URL}/feed`;
+/** Where the "read everything" link points. */
+const SUBSTACK_PROFILE_URL = "https://substack.com/@nabirarashid";
+/** The feed lives on the publication domain. The profile URL has no /feed. */
+const PUBLICATION_URL = "https://nabirarashid.substack.com";
+const FEED_URL = `${PUBLICATION_URL}/feed`;
 const RSS_TO_JSON = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(FEED_URL)}`;
 const CARD_COUNT = 3;
 const LIVE_FETCH_TIMEOUT_MS = 4000;
@@ -196,7 +199,7 @@ const Writing = () => {
 
         <Reveal className="mt-12 text-center">
           <a
-            href={SUBSTACK_URL}
+            href={SUBSTACK_PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="coffee-text border-b border-cafe-espresso/30 dark:border-cafe-cream/30 pb-1 text-sm font-normal tracking-[0.04em] transition-colors duration-300 hover:border-cafe-espresso dark:hover:border-cafe-cream"
