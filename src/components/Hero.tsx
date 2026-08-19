@@ -78,7 +78,14 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="mt-14 flex min-h-8 items-center justify-center">
+          <div className="typewriter-slot mt-14 flex min-h-8 items-center justify-center">
+            {/* Widest of the five strings, measured. Stops the line jittering. */}
+            <span
+              className="typewriter-sizer font-serif text-base font-light tracking-[0.02em]"
+              aria-hidden="true"
+            >
+              brewing personal projects‸
+            </span>
             <Typewriter
               options={{
                 strings: [

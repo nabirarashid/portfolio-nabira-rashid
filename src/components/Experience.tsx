@@ -5,9 +5,7 @@ import SectionHeading from "./SectionHeading";
 const Experience = () => {
   return (
     <section id="experience-section" className="coffee-bg relative">
-      {/* No band on this one: it sits directly under the navy hero, where a
-          second colour block would collide. */}
-      <SectionHeading title="experience" tagline="where i've been brewing" plain />
+      <SectionHeading title="experience" tagline="where i've been brewing" />
 
       <div className="section-shell section-shell--tight">
         {/* Order history receipt */}

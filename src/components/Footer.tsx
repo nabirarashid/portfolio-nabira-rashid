@@ -19,7 +19,8 @@ const Footer = () => {
           <p className="text-cafe-cream body-copy text-sm opacity-70">
             thanks for stopping by ⭑.ᐟ
           </p>
-          <p className="text-cafe-cream mt-3 font-serif text-xl md:text-2xl font-normal tracking-[0.01em]">
+          <p className="chair-line text-cafe-cream mt-3 font-serif text-lg md:text-xl font-normal tracking-[0.01em]">
+            <span className="chair-icon" aria-hidden="true" />
             pull up a chair and let's create something together
           </p>
 

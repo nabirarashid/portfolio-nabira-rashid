@@ -57,6 +57,8 @@ body {
   --cursor-y: 0px;
   --cursor-tilt: 0deg;
   --cursor-scale: 1;
+  --sign-corner: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><g stroke="%23F5F5DC" stroke-width="1.1" stroke-linecap="round" opacity="0.55"><path d="M6 1.5v9"/><path d="M1.5 6h9"/></g></svg>');
+  --chair-img: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><g fill="none" stroke="%23F5F5DC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19h20"/><path d="M8 19V3"/><path d="M14.5 19V4"/><path d="M8 3h6.5"/><path d="M8 9.5h6.5"/><path d="m23 19 2 11"/><path d="m8.5 19-2 11"/></g></svg>');
 }
 
 /* ============================================================
@@ -161,6 +163,64 @@ body {
 }
 
 /* ============================================================
+   PULL UP A CHAIR
+   Footer line invites you to pull up a chair, so one slides in and settles
+   when you hover it. Drawn and animated like the cup cursor: cream fill,
+   espresso stroke, drop shadow, and a tilt pivoting about the legs.
+   ============================================================ */
+.chair-line {
+  position: relative;
+  display: inline-block;
+}
+
+.chair-icon {
+  position: absolute;
+  right: 100%;
+  /* Centres the 42px chair on the line box, whatever the line height is,
+     instead of hanging it off the text baseline. */
+  bottom: calc((100% - 42px) / 2);
+  margin-right: 0.75rem;
+  width: 42px;
+  height: 42px;
+  background-image: var(--chair-img);
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45));
+  /* Pivots at the back legs, so the tilt reads as the chair rocking. */
+  transform-origin: 28% 90%;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-16px) rotate(-18deg) scale(0.88);
+  transition: opacity 240ms ease-out, transform 300ms ease-out;
+}
+
+/* Decorative, and there is no room for it once the line wraps. */
+@media (max-width: 767px) {
+  .chair-icon {
+    display: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .chair-line:hover .chair-icon {
+    opacity: 1;
+    animation: chairPullUp 520ms cubic-bezier(0.34, 1.35, 0.64, 1) forwards;
+  }
+}
+
+@keyframes chairPullUp {
+  0% {
+    transform: translateX(-16px) rotate(-18deg) scale(0.88);
+  }
+  60% {
+    transform: translateX(2px) rotate(6deg) scale(1.02);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg) scale(1);
+  }
+}
+
+/* ============================================================
    SURFACES
    ============================================================ */
 .coffee-bg {
@@ -223,61 +283,118 @@ body {
   text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.16);
 }
 
-/* Section header band. Coffee brown rather than the chalkboard navy, so the
-   headers read as their own layer without competing with the hero and footer. */
-.section-banner {
+/* Section header sign. A cafe menu chalkboard: dark slate panel, a double
+   chalk rule ruled just inside the edge, and a chalk cross at each corner. */
+.section-sign {
+  display: inline-block;
   position: relative;
-  overflow: hidden;
-  background-color: #6f5844;
+  padding: 2.25rem 3rem 2.5rem;
+  border-radius: 3px;
+  /* Frame tone. The board surface inside the rule is a shade darker. */
+  background-color: #5a4536;
   color: #f5f5dc;
-  background-image: linear-gradient(
+  box-shadow:
+    0 16px 30px rgba(48, 36, 33, 0.24),
+    0 2px 0 rgba(48, 36, 33, 0.35);
+}
+
+@media (min-width: 768px) {
+  .section-sign {
+    padding: 2.75rem 4.5rem 3rem;
+  }
+}
+
+.dark .section-sign {
+  background-color: #4a3728;
+  box-shadow:
+    0 16px 30px rgba(0, 0, 0, 0.4),
+    0 2px 0 rgba(0, 0, 0, 0.45);
+}
+
+/* Double chalk rule. The outline draws the second line with a clean gap and
+   costs no extra element. */
+.section-sign::before {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border: 1px solid rgba(245, 245, 220, 0.38);
+  outline: 1px solid rgba(245, 245, 220, 0.16);
+  outline-offset: 4px;
+  border-radius: 1px;
+  pointer-events: none;
+  /* The board itself: a darker surface inside the frame, ruled with the same
+     chalk grid the hero and footer chalkboards use. */
+  background-color: rgba(30, 20, 14, 0.28);
+  background-image:
+    linear-gradient(
       90deg,
       transparent 24%,
-      rgba(255, 255, 255, 0.035) 25%,
-      rgba(255, 255, 255, 0.035) 26%,
+      rgba(245, 245, 220, 0.055) 25%,
+      rgba(245, 245, 220, 0.055) 26%,
       transparent 27%,
       transparent 74%,
-      rgba(255, 255, 255, 0.035) 75%,
-      rgba(255, 255, 255, 0.035) 76%,
+      rgba(245, 245, 220, 0.055) 75%,
+      rgba(245, 245, 220, 0.055) 76%,
       transparent 77%,
       transparent
     ),
     linear-gradient(
       0deg,
       transparent 24%,
-      rgba(255, 255, 255, 0.035) 25%,
-      rgba(255, 255, 255, 0.035) 26%,
+      rgba(245, 245, 220, 0.055) 25%,
+      rgba(245, 245, 220, 0.055) 26%,
       transparent 27%,
       transparent 74%,
-      rgba(255, 255, 255, 0.035) 75%,
-      rgba(255, 255, 255, 0.035) 76%,
+      rgba(245, 245, 220, 0.055) 75%,
+      rgba(245, 245, 220, 0.055) 76%,
       transparent 77%,
       transparent
     );
-  background-size: 56px 56px;
+  background-size: 40px 40px;
 }
 
-.dark .section-banner {
-  background-color: #4a3728;
+/* The board is an absolutely positioned pseudo-element, so it would otherwise
+   paint over the heading. Lift the real content above it. */
+.section-sign > * {
+  position: relative;
+  z-index: 1;
 }
 
-/* Hairline edges so the band sits on the cream rather than floating on it */
-.section-banner::before,
-.section-banner::after {
+/* A chalk cross at each corner, sat just outside the rule */
+.section-sign::after {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background-color: rgba(48, 36, 33, 0.18);
+  inset: 7px;
+  pointer-events: none;
+  background-image: var(--sign-corner), var(--sign-corner), var(--sign-corner),
+    var(--sign-corner);
+  background-repeat: no-repeat;
+  background-size: 11px 11px;
+  background-position: left top, right top, left bottom, right bottom;
 }
 
-.section-banner::before {
-  top: 0;
+/* ============================================================
+   TYPEWRITER SLOT
+   The typewriter cycles strings of different widths, and the sign is
+   inline-block, so the board used to resize on every phrase. A hidden copy of
+   the longest string reserves the space and the live text sits on top of it.
+   ============================================================ */
+.typewriter-slot {
+  position: relative;
 }
 
-.section-banner::after {
-  bottom: 0;
+.typewriter-slot .typewriter-sizer {
+  display: block;
+  visibility: hidden;
+  white-space: nowrap;
+}
+
+.typewriter-slot .Typewriter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ============================================================
@@ -405,14 +522,15 @@ body {
   max-width: 72rem;
 }
 
-/* Used when a .section-banner already supplies the top of the section */
+/* Used when a .section-sign already supplies the top of the section. Sits
+   close enough that the sign reads as the heading for what follows. */
 .section-shell--tight {
-  padding-block-start: 4rem;
+  padding-block-start: 3rem;
 }
 
 @media (min-width: 768px) {
   .section-shell--tight {
-    padding-block-start: 5rem;
+    padding-block-start: 3.5rem;
   }
 }
 
@@ -573,10 +691,6 @@ body {
   transition: transform 0.2s ease-out;
 }
 
-.cup-logo:hover {
-  animation: cupSpin 1s ease-in-out forwards;
-}
-
 /* Steam off the navbar cup on hover. Three wisps on a stagger, so the puff
    keeps going for as long as the pointer rests there. */
 .logo-steam {
@@ -698,13 +812,17 @@ body {
   .steam-wisp,
   .logo-steam span,
   .cup-spin,
-  .cup-logo:hover,
   .bean-cursor[data-state="link"]::after {
     animation: none !important;
   }
 
   .steam-wisp {
     opacity: 0.18;
+  }
+
+  .chair-line:hover .chair-icon {
+    animation: none !important;
+    transform: none;
   }
 
 
