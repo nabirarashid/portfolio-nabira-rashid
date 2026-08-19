@@ -21,7 +21,7 @@ const mediaItems: MediaItem[] = [
   {
     title: "social media doomscrolling",
     category: "linkedin, substack & instagram",
-    note: "hot takes on ai from @askcatgpt, @byjackprice, and whoever else the algorithm decides i need at 1am",
+    note: "substack for literature and philosophy, linkedin and insta for ai takes. a different me on every feed",
   },
   {
     title: "yc startup podcast",
