@@ -108,8 +108,14 @@ const main = async () => {
   let posts;
 
   try {
-    const response = await fetch(FEED_URL, {
-      headers: { "user-agent": "nabira-website-build" },
+    // Substack's CDN happily serves a stale feed on the bare URL, which loses
+    // cover images added to a post after it was first published. A unique
+    // query param each run gets us the current one.
+    const response = await fetch(`${FEED_URL}?cb=${Date.now()}`, {
+      headers: {
+        "user-agent": "nabira-website-build",
+        "cache-control": "no-cache",
+      },
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
 

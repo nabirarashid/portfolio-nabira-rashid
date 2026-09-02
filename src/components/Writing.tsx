@@ -111,7 +111,16 @@ const Writing = () => {
           .map(normalize)
           .filter((post: SubstackPost | null): post is SubstackPost => post !== null);
 
-        if (!cancelled && live.length > 0) setPosts(live);
+        // rss2json caches, so a live item can come back without a cover the
+        // bundle already knows about. Take the fresher text, keep the image.
+        const bundledCovers = new Map(
+          bundledPosts.map((post) => [post.link, post.cover])
+        );
+        const merged = live.map((post: SubstackPost) =>
+          post.cover ? post : { ...post, cover: bundledCovers.get(post.link) ?? "" }
+        );
+
+        if (!cancelled && merged.length > 0) setPosts(merged);
       } catch {
         // Offline, blocked, rate limited or timed out. The bundled posts stand.
       } finally {

@@ -32,13 +32,13 @@ const projects: Project[] = [
     title: "homegrown",
     description: "swipe local, support community.",
     techStack: ["react", "typescript", "tailwindcss", "firebase", "firestore"],
-    link: "https://homegrownapp.shop/",
+    link: "https://github.com/nabirarashid/homegrown-new",
     details: `swipe through 120+ local shops and restaurants, like what you love, and get recommendations that keep money nearby.`,
   },
   {
     title: "snapquest",
     description: "location-based photography prompts and submissions.",
-    link: "prettyplease.work",
+    link: "https://github.com/nabirarashid/snapquest",
     techStack: [
       "oracle cloud",
       "mongodb",
