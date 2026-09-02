@@ -6,21 +6,25 @@ interface Rule {
 }
 
 /**
- * Three, not the full list. Enough to show the shape of the thing without
+ * A sample, not the full list. Enough to show the shape of the thing without
  * handing over the whole of it.
  */
 const rules: Rule[] = [
   {
-    name: "opinions are data points",
-    note: "gather them widely, then trust yourself to make the call.",
+    name: "finished over started",
+    note: "ideas are cheap. things someone else can run are rare.",
   },
   {
-    name: "write to think",
-    note: "a worldview is what survives being written down where people can push back.",
+    name: "attention is raw material",
+    note: "most of what competes for it isn't trying to build you anything.",
   },
   {
     name: "nuance over noise",
-    note: "most questions have more sides than the internet allows for.",
+    note: "every interesting question has more sides than the internet allows.",
+  },
+  {
+    name: "compound quietly",
+    note: "the best work looks like nothing is happening for a long time.",
   },
 ];
 

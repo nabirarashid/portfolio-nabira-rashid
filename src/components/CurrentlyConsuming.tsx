@@ -48,7 +48,7 @@ export const CurrentlyConsuming = () => {
               className="coffee-text border-b border-cafe-espresso/12 dark:border-cafe-cream/12 py-6 first:pt-0 last:border-b-0"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                <h3 className="entry-title">
+                <h3 className="entry-title entry-title--sm">
                   {item.title}
                 </h3>
                 <span className="receipt-meta shrink-0 opacity-50">{item.category}</span>
