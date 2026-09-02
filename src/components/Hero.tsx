@@ -73,7 +73,7 @@ const Hero = () => {
             <div className="flex flex-col items-center sm:items-start">
               <h2 className="display-xl text-cafe-cream">nabira rashid</h2>
               <p className="body-copy text-cafe-cream mt-3 text-sm opacity-75 sm:self-end">
-                incoming cs @uwaterloo • creator • coffee enthusiast
+                cs @ uwaterloo • creator • coffee enthusiast
               </p>
             </div>
           </div>
