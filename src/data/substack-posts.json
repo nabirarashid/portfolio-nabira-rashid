@@ -1,6 +1,13 @@
 {
-  "fetchedAt": "2026-08-19T03:51:35.398Z",
+  "fetchedAt": "2026-09-02T17:06:05.482Z",
   "posts": [
+    {
+      "title": "you can't build what you can't picture",
+      "link": "https://nabirarashid.substack.com/p/you-cant-build-what-you-cant-picture",
+      "pubDate": "2026-08-19T19:23:56.000Z",
+      "excerpt": "on northrop frye, a room in san francisco, and the thing i think tech has stopped feeding.",
+      "cover": "https://substackcdn.com/image/fetch/$s_!FlEs!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F33cf84aa-db56-446b-b79b-d9a6734ae939_4032x2754.jpeg"
+    },
     {
       "title": "i finally see the glass",
       "link": "https://nabirarashid.substack.com/p/i-finally-see-the-glass",
@@ -16,17 +23,10 @@
       "cover": ""
     },
     {
-      "title": "your attention is the most expensive thing you give away for free",
+      "title": "your energy is the most expensive thing you give away for free",
       "link": "https://nabirarashid.substack.com/p/your-energy-is-the-most-expensive",
       "pubDate": "2026-07-17T02:49:52.000Z",
       "excerpt": "on IB burnout, the scroll, and figuring out what i actually wanted from my screen the whole time",
-      "cover": ""
-    },
-    {
-      "title": "knowing about a tool three weeks early is not a personality",
-      "link": "https://nabirarashid.substack.com/p/knowing-about-a-tool-three-weeks",
-      "pubDate": "2026-07-13T16:56:29.000Z",
-      "excerpt": "some thoughts on why tech content got so patronizing, and what it's actually covering for",
       "cover": ""
     }
   ]
