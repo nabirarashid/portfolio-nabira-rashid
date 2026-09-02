@@ -24,14 +24,16 @@ const Footer = () => {
             pull up a chair and let's create something together
           </p>
 
-          <div className="mt-10 flex justify-center gap-8">
+          {/* 44px hit areas. The icons stay 20px, the gap tightens to keep
+              the row roughly the width it was. */}
+          <div className="mt-10 flex justify-center gap-3">
             {socials.map(({ label, href, Icon }) => (
               <a
                 key={label}
                 href={href}
                 target={href.startsWith("mailto:") ? undefined : "_blank"}
                 rel="noopener noreferrer"
-                className="text-cafe-cream opacity-70 transition-all duration-300 hover:opacity-100"
+                className="text-cafe-cream inline-flex h-11 w-11 items-center justify-center rounded-full opacity-70 transition-all duration-300 hover:bg-cafe-cream/10 hover:opacity-100"
                 title={label}
                 aria-label={label}
               >
