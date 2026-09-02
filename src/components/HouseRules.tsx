@@ -15,12 +15,12 @@ const rules: Rule[] = [
     note: "gather them widely, then trust yourself to make the call.",
   },
   {
-    name: "nuance over noise",
-    note: "most questions have more sides than the internet allows for.",
-  },
-  {
     name: "write to think",
     note: "a worldview is what survives being written down where people can push back.",
+  },
+  {
+    name: "nuance over noise",
+    note: "most questions have more sides than the internet allows for.",
   },
 ];
 
