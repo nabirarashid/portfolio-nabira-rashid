@@ -360,6 +360,103 @@ body {
   z-index: 1;
 }
 
+/* ============================================================
+   HOUSE RULES BOARD
+   The same chalkboard sign, scaled up to hold a whole section. Block level
+   and left aligned inside, so the rules read as a posted list rather than a
+   centred headline.
+   ============================================================ */
+.section-sign--board {
+  display: block;
+  width: 100%;
+  max-width: 44rem;
+  margin-inline: auto;
+  padding: 2.75rem 1.75rem 3rem;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .section-sign--board {
+    padding: 3.75rem 3.75rem 4rem;
+  }
+}
+
+.house-board__intro {
+  font-size: 0.875rem;
+  opacity: 0.78;
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.house-rules {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+/* Chalk bullet rather than a numeral: three points of view, not a ranked list. */
+.house-rule {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.house-rule::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 5px;
+  height: 5px;
+  background-color: currentColor;
+  opacity: 0.5;
+  transform: rotate(45deg);
+  transition: opacity 300ms ease;
+}
+
+.house-rule:hover::before {
+  opacity: 0.9;
+}
+
+.house-rule__name {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  letter-spacing: 0.005em;
+}
+
+.house-rule__note {
+  margin-top: 0.4rem;
+  font-size: 0.8125rem;
+  opacity: 0.68;
+}
+
+/* Chalk divider before the sign off, drawn like the section rule so the board
+   closes the way it opened. */
+.house-board__closer {
+  max-width: 36rem;
+  margin: 2.5rem auto 0;
+  padding-top: 2.25rem;
+  border-top: 1px dashed rgba(245, 245, 220, 0.2);
+}
+
+.house-board__closing {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  letter-spacing: 0.005em;
+  text-align: center;
+  opacity: 0.85;
+}
+
+@media (min-width: 768px) {
+  .house-board__closing {
+    font-size: 1rem;
+  }
+}
+
 /* A chalk cross at each corner, sat just outside the rule */
 .section-sign::after {
   content: "";
@@ -568,6 +665,52 @@ body {
   border-top: 1px dashed currentColor;
   opacity: 0.25;
 }
+
+/* A linked paper under an experience entry, set as a receipt line item: the
+   short label, a dotted leader, then the venue. Always visible rather than
+   hover-revealed, so it still exists on touch. */
+.paper-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  width: 100%;
+  opacity: 0.55;
+  transition: opacity 300ms ease;
+}
+
+.paper-line:hover,
+.paper-line:focus-visible {
+  opacity: 0.95;
+}
+
+/* Runs the full width up to the venue. Nudged up to sit under the x-height
+   rather than on the baseline it is aligned to. */
+.paper-line__leader {
+  flex: 1 1 auto;
+  min-width: 1.25rem;
+  border-bottom: 1px dotted currentColor;
+  opacity: 0.45;
+  transform: translateY(-0.25rem);
+}
+
+.paper-line__venue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.paper-line__arrow {
+  transition: transform 300ms ease;
+}
+
+.paper-line:hover .paper-line__arrow,
+.paper-line:focus-visible .paper-line__arrow {
+  transform: translate(1px, -1px);
+}
+
+
 
 /* Gutter is owned here so the rail, the dots and the text stay in step. */
 .timeline {

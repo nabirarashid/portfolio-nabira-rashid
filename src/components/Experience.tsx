@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import experience, { programs } from "../data/experience";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
@@ -50,6 +51,26 @@ const Experience = () => {
                   </h3>
                   <p className="body-copy mt-1.5 text-sm opacity-75">{entry.org}</p>
                   <p className="body-copy mt-3.5 text-sm opacity-60">{entry.description}</p>
+
+                  {/* Linked paper, set as a receipt line item. The dotted
+                      leader runs the full width and the venue anchors the
+                      right, so the line needs no label of its own. */}
+                  {entry.paper && (
+                    <a
+                      href={entry.paper.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={entry.paper.fullTitle}
+                      aria-label={`read the paper: ${entry.paper.fullTitle}`}
+                      className="paper-line mt-4"
+                    >
+                      <span className="paper-line__leader" aria-hidden="true" />
+                      <span className="paper-line__venue receipt-meta">
+                        {entry.paper.venue}
+                        <ArrowUpRight size={12} className="paper-line__arrow" />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </Reveal>
             ))}

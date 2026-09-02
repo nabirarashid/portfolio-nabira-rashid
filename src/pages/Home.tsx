@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Experience from "../components/Experience";
 import Writing from "../components/Writing";
 import CurrentlyConsuming from "../components/CurrentlyConsuming";
+import HouseRules from "../components/HouseRules";
 import ProjectCard from "../components/ProjectCard";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
@@ -89,6 +90,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <HouseRules />
     </div>
   );
 };

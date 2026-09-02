@@ -1,9 +1,17 @@
+export interface Paper {
+  /** Read out by the tooltip and the screen reader label, not printed. */
+  fullTitle: string;
+  venue: string;
+  url: string;
+}
+
 export interface ExperienceEntry {
   role: string;
   org: string;
   dates: string;
   location?: "remote" | "hybrid" | "on-site";
   description: string;
+  paper?: Paper;
 }
 
 export interface ProgramEntry {
@@ -16,16 +24,22 @@ const experience: ExperienceEntry[] = [
   {
     role: "research engineer",
     org: "MIT Computer Science and Artificial Intelligence Laboratory (CSAIL)",
-    dates: "present",
+    dates: "since 2026",
     location: "remote",
     description: "agent reasoning, retrieval evaluation & benchmarking",
+    paper: {
+      fullTitle:
+        "Retrieved but not ranked: surface-form bias in structural retrieval, from mathematics to agent trajectories",
+      venue: "arxiv 2026",
+      url: "https://arxiv.org/abs/2609.01556",
+    },
   },
   {
     role: "software engineer intern",
     org: "DevFortress",
     dates: "2025",
     location: "hybrid",
-    description: "developed obsidian plugin & explored mcp integrations",
+    description: "built an obsidian plugin & agent workflows",
   },
   {
     role: "ml research intern",
@@ -34,6 +48,12 @@ const experience: ExperienceEntry[] = [
     location: "remote",
     description:
       "medical registration and segmentation | joint project with carnegie mellon university",
+    paper: {
+      fullTitle:
+        "Architectural and Regularization Components in Deep Learning Medical Image Registration: Systematic Ablation Study",
+      venue: "jmir preprint 2025",
+      url: "https://preprints.jmir.org/preprint/84519",
+    },
   },
   {
     role: "co-director",
@@ -47,7 +67,7 @@ const experience: ExperienceEntry[] = [
     org: "University of Toronto",
     dates: "2025",
     location: "hybrid",
-    description: "multimodal sentiment analysis",
+    description: "neuroimaging data preprocessing for sentiment analysis research",
   },
 ];
 

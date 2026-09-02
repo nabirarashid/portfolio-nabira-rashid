@@ -3,7 +3,7 @@ import { FaInstagram, FaGithub, FaEnvelope, FaXTwitter } from "react-icons/fa6";
 const socials = [
   {
     label: "instagram",
-    href: "https://www.instagram.com/tech.with.nabira/",
+    href: "https://www.instagram.com/techwithnabira/",
     Icon: FaInstagram,
   },
   { label: "x", href: "https://x.com/nabirarashid", Icon: FaXTwitter },
