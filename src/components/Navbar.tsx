@@ -5,6 +5,7 @@ const navItems = [
   { name: "experience", id: "experience-section" },
   { name: "writing", id: "writing-section" },
   { name: "projects", id: "projects-section" },
+  { name: "philosophy", id: "philosophy-section" },
 ];
 
 const Navbar = () => {
@@ -64,7 +65,7 @@ const Navbar = () => {
           </button>
 
           {/* Desktop nav */}
-          <div className="hidden items-center gap-9 md:flex">
+          <div className="hidden items-center gap-7 md:flex lg:gap-9">
             {navItems.map((item) => (
               <button
                 key={item.name}
