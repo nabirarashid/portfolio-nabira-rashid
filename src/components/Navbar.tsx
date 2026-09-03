@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 
 const navItems = [
-  { name: "home", id: "home-section" },
   { name: "experience", id: "experience-section" },
   { name: "writing", id: "writing-section" },
   { name: "projects", id: "projects-section" },
   { name: "philosophy", id: "philosophy-section" },
 ];
+
+// The hero has no nav link, but we still watch it so scrolling back up clears the underline.
+const trackedSections = [{ name: "home", id: "home-section" }, ...navItems];
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,7 +16,7 @@ const Navbar = () => {
 
   // Keep the nav in sync with whatever section the visitor is actually reading.
   useEffect(() => {
-    const sections = navItems
+    const sections = trackedSections
       .map((item) => document.getElementById(item.id))
       .filter((element): element is HTMLElement => element !== null);
 
@@ -27,7 +29,7 @@ const Navbar = () => {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
         if (!visible) return;
-        const match = navItems.find((item) => item.id === visible.target.id);
+        const match = trackedSections.find((item) => item.id === visible.target.id);
         if (match) setActiveItem(match.name);
       },
       { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
