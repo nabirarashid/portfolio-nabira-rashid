@@ -11,8 +11,8 @@ interface Rule {
  */
 const rules: Rule[] = [
   {
-    name: "finished over started",
-    note: "ideas are cheap. things someone else can run are rare.",
+    name: "create luck",
+    note: "reach out, show up, take the room you don't think you deserve yet.",
   },
   {
     name: "attention is raw material",
