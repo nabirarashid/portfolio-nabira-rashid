@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import CoffeeStains from "./CoffeeStains";
 
 interface MediaItem {
   title: string;
@@ -33,6 +34,8 @@ const mediaItems: MediaItem[] = [
 export const CurrentlyConsuming = () => {
   return (
     <section id="consuming-section" className="coffee-bg relative">
+      <CoffeeStains variant="consuming" />
+
       <SectionHeading
         title="currently consuming"
         tagline="what's on the side of the desk lately"

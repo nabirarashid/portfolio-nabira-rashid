@@ -7,6 +7,7 @@ import HouseRules from "../components/HouseRules";
 import ProjectCard from "../components/ProjectCard";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
+import CoffeeStains from "../components/CoffeeStains";
 import projects, { Project } from "../data/projects";
 
 const Home = () => {
@@ -59,14 +60,7 @@ const Home = () => {
           </div>
         </SectionHeading>
 
-        {/* One stain, placed deliberately */}
-        <img
-          src="/assets/website/coffee stain.png"
-          alt=""
-          aria-hidden="true"
-          className="coffee-stain hidden md:block"
-          style={{ top: "18%", right: "5%", width: "120px", height: "120px" }}
-        />
+        <CoffeeStains variant="projects" />
 
         <div className="section-shell section-shell--wide section-shell--tight relative">
           <Reveal>

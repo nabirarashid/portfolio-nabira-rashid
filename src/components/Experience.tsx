@@ -2,10 +2,13 @@ import { ArrowUpRight } from "lucide-react";
 import experience, { programs } from "../data/experience";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import CoffeeStains from "./CoffeeStains";
 
 const Experience = () => {
   return (
     <section id="experience-section" className="coffee-bg relative">
+      <CoffeeStains variant="experience" />
+
       <SectionHeading title="experience" tagline="where i've been brewing" />
 
       <div className="section-shell section-shell--tight">

@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import CoffeeStains from "./CoffeeStains";
 
 interface Rule {
   name: string;
@@ -35,6 +36,8 @@ const rules: Rule[] = [
  */
 const HouseRules = () => (
   <section id="philosophy-section" className="coffee-bg relative">
+    <CoffeeStains variant="philosophy" />
+
     <div className="section-shell">
       <Reveal className="section-sign section-sign--board">
         <div className="text-center">

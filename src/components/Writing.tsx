@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import CoffeeStains from "./CoffeeStains";
 import bundled from "../data/substack-posts.json";
 
 export interface SubstackPost {
@@ -142,6 +143,8 @@ const Writing = () => {
 
   return (
     <section id="writing-section" className="coffee-bg relative">
+      <CoffeeStains variant="writing" />
+
       <SectionHeading
         title="fresh off the press"
         tagline="thoughts that needed more than one cup"

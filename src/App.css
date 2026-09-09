@@ -13,7 +13,11 @@
   --color-cafe-matcha: #a4b494;
   --color-cafe-terracotta: #e2725b;
   --color-cafe-mocha: #8b6f47;
-  --color-cafe-latte: #f4e8d8;
+  /* Card surface in light mode. The old #f4e8d8 sat at hue 34, a 26 degree
+     swing toward red from the page's hue 60, which read as pink. This sits
+     at hue 41 so it stays in the page's warm family, and separates from it
+     by being a little darker rather than by shifting hue. */
+  --color-cafe-latte: #ebe1cb;
   --color-cafe-taupe: #a0826d;
 
   --color-coffee-50: #faf8f6;
@@ -903,6 +907,19 @@ body {
   user-select: none;
   pointer-events: none;
   position: absolute;
+  height: auto;
+  /* Behind the content, and never a reason for the page to scroll sideways. */
+  z-index: 0;
+  max-width: none;
+}
+
+/* The PNG is dark brown on transparent, which all but disappears against the
+   dark background. Lift it into a lighter tan so the marks still read. */
+.dark .coffee-stain {
+  opacity: 0.14;
+  /* brightness alone turns the dark reddish core vivid orange, so pull most of
+     the saturation out first and lift what is left to a soft tan. */
+  filter: saturate(0.3) brightness(2.1);
 }
 
 /* ============================================================
