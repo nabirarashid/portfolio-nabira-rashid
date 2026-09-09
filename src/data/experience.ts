@@ -30,7 +30,7 @@ const experience: ExperienceEntry[] = [
     paper: {
       fullTitle:
         "Retrieved but not ranked: surface-form bias in structural retrieval, from mathematics to agent trajectories",
-      venue: "arxiv 2026",
+      venue: "arxiv",
       url: "https://arxiv.org/abs/2609.01556",
     },
   },
@@ -51,8 +51,8 @@ const experience: ExperienceEntry[] = [
     paper: {
       fullTitle:
         "Architectural and Regularization Components in Deep Learning Medical Image Registration: Systematic Ablation Study",
-      venue: "jmir preprint 2025",
-      url: "https://preprints.jmir.org/preprint/84519",
+      venue: "arxiv",
+      url: "https://arxiv.org/abs/2609.05484",
     },
   },
   {
