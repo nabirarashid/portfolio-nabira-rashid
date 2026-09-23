@@ -54,6 +54,10 @@ body {
 }
 
 :root {
+  /* Matcha cream: the stamp's ink and the hang tags' paper. */
+  --matcha-cream: #c6d2b1;
+  --matcha-line: rgba(122, 142, 100, 0.55);
+
   /* Espresso cup on a saucer. Inline SVG so it stays crisp at any DPR and the
      colours can be tweaked by hand. */
   --cup-cursor-img: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><ellipse cx="14" cy="25" rx="11.4" ry="2.9" fill="%23F5F5DC" stroke="%23302421" stroke-width="1.9"/><path d="M21.6 14.4c3.5 0 5.3 1.3 5.3 3.2s-1.8 3.2-5.3 3.2" fill="none" stroke="%23302421" stroke-width="2.1" stroke-linecap="round"/><path d="M4.7 10.6h17.5l-1.3 10.5a3.7 3.7 0 0 1-3.7 3.3H9.7a3.7 3.7 0 0 1-3.7-3.3z" fill="%23F5F5DC" stroke="%23302421" stroke-width="2.1" stroke-linejoin="round"/><ellipse cx="13.4" cy="10.8" rx="7.5" ry="1.9" fill="%235a4032"/></svg>');
@@ -430,32 +434,101 @@ body {
   background-color: rgba(245, 245, 220, 0.03);
 }
 
-/* Chalk tick. pathLength=1 makes the dash math unit-free; the stroke draws
-   from hidden to full when the surrounding Reveal flips to is-visible, one
-   panel after another. */
-.house-rule__check {
-  display: block;
-  width: 18px;
-  height: 18px;
-  margin-bottom: 0.65rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.9;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0.85;
+/* The rule names type themselves out once the board is on screen, in the
+   same hand as the hero and menu signs' typewriters: each character lands
+   instantly on its own delay, and a ‸ cursor blinks at the end of the line
+   until the last character is in, then goes out. Delays are computed from
+   --rule-index (which line) and --char-index (which character), with
+   --char-count telling the cursor when it is done. */
+.house-rule__name {
+  --type-start: 500ms;      /* after the board has faded in */
+  --type-stagger: 320ms;    /* between lines starting */
+  --type-speed: 55ms;       /* per character */
+  --type-begin: calc(var(--type-start) + var(--rule-index, 0) * var(--type-stagger));
 }
 
-.house-rule__check path {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  transition: stroke-dashoffset 550ms cubic-bezier(0.22, 1, 0.36, 1);
-  /* After the board itself has faded in, then a beat per rule. */
-  transition-delay: calc(500ms + var(--rule-index, 0) * 220ms);
+/* Untyped characters are collapsed to zero width rather than hidden, so the
+   cursor sits right after the last typed letter instead of out at the end of
+   the finished word. font-size: 0 collapses them without touching the line
+   box, since the heading's own font-size keeps the strut. */
+.house-rule__char {
+  font-size: 0;
+  transition: font-size 0ms linear;
+  transition-delay: calc(var(--type-begin) + var(--char-index, 0) * var(--type-speed));
 }
 
-.reveal.is-visible .house-rule__check path {
-  stroke-dashoffset: 0;
+.reveal.is-visible .house-rule__char {
+  font-size: inherit;
+}
+
+.house-rule__cursor {
+  display: inline-block;
+  margin-left: 0.08em;
+  opacity: 0;
+  transform: translateY(0.05em);
+}
+
+/* Blinks from the moment its line starts typing, for as many blinks as the
+   line needs (--cursor-blinks, set per rule), and the last keyframe leaves
+   it hidden. */
+.reveal.is-visible .house-rule__cursor {
+  animation: houseRuleCursor 0.9s linear var(--type-begin) var(--cursor-blinks, 2) forwards;
+}
+
+@keyframes houseRuleCursor {
+  0%, 49.9% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* ---- The stamp ----
+   A round rubber stamp in matcha-cream ink, the kind a cafe puts on a
+   loyalty card, pressed onto the top right of the board as soon as it is on
+   screen, before the rules start typing. It sits wholly on the board, over
+   the chalk frame, rather than hanging off the edge: off the edge the pale
+   ink would vanish against the page and read as cut off. */
+.house-stamp {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.25rem;
+  width: 60px;
+  height: 60px;
+  color: var(--matcha-cream);
+  opacity: 0;
+  transform: rotate(-14deg) scale(1.7);
+  transform-origin: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .house-stamp {
+    /* Centred on the title-plus-tagline block, right edge on the text
+       column's edge (the board's 3.75rem padding plus the column's inset). */
+    top: 2.625rem;
+    right: 4rem;
+    width: 108px;
+    height: 108px;
+  }
+}
+
+.house-stamp text {
+  font-family: var(--font-serif);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  fill: currentColor;
+}
+
+/* Presses on its own cue (useReveal on the svg, see HouseRules), once the
+   reader has scrolled it well into view. */
+.house-stamp.is-visible {
+  animation: houseStamp 420ms cubic-bezier(0.2, 0.9, 0.3, 1) 120ms forwards;
+}
+
+@keyframes houseStamp {
+  0% { opacity: 0; transform: rotate(-14deg) scale(1.7); }
+  55% { opacity: 0.95; transform: rotate(-14deg) scale(0.95); }
+  100% { opacity: 0.88; transform: rotate(-14deg) scale(1); }
 }
 
 .house-rule__name {
@@ -744,6 +817,9 @@ body {
    without the string needing to know exactly how far up the bar is.
    ============================================================ */
 .hang-tag {
+  background-color: var(--matcha-cream);
+  border-color: var(--matcha-line);
+  color: #302421;
   --hang-string: calc(1.75rem + 0.4rem); /* card padding + overshoot */
   --hang-tilt: 1.5deg;
   --hang-x: 50%; /* where the string is threaded along the top edge */
@@ -799,13 +875,19 @@ body {
   height: 4px;
   border: 1px solid currentColor;
   border-radius: 9999px;
-  background-color: #ebe1cb;
+  background-color: var(--matcha-cream); /* the tag's own paper */
   transform: translate(-50%, -50%);
   opacity: 0.6;
 }
 
+.dark .hang-tag {
+  background-color: rgba(164, 180, 148, 0.16);
+  border-color: rgba(164, 180, 148, 0.45);
+  color: #d9dec3;
+}
+
 .dark .hang-tag::after {
-  background-color: #1a0f0a;
+  background-color: #2c2f26;
 }
 
 /* Settles plumb when the card is hovered, like a hand steadying it. */
@@ -1006,16 +1088,16 @@ body {
    0 at the bottom; Navbar writes it on scroll. Eased so fast scrolls slosh
    rather than snap. */
 .cup-coffee {
-  fill: #8b6f47;
+  /* Same ink as the cup, so the level reads as a solid cup hollowing out
+     rather than a brown-on-brown shade that gets lost at 22px. */
+  fill: currentColor;
+  fill-opacity: 0.9;
   transform: scaleY(var(--cup-level, 1));
   transform-origin: bottom;
   transform-box: fill-box;
   transition: transform 260ms ease-out;
 }
 
-.dark .cup-coffee {
-  fill: #a0826d;
-}
 
 /* Steam off the navbar cup on hover. Three wisps on a stagger, so the puff
    keeps going for as long as the pointer rests there. */
@@ -1148,9 +1230,19 @@ body {
     transition: none;
   }
 
-  .house-rule__check path {
-    stroke-dashoffset: 0;
+  .house-rule__char {
+    font-size: inherit;
     transition: none;
+  }
+
+  .house-rule__cursor {
+    display: none;
+  }
+
+  .house-stamp {
+    opacity: 0.88;
+    transform: rotate(-14deg);
+    animation: none !important;
   }
 
   .steam-wisp,

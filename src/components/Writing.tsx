@@ -201,8 +201,8 @@ const Writing = () => {
                     {/* The newest post gets the same hang tag as the project
                         cards, strung from the bottom edge of its cover. */}
                     {index === 0 && (
-                      <p className="receipt-meta shrink-0 opacity-70">
-                        <span className="hang-tag hang-tag--press inline-block border border-cafe-espresso/35 dark:border-cafe-cream/35 px-1.5 py-px text-[0.625rem] tracking-[0.14em]">
+                      <p className="receipt-meta shrink-0 opacity-85">
+                        <span className="hang-tag hang-tag--press inline-block border px-2 py-0.5 text-[0.6875rem] tracking-[0.12em]">
                           just brewed
                         </span>
                       </p>

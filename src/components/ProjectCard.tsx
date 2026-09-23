@@ -37,8 +37,8 @@ const ProjectCard = ({
             <h3 className="entry-title text-xl md:text-2xl">{name}</h3>
 
             {tag && (
-              <p className="receipt-meta ml-auto shrink-0 opacity-70">
-                <span className="hang-tag inline-block border border-cafe-espresso/35 dark:border-cafe-cream/35 px-1.5 py-px text-[0.625rem] tracking-[0.14em]">
+              <p className="receipt-meta ml-auto shrink-0 opacity-85">
+                <span className="hang-tag inline-block border px-2 py-0.5 text-[0.6875rem] tracking-[0.12em]">
                   {tag}
                 </span>
               </p>

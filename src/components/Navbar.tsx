@@ -91,7 +91,7 @@ const Navbar = () => {
               <svg
                 ref={cupRef}
                 viewBox="0 0 24 24"
-                className="cup-logo coffee-text h-5 w-5"
+                className="cup-logo coffee-text h-[22px] w-[22px]"
                 aria-hidden="true"
               >
                 <defs>

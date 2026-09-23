@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
  * when IntersectionObserver is unavailable, so content is never trapped behind
  * an animation that will not run.
  */
-export const useReveal = <T extends HTMLElement>(rootMargin = "0px 0px -12% 0px") => {
+export const useReveal = <T extends Element>(rootMargin = "0px 0px -12% 0px") => {
   const ref = useRef<T | null>(null);
 
   useEffect(() => {
