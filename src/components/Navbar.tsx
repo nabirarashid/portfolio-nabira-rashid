@@ -99,8 +99,12 @@ const Navbar = () => {
                     <path d="M5 8h13l-1.4 9.2a2.4 2.4 0 0 1-2.4 2H8.8a2.4 2.4 0 0 1-2.4-2z" />
                   </clipPath>
                 </defs>
-                {/* Coffee. Scaled from the bottom inside the bowl's clip, so
-                    the level sits flat as it drops. */}
+                {/* Cup interior, then the coffee scaled from the bottom
+                    inside the bowl's clip, so the level sits flat as it drops. */}
+                <path
+                  className="cup-inside"
+                  d="M5 8h13l-1.4 9.2a2.4 2.4 0 0 1-2.4 2H8.8a2.4 2.4 0 0 1-2.4-2z"
+                />
                 <g clipPath="url(#nav-cup-bowl)">
                   <rect className="cup-coffee" x="4" y="8" width="15" height="11.5" />
                 </g>

@@ -1088,14 +1088,32 @@ body {
    0 at the bottom; Navbar writes it on scroll. Eased so fast scrolls slosh
    rather than snap. */
 .cup-coffee {
-  /* Same ink as the cup, so the level reads as a solid cup hollowing out
-     rather than a brown-on-brown shade that gets lost at 22px. */
-  fill: currentColor;
-  fill-opacity: 0.9;
+  /* Coffee-coloured: a mid brown, clearly neither the espresso outline nor
+     the cream page, so the brown is unmistakably the liquid and the pale
+     part above it the empty cup. */
+  fill: #7a5a3c;
   transform: scaleY(var(--cup-level, 1));
-  transform-origin: bottom;
-  transform-box: fill-box;
+  /* Origin given in the svg's own units (bottom centre of the coffee rect:
+     x 4 + 15/2, y 8 + 11.5) against the view box, not the fill box. Safari
+     ignores fill-box here and scaled from the top, so the coffee shrank
+     upward and the cup looked like it drained against gravity. */
+  transform-box: view-box;
+  transform-origin: 11.5px 19.5px;
   transition: transform 260ms ease-out;
+}
+
+.dark .cup-coffee {
+  fill: #a0826d;
+}
+
+/* The inside of the cup: white ceramic, so the empty part reads as a cup
+   and not as the page showing through. */
+.cup-inside {
+  fill: rgba(255, 255, 255, 0.6);
+}
+
+.dark .cup-inside {
+  fill: rgba(245, 245, 220, 0.1);
 }
 
 
