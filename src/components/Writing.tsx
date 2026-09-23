@@ -112,13 +112,22 @@ const Writing = () => {
           .map(normalize)
           .filter((post: SubstackPost | null): post is SubstackPost => post !== null);
 
-        // rss2json caches, so a live item can come back without a cover the
-        // bundle already knows about. Take the fresher text, keep the image.
-        const bundledCovers = new Map(
-          bundledPosts.map((post) => [post.link, post.cover])
+        // rss2json caches for hours, so the live feed can lag the bundle the
+        // build fetched straight from Substack. Never let it replace the
+        // bundle: union the two by link, sort newest first, and let the live
+        // item win the text while the bundle keeps any cover it already has.
+        const byLink = new Map<string, SubstackPost>(
+          bundledPosts.map((post) => [post.link, post])
         );
-        const merged = live.map((post: SubstackPost) =>
-          post.cover ? post : { ...post, cover: bundledCovers.get(post.link) ?? "" }
+        for (const post of live as SubstackPost[]) {
+          const known = byLink.get(post.link);
+          byLink.set(post.link, {
+            ...post,
+            cover: post.cover || known?.cover || "",
+          });
+        }
+        const merged = [...byLink.values()].sort(
+          (a, b) => Date.parse(b.pubDate || "") - Date.parse(a.pubDate || "")
         );
 
         if (!cancelled && merged.length > 0) setPosts(merged);
