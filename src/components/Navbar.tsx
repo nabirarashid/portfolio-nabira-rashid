@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const navItems = [
   { name: "experience", id: "experience-section" },
@@ -13,6 +13,35 @@ const trackedSections = [{ name: "home", id: "home-section" }, ...navItems];
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("home");
+  const cupRef = useRef<SVGSVGElement>(null);
+
+  // The cup drains as the visitor scrolls: full at the top of the page, empty
+  // by the footer. Written straight to a CSS variable on the SVG, so scrolling
+  // never re-renders the nav.
+  useEffect(() => {
+    const cup = cupRef.current;
+    if (!cup) return;
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const track = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = track > 0 ? Math.min(1, Math.max(0, window.scrollY / track)) : 0;
+      cup.style.setProperty("--cup-level", String(1 - progress));
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
 
   // Keep the nav in sync with whatever section the visitor is actually reading.
   useEffect(() => {
@@ -59,7 +88,38 @@ const Navbar = () => {
                 <span />
                 <span />
               </span>
-              <span className="cup-logo text-xl">☕</span>
+              <svg
+                ref={cupRef}
+                viewBox="0 0 24 24"
+                className="cup-logo coffee-text h-5 w-5"
+                aria-hidden="true"
+              >
+                <defs>
+                  <clipPath id="nav-cup-bowl">
+                    <path d="M5 8h13l-1.4 9.2a2.4 2.4 0 0 1-2.4 2H8.8a2.4 2.4 0 0 1-2.4-2z" />
+                  </clipPath>
+                </defs>
+                {/* Coffee. Scaled from the bottom inside the bowl's clip, so
+                    the level sits flat as it drops. */}
+                <g clipPath="url(#nav-cup-bowl)">
+                  <rect className="cup-coffee" x="4" y="8" width="15" height="11.5" />
+                </g>
+                <path
+                  d="M5 8h13l-1.4 9.2a2.4 2.4 0 0 1-2.4 2H8.8a2.4 2.4 0 0 1-2.4-2z"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M18 10.5c2.2 0 3.5 1 3.5 2.6s-1.3 2.6-3.5 2.6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+                <path d="M3.5 21.5h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
             </span>
             <span className="nav-link coffee-text">
               nabira rashid

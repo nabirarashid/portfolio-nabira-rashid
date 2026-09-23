@@ -4,6 +4,9 @@ export interface Project {
   link: string;
   techStack: string[];
   details: string;
+  /** Optional accolade, stamped at the top right of the card. Kept short:
+      it is a mark on a menu item, not a second description. */
+  tag?: string;
 }
 
 const projects: Project[] = [
@@ -11,6 +14,7 @@ const projects: Project[] = [
     title: "brand reach",
     description: "an ai-powered content generator and auto-poster.",
     link: "https://devpost.com/software/brandbreach",
+    tag: "first hackathon",
     techStack: ["python", "flask", "cohere api", "stable diffusion", "tweepy"],
     details: `cohere writes the captions, stable diffusion makes the visuals, and the twitter api posts them.`,
   },
@@ -18,6 +22,7 @@ const projects: Project[] = [
     title: "mr. goose",
     description: "a vscode extension that guides coders with humor and hints.",
     link: "https://dorahacks.io/buidl/26391/",
+    tag: "1st place · jamhacks",
     techStack: [
       "typescript",
       "vscode api",
@@ -33,12 +38,14 @@ const projects: Project[] = [
     description: "swipe local, support community.",
     techStack: ["react", "typescript", "tailwindcss", "firebase", "firestore"],
     link: "https://github.com/nabirarashid/homegrown-new",
+    tag: "900+ users · house of commons",
     details: `swipe through 120+ local shops and restaurants, like what you love, and get recommendations that keep money nearby.`,
   },
   {
     title: "snapquest",
     description: "location-based photography prompts and submissions.",
     link: "https://github.com/nabirarashid/snapquest",
+    tag: "best domain name · uofthacks",
     techStack: [
       "oracle cloud",
       "mongodb",

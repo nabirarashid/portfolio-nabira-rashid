@@ -7,20 +7,43 @@ interface Props {
   link: string;
   techStack?: string[];
   details?: string;
+  tag?: string;
 }
 
-const ProjectCard = ({ name, description, link, techStack = [], details }: Props) => {
+const ProjectCard = ({
+  name,
+  description,
+  link,
+  techStack = [],
+  details,
+  tag,
+}: Props) => {
   const [showTechStack, setShowTechStack] = useState(false);
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden rounded-sm border border-cafe-espresso/10 dark:border-cafe-cream/10 shadow-md transition-all duration-300 hover:shadow-lg">
+    <div className="group flex h-full w-full flex-col overflow-hidden rounded-sm border border-cafe-espresso/10 dark:border-cafe-cream/10 shadow-md transition-all duration-300 hover:shadow-lg">
       <div className="h-3 w-full bg-cafe-mocha" />
 
       <div className="flex flex-1 flex-col bg-cafe-latte dark:bg-coffee-900 p-7">
         <div className="flex h-full flex-col items-start gap-5">
-          <h3 className="entry-title coffee-text text-xl md:text-2xl">
-            {name}
-          </h3>
+          {/*
+            Title on the left, accolade top right, in the same mono box the
+            experience section uses for remote / hybrid. wrap-reverse stacks
+            lines bottom-up, so when the tag can't fit beside the title on a
+            phone it wraps to the line above and stays top right, instead of
+            dropping under the title.
+          */}
+          <div className="coffee-text flex w-full flex-wrap-reverse items-center justify-between gap-x-4 gap-y-2.5">
+            <h3 className="entry-title text-xl md:text-2xl">{name}</h3>
+
+            {tag && (
+              <p className="receipt-meta ml-auto shrink-0 opacity-70">
+                <span className="hang-tag inline-block border border-cafe-espresso/35 dark:border-cafe-cream/35 px-1.5 py-px text-[0.625rem] tracking-[0.14em]">
+                  {tag}
+                </span>
+              </p>
+            )}
+          </div>
 
           <p className="body-copy coffee-text text-sm opacity-80">{description}</p>
 
@@ -59,7 +82,7 @@ const ProjectCard = ({ name, description, link, techStack = [], details }: Props
 
           {showTechStack && techStack.length > 0 && (
             <div className="mt-auto w-full border-t border-cafe-espresso/10 dark:border-cafe-cream/10 pt-5">
-              <p className="eyebrow coffee-text mb-3">technologies</p>
+              <p className="eyebrow coffee-text mb-3">ingredients</p>
               <div className="flex flex-wrap gap-2">
                 {techStack.map((tech) => (
                   <span

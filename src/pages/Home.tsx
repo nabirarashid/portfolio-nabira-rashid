@@ -69,7 +69,7 @@ const Home = () => {
             </p>
           </Reveal>
 
-          <div className="space-y-6">
+          <div className="menu-list space-y-6">
             {projects.map((project: Project, index: number) => (
               <Reveal key={project.title} delay={Math.min(index, 4) * 60}>
                 <ProjectCard
@@ -78,6 +78,7 @@ const Home = () => {
                   link={project.link}
                   techStack={project.techStack}
                   details={project.details}
+                  tag={project.tag}
                 />
               </Reveal>
             ))}

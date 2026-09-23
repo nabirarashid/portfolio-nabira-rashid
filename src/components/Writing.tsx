@@ -186,9 +186,19 @@ const Writing = () => {
                 )}
 
                 <div className="flex flex-1 flex-col gap-3 bg-cafe-latte dark:bg-coffee-900 p-6">
-                  <p className="receipt-meta coffee-text opacity-50">
-                    {formatDate(post.pubDate)}
-                  </p>
+                  <div className="coffee-text flex items-center justify-between gap-4">
+                    <p className="receipt-meta opacity-50">{formatDate(post.pubDate)}</p>
+
+                    {/* The newest post gets the same hang tag as the project
+                        cards, strung from the bottom edge of its cover. */}
+                    {index === 0 && (
+                      <p className="receipt-meta shrink-0 opacity-70">
+                        <span className="hang-tag hang-tag--press inline-block border border-cafe-espresso/35 dark:border-cafe-cream/35 px-1.5 py-px text-[0.625rem] tracking-[0.14em]">
+                          just brewed
+                        </span>
+                      </p>
+                    )}
+                  </div>
 
                   <h3 className="card-title coffee-text">
                     {post.title}

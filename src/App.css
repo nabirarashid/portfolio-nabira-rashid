@@ -461,6 +461,53 @@ body {
   }
 }
 
+/* Narrow screens. The board is the one sign that holds long-form copy, so at
+   phone width the 13px rule left the text almost touching the chalk edge.
+   Pull the rule in, push the copy off it, and step the type down a notch so
+   the column keeps a readable measure instead of getting squeezed. */
+@media (max-width: 767px) {
+  .section-sign--board {
+    padding: 2.5rem 2.125rem 2.75rem;
+  }
+
+  .section-sign--board::before {
+    inset: 9px;
+  }
+
+  .section-sign--board::after {
+    inset: 4px;
+  }
+
+  .house-board__intro {
+    font-size: 0.8125rem;
+  }
+
+  .house-rules {
+    gap: 1.25rem;
+  }
+
+  .house-rule {
+    padding-left: 1.25rem;
+  }
+
+  .house-rule__name {
+    font-size: 0.9375rem;
+  }
+
+  .house-rule__note {
+    font-size: 0.75rem;
+  }
+
+  .house-board__closer {
+    margin-top: 2.25rem;
+    padding-top: 2rem;
+  }
+
+  .house-board__closing {
+    font-size: 0.875rem;
+  }
+}
+
 /* A chalk cross at each corner, sat just outside the rule */
 .section-sign::after {
   content: "";
@@ -656,6 +703,91 @@ body {
 }
 
 /* ============================================================
+   HANG TAG
+   The accolade on a project card. The box is the receipt-meta chip from
+   the experience section; this hangs it from the card's mocha top bar on
+   a hairline string, threaded through a pinhole, a degree off plumb. The
+   string is drawn in the bar's own colour so where it overshoots into the
+   bar it vanishes, which lets the tag sit anywhere in the first row
+   without the string needing to know exactly how far up the bar is.
+   ============================================================ */
+.hang-tag {
+  --hang-string: calc(1.75rem + 0.4rem); /* card padding + overshoot */
+  --hang-tilt: 1.5deg;
+  --hang-x: 50%; /* where the string is threaded along the top edge */
+  position: relative;
+  transform-origin: var(--hang-x) calc(var(--hang-string) * -1);
+  transform: rotate(var(--hang-tilt));
+  transition: transform 600ms cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+/* Each card's tag is threaded and hung a little differently, so the four
+   read as clipped on by hand rather than stamped out of the same die. */
+.menu-list > :nth-child(4n + 2) .hang-tag {
+  --hang-tilt: -1.8deg;
+  --hang-x: 58%;
+}
+
+.menu-list > :nth-child(4n + 3) .hang-tag {
+  --hang-tilt: 1.1deg;
+  --hang-x: 44%;
+}
+
+.menu-list > :nth-child(4n + 4) .hang-tag {
+  --hang-tilt: -1.3deg;
+  --hang-x: 54%;
+}
+
+/* The writing card is padded 1.5rem and hangs its tag from a photo rather
+   than the mocha bar, so the string only needs a whisker of overshoot. */
+.hang-tag--press {
+  --hang-string: calc(1.5rem + 0.15rem);
+  --hang-tilt: -1.4deg;
+  --hang-x: 56%;
+}
+
+.hang-tag::before {
+  content: "";
+  position: absolute;
+  left: var(--hang-x);
+  bottom: 100%;
+  width: 1px;
+  height: var(--hang-string);
+  background-color: #8b6f47;
+  opacity: 0.7;
+}
+
+/* The pinhole, sat on the top edge of the box. */
+.hang-tag::after {
+  content: "";
+  position: absolute;
+  left: var(--hang-x);
+  top: 0;
+  width: 4px;
+  height: 4px;
+  border: 1px solid currentColor;
+  border-radius: 9999px;
+  background-color: #ebe1cb;
+  transform: translate(-50%, -50%);
+  opacity: 0.6;
+}
+
+.dark .hang-tag::after {
+  background-color: #1a0f0a;
+}
+
+/* Settles plumb when the card is hovered, like a hand steadying it. */
+.group:hover .hang-tag {
+  transform: rotate(0deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hang-tag {
+    transition: none;
+  }
+}
+
+/* ============================================================
    RECEIPT / ORDER-HISTORY TIMELINE
    ============================================================ */
 .receipt-meta {
@@ -836,6 +968,21 @@ body {
 .cup-logo {
   display: inline-block;
   transition: transform 0.2s ease-out;
+}
+
+/* Coffee level in the navbar cup. --cup-level is 1 at the top of the page and
+   0 at the bottom; Navbar writes it on scroll. Eased so fast scrolls slosh
+   rather than snap. */
+.cup-coffee {
+  fill: #8b6f47;
+  transform: scaleY(var(--cup-level, 1));
+  transform-origin: bottom;
+  transform-box: fill-box;
+  transition: transform 260ms ease-out;
+}
+
+.dark .cup-coffee {
+  fill: #a0826d;
 }
 
 /* Steam off the navbar cup on hover. Three wisps on a stagger, so the puff
