@@ -1,6 +1,13 @@
 {
-  "fetchedAt": "2026-09-09T19:31:38.785Z",
+  "fetchedAt": "2026-09-23T03:41:32.273Z",
   "posts": [
+    {
+      "title": "keep something real to hold onto",
+      "link": "https://nabirarashid.substack.com/p/keep-something-real-to-hold-onto",
+      "pubDate": "2026-09-23T03:23:39.000Z",
+      "excerpt": "on ai-generated music, harry frankfurt, and why staying close to real human work is starting to feel less optional.",
+      "cover": "https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMDAzMzh8MHwxfHNlYXJjaHwxOXx8bXVzaWN8ZW58MHx8fHwxNzkwMDgzODIzfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    },
     {
       "title": "you can't build what you can't picture",
       "link": "https://nabirarashid.substack.com/p/you-cant-build-what-you-cant-picture",
@@ -21,13 +28,6 @@
       "pubDate": "2026-07-19T21:49:34.000Z",
       "excerpt": "on edinburgh, singapore, and how much of us is just the place we were made in",
       "cover": "https://images.unsplash.com/photo-1691201200746-9a95b64a3436?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMDAzMzh8MHwxfHNlYXJjaHwyN3x8ZWRpbmJ1cmdofGVufDB8fHx8MTc4ODM2OTQwOXww&ixlib=rb-4.1.0&q=80&w=1080"
-    },
-    {
-      "title": "your energy is the most expensive thing you give away for free",
-      "link": "https://nabirarashid.substack.com/p/your-energy-is-the-most-expensive",
-      "pubDate": "2026-07-17T02:49:52.000Z",
-      "excerpt": "on IB burnout, the scroll, and figuring out what i actually wanted from my screen the whole time",
-      "cover": ""
     }
   ]
 }
