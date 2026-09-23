@@ -1,3 +1,4 @@
+import type React from "react";
 import Reveal from "./Reveal";
 import CoffeeStains from "./CoffeeStains";
 
@@ -55,8 +56,21 @@ const HouseRules = () => (
         </p>
 
         <ul className="house-rules mt-9">
-          {rules.map((rule) => (
-            <li key={rule.name} className="house-rule">
+          {rules.map((rule, index) => (
+            <li
+              key={rule.name}
+              className="house-rule"
+              style={{ "--rule-index": index } as React.CSSProperties}
+            >
+              {/* Chalk tick, drawn in once the board is on screen: the tagline
+                  says these are the ones actually kept, so they get checked. */}
+              <svg
+                className="house-rule__check"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M4.5 12.5l4.8 4.8L19.5 6.8" pathLength="1" />
+              </svg>
               <h3 className="house-rule__name">{rule.name}</h3>
               <p className="body-copy house-rule__note">{rule.note}</p>
             </li>
