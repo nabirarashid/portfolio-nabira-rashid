@@ -144,8 +144,21 @@ const DoodleBoard = () => {
         </button>
       </div>
 
-      {/* The coaster stays put; the cup lifts off it and comes back. */}
-      <div className="coaster" aria-hidden="true" />
+      {/* The saucer stays put; the cup lifts off it and comes back. Both are
+          drawn top-down so the cup can leave the plate behind. */}
+      <svg className="saucer" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <radialGradient id="saucer-face" cx="42%" cy="40%" r="62%">
+            <stop offset="0%" stopColor="#fbf8f0" />
+            <stop offset="70%" stopColor="#ebe4d3" />
+            <stop offset="100%" stopColor="#d3c8b2" />
+          </radialGradient>
+        </defs>
+        <circle cx="50" cy="50" r="47" fill="url(#saucer-face)" stroke="rgba(48, 36, 33, 0.18)" strokeWidth="1" />
+        <circle cx="50" cy="50" r="31" fill="none" stroke="rgba(48, 36, 33, 0.09)" strokeWidth="1.2" />
+        {/* the ring the cup leaves on the plate */}
+        <circle cx="50" cy="50" r="27.5" fill="none" stroke="rgba(139, 111, 71, 0.28)" strokeWidth="2.2" />
+      </svg>
       <div
         ref={cupRef}
         className={`cup-tool ${isHolding ? "is-holding" : ""}`}
@@ -157,7 +170,30 @@ const DoodleBoard = () => {
         onPointerUp={putDown}
         onPointerCancel={putDown}
       >
-        <img src="/assets/website/new coffee cup.webp" alt="" draggable={false} />
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <defs>
+            <radialGradient id="cup-face" cx="40%" cy="38%" r="65%">
+              <stop offset="0%" stopColor="#ffffff" />
+              <stop offset="75%" stopColor="#f1ece0" />
+              <stop offset="100%" stopColor="#d9d0bc" />
+            </radialGradient>
+            <radialGradient id="cup-coffee" cx="45%" cy="42%" r="60%">
+              <stop offset="0%" stopColor="#4a2e1c" />
+              <stop offset="60%" stopColor="#35200f" />
+              <stop offset="100%" stopColor="#5c3d24" />
+            </radialGradient>
+          </defs>
+          {/* handle, drawn first so the body sits over its root */}
+          <path d="M79 40c15 0 15 20 0 20" fill="none" stroke="rgba(48, 36, 33, 0.2)" strokeWidth="12" strokeLinecap="round" />
+          <path d="M79 40c15 0 15 20 0 20" fill="none" stroke="#efe9db" strokeWidth="9" strokeLinecap="round" />
+          {/* body and coffee */}
+          <circle cx="50" cy="50" r="33" fill="url(#cup-face)" stroke="rgba(48, 36, 33, 0.2)" strokeWidth="1" />
+          <circle cx="50" cy="50" r="25" fill="url(#cup-coffee)" />
+          <circle cx="50" cy="50" r="25" fill="none" stroke="#b98249" strokeWidth="2.6" opacity="0.85" />
+          <circle cx="50" cy="50" r="21.5" fill="none" stroke="#8a5a30" strokeWidth="1" opacity="0.5" />
+          {/* light on the surface */}
+          <ellipse cx="41" cy="41" rx="7" ry="4.5" fill="#ffffff" opacity="0.18" transform="rotate(-30 41 41)" />
+        </svg>
       </div>
     </div>
   );

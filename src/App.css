@@ -227,27 +227,33 @@ samp {
 /* ---- The doodle board ----
    A section sign you can draw on. The sign class gives the frame, the
    chalk rules and the corner crosses; the canvas fills the inside. */
+/* The whole board draws, frame included: the canvas is laid over the sign
+   rather than sat inside its padding, so the chalk rule is under the coffee. */
 .doodle__board {
   display: block;
   width: 100%;
-  padding: 1.1rem;
+  height: 232px;
+  padding: 0;
 }
 
 .doodle__canvas {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 1;
   display: block;
   width: 100%;
-  height: 200px;
+  height: 100%;
 }
 
+/* Labels stack on the left; the saucer and cup sit well clear on the right. */
 .doodle__foot {
   display: flex;
-  justify-content: flex-start;
-  gap: 1.25rem;
-  margin-top: 0.75rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin-top: 0.85rem;
   padding-inline: 0.25rem;
-  padding-right: 6.25rem; /* clear of the coaster */
+  padding-right: 8rem; /* clear of the saucer */
   color: #f5f5dc;
   white-space: nowrap;
 }
@@ -269,54 +275,48 @@ samp {
    transform clears and it glides back. */
 .doodle {
   position: relative;
-  /* room under the board for the coaster and cup */
-  padding-bottom: 2.5rem;
+  /* room under the board for the saucer and cup */
+  padding-bottom: 3.25rem;
 }
 
-.coaster,
+.saucer,
 .cup-tool {
   position: absolute;
-  right: 0.25rem;
   bottom: 0;
 }
 
-.coaster {
-  width: 70px;
-  height: 70px;
-  margin-right: -3px;
-  margin-bottom: -3px;
-  border-radius: 9999px;
-  border: 1.5px solid rgba(245, 245, 220, 0.35);
-  box-shadow: inset 0 0 0 6px rgba(245, 245, 220, 0.05);
-  background-image: repeating-radial-gradient(
-    circle,
-    transparent 0 5px,
-    rgba(245, 245, 220, 0.06) 5px 6px
-  );
+.saucer {
+  right: 0;
+  width: 96px;
+  height: 96px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
 }
 
+/* Centred on the saucer at rest: the saucer is 12px bigger each way. */
 .cup-tool {
-  width: 64px;
-  height: 68px;
+  right: 6px;
+  bottom: 6px;
+  width: 84px;
+  height: 84px;
   cursor: grab;
   touch-action: none;
   user-select: none;
-  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.35));
   transition: transform 520ms cubic-bezier(0.34, 1.2, 0.64, 1), filter 300ms ease;
   z-index: 3;
 }
 
-.cup-tool img {
+.cup-tool svg {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  display: block;
   pointer-events: none;
 }
 
 .cup-tool.is-holding {
   cursor: grabbing;
   transition: filter 300ms ease; /* follows the pointer directly */
-  filter: drop-shadow(6px 18px 18px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(8px 22px 20px rgba(0, 0, 0, 0.55));
 }
 
 .cup-tool:focus-visible {
