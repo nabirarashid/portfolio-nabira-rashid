@@ -22,8 +22,8 @@ interface Flavour {
 const flavours: Flavour[] = [
   { name: "mocha", smear: "186, 146, 100", light: "#5e4330", mid: "#3a2617", deep: "#21140c", crema: "#a67e52" },
   { name: "matcha", smear: "158, 170, 142", light: "#96a484", mid: "#6f7e5e", deep: "#4c5843", crema: "#c1cab0" },
-  { name: "ube", smear: "168, 150, 184", light: "#a795b6", mid: "#7a678d", deep: "#554866", crema: "#cdc1d8" },
   { name: "latte", smear: "222, 206, 180", light: "#ede2d0", mid: "#d2c0a3", deep: "#b09677", crema: "#f3eadb" },
+  { name: "ube", smear: "168, 150, 184", light: "#a795b6", mid: "#7a678d", deep: "#554866", crema: "#cdc1d8" },
 ];
 
 const Saucer = () => (
