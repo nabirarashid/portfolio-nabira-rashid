@@ -21,7 +21,7 @@ const Footer = () => {
             <p className="eyebrow text-cafe-cream opacity-70">last call</p>
 
             <p className="text-cafe-cream font-serif text-xl md:text-2xl font-normal tracking-[0.01em]">
-              pull up a chair and let's create something together
+              pick up a cup and let's create something together
             </p>
 
             <p className="text-cafe-cream body-copy text-sm opacity-65">

@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
  * stored: a refresh wipes the board, which is the point.
  */
 const COFFEE = "196, 150, 96";
-const STAMP_EVERY_PX = 20;
+const MIN_STEP_PX = 2;
 
 const DoodleBoard = () => {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -43,27 +43,25 @@ const DoodleBoard = () => {
     };
   }, []);
 
-  /** Where the cup's base touches, as a ring with a smear back to the last one. */
-  const stamp = (x: number, y: number, from: { x: number; y: number } | null) => {
+  /** The trail the cup leaves: a wide wet wash with a darker thread through it. */
+  const smear = (from: { x: number; y: number }, to: { x: number; y: number }) => {
     const ctx = canvasRef.current?.getContext("2d");
     if (!ctx) return;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
 
-    if (from) {
-      ctx.strokeStyle = `rgba(${COFFEE}, 0.2)`;
-      ctx.lineWidth = 9;
-      ctx.lineCap = "round";
-      ctx.beginPath();
-      ctx.moveTo(from.x, from.y);
-      ctx.lineTo(x, y);
-      ctx.stroke();
-    }
-
-    // The ring: never quite round, never quite the same weight.
-    const r = 7 + Math.random() * 3;
-    ctx.strokeStyle = `rgba(${COFFEE}, ${0.3 + Math.random() * 0.25})`;
-    ctx.lineWidth = 1.2 + Math.random() * 1.2;
+    ctx.strokeStyle = `rgba(${COFFEE}, 0.14)`;
+    ctx.lineWidth = 14;
     ctx.beginPath();
-    ctx.ellipse(x, y, r, r * (0.88 + Math.random() * 0.12), Math.random() * Math.PI, 0, Math.PI * 2);
+    ctx.moveTo(from.x, from.y);
+    ctx.lineTo(to.x, to.y);
+    ctx.stroke();
+
+    ctx.strokeStyle = `rgba(${COFFEE}, ${0.28 + Math.random() * 0.1})`;
+    ctx.lineWidth = 3 + Math.random() * 1.5;
+    ctx.beginPath();
+    ctx.moveTo(from.x, from.y);
+    ctx.lineTo(to.x, to.y);
     ctx.stroke();
   };
 
@@ -104,11 +102,10 @@ const DoodleBoard = () => {
     }
 
     const last = lastStamp.current;
-    if (!last || Math.hypot(x - last.x, y - last.y) >= STAMP_EVERY_PX) {
-      stamp(x, y, last);
-      lastStamp.current = { x, y };
-      if (!hasDrawn) setHasDrawn(true);
-    }
+    if (last && Math.hypot(x - last.x, y - last.y) < MIN_STEP_PX) return;
+    if (last) smear(last, { x, y });
+    lastStamp.current = { x, y };
+    if (!hasDrawn) setHasDrawn(true);
   };
 
   const putDown = () => {
@@ -136,15 +133,12 @@ const DoodleBoard = () => {
     <div ref={wrapRef} className="doodle">
       <div className="section-sign doodle__board">
         <canvas ref={canvasRef} className="doodle__canvas" aria-label="a board to doodle on with the cup" />
-        {!hasDrawn && (
-          <p className="doodle__hint" aria-hidden="true">
-            {isHolding ? "now drag it across the board" : "pick up the cup and doodle"}
-          </p>
-        )}
       </div>
 
       <div className="doodle__foot">
-        <span className="receipt-meta opacity-50">wiped on refresh</span>
+        <span className="receipt-meta opacity-50">
+          {hasDrawn ? "wiped on refresh" : "pick up the cup to doodle"}
+        </span>
         <button type="button" className="doodle__wipe receipt-meta" onClick={wipe}>
           wipe it now
         </button>

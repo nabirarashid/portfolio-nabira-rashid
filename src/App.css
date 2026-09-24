@@ -241,27 +241,13 @@ samp {
   height: 200px;
 }
 
-.doodle__hint {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-serif);
-  font-weight: 300;
-  font-size: 1.125rem;
-  color: rgba(245, 245, 220, 0.35);
-  pointer-events: none;
-}
-
 .doodle__foot {
   display: flex;
   justify-content: flex-start;
   gap: 1.25rem;
   margin-top: 0.75rem;
   padding-inline: 0.25rem;
-  padding-right: 5.5rem; /* clear of the coaster */
+  padding-right: 6.25rem; /* clear of the coaster */
   color: #f5f5dc;
   white-space: nowrap;
 }
