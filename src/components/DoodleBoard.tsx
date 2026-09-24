@@ -31,11 +31,13 @@ const flavours: Flavour[] = [
 const Saucer = () => (
   <svg className="saucer" viewBox="0 0 100 100" aria-hidden="true">
     <circle cx="50" cy="50" r="47" fill="url(#saucer-glaze)" />
-    <circle cx="50" cy="50" r="46.5" fill="none" stroke="rgba(48, 36, 33, 0.14)" strokeWidth="1" />
-    <circle cx="50" cy="50" r="44" fill="none" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1" />
+    {/* rim: light on the top left, shade on the bottom right, no outline */}
+    <path d="M5.7 42.2A45 45 0 0 1 72.5 11" fill="none" stroke="rgba(255, 255, 255, 0.7)" strokeWidth="1.4" filter="url(#blur-s)" />
+    <path d="M94.3 57.8A45 45 0 0 1 27.5 89" fill="none" stroke="rgba(30, 20, 14, 0.22)" strokeWidth="2" filter="url(#blur-m)" />
+    {/* the well the cup sits in, and the shadow it leaves */}
     <circle cx="50" cy="50" r="31" fill="url(#saucer-well)" />
-    <circle cx="50" cy="50" r="31" fill="none" stroke="rgba(48, 36, 33, 0.1)" strokeWidth="0.8" />
-    <circle cx="50" cy="50" r="26.5" fill="none" stroke="rgba(120, 90, 55, 0.32)" strokeWidth="2.2" filter="url(#soft)" />
+    <circle cx="51" cy="52" r="27" fill="rgba(30, 20, 14, 0.22)" filter="url(#blur-l)" />
+    <circle cx="50" cy="50" r="26.5" fill="none" stroke="rgba(120, 90, 55, 0.26)" strokeWidth="2.4" filter="url(#blur-m)" />
   </svg>
 );
 
@@ -44,68 +46,70 @@ const Cup = ({ flavour }: { flavour: Flavour }) => {
   return (
     <svg viewBox="0 0 100 100" aria-hidden="true">
       <defs>
-        <radialGradient id={id} cx="40%" cy="38%" r="65%">
+        <radialGradient id={id} cx="38%" cy="36%" r="66%">
           <stop offset="0%" stopColor={flavour.light} />
-          <stop offset="45%" stopColor={flavour.mid} />
+          <stop offset="48%" stopColor={flavour.mid} />
           <stop offset="100%" stopColor={flavour.deep} />
         </radialGradient>
+        <radialGradient id={`${id}-crema`} cx="50%" cy="50%" r="50%">
+          <stop offset="78%" stopColor={flavour.crema} stopOpacity="0" />
+          <stop offset="100%" stopColor={flavour.crema} stopOpacity="0.6" />
+        </radialGradient>
       </defs>
-      {/* handle: a loop with thickness; the body sits over its root */}
-      <path
-        d="M79 34.5C104 37 104 63 79 65.5V57.5C94.5 56 94.5 44 79 42.5Z"
-        fill="url(#cup-glaze)"
-        stroke="rgba(48, 36, 33, 0.16)"
-        strokeWidth="0.8"
-      />
-      <path d="M81.5 39.5c9.5 1.5 9.5 19.5 0 21" fill="none" stroke="rgba(48, 36, 33, 0.14)" strokeWidth="1.2" />
-      <path d="M82 37.5c7 1 9.5 3 10.5 6" fill="none" stroke="rgba(255, 255, 255, 0.7)" strokeWidth="1.4" strokeLinecap="round" />
-      {/* body and rim */}
+
+      {/* handle: its shadow, the loop, a highlight along its top */}
+      <path d="M81 38.5C100 40.5 100 61 81 63V56.5C91 55.5 91 46 81 45Z" fill="rgba(30, 20, 14, 0.28)" filter="url(#blur-m)" />
+      <path d="M80 37C99 39 99 61 80 63V56C90.5 55 90.5 45 80 44Z" fill="url(#cup-glaze)" />
+      <path d="M82 39.5c6 .8 8.5 2.8 9.8 5.8" fill="none" stroke="rgba(255, 255, 255, 0.7)" strokeWidth="1.3" strokeLinecap="round" filter="url(#blur-s)" />
+
+      {/* body: shaded, with a lit rim on one side and shade on the other */}
       <circle cx="50" cy="50" r="34" fill="url(#cup-glaze)" />
-      <circle cx="50" cy="50" r="33.6" fill="none" stroke="rgba(48, 36, 33, 0.16)" strokeWidth="0.8" />
-      <circle cx="50" cy="50" r="30.5" fill="none" stroke="url(#cup-rim)" strokeWidth="5.5" />
-      <circle cx="50" cy="50" r="27.6" fill="none" stroke="rgba(48, 36, 33, 0.14)" strokeWidth="0.8" />
-      <circle cx="50" cy="50" r="27.5" fill="url(#cup-wall)" />
-      {/* what's in it: crema at the edge, a slow swirl, the light on it */}
-      <circle cx="50" cy="50" r="24.5" fill={`url(#${id})`} />
-      <circle cx="50" cy="50" r="23.6" fill="none" stroke={flavour.crema} strokeWidth="2" opacity="0.85" />
-      <circle cx="50" cy="50" r="22" fill="none" stroke={flavour.crema} strokeWidth="0.9" opacity="0.35" />
-      <path d="M40 58c4-10 16-12 21-4" fill="none" stroke={flavour.crema} strokeWidth="1.2" opacity="0.28" strokeLinecap="round" />
-      <ellipse cx="41" cy="40.5" rx="6.5" ry="3.6" fill="#ffffff" opacity="0.22" transform="rotate(-35 41 40.5)" filter="url(#cup-soft)" />
+      <path d="M18.5 44.4A32 32 0 0 1 66 22.3" fill="none" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.5" filter="url(#blur-s)" />
+      <path d="M82 55.6A32.5 32.5 0 0 1 33.8 78.1" fill="none" stroke="rgba(30, 20, 14, 0.16)" strokeWidth="1.8" filter="url(#blur-m)" />
+
+      {/* inside the cup: the wall falling away into shadow */}
+      <circle cx="50" cy="50" r="28" fill="url(#cup-wall)" />
+      <circle cx="50" cy="50" r="27.6" fill="none" stroke="rgba(30, 20, 14, 0.14)" strokeWidth="0.7" filter="url(#blur-s)" />
+
+      {/* what's in it: a soft crema edge and the light on the surface */}
+      <circle cx="50" cy="50" r="25" fill={`url(#${id})`} />
+      <circle cx="50" cy="50" r="25" fill={`url(#${id}-crema)`} />
+      <path d="M38 60c5-11 17-13 23-5" fill="none" stroke={flavour.crema} strokeWidth="1.4" opacity="0.22" strokeLinecap="round" filter="url(#blur-m)" />
+      <ellipse cx="41" cy="40" rx="7" ry="4" fill="#ffffff" opacity="0.28" transform="rotate(-35 41 40)" filter="url(#blur-l)" />
     </svg>
   );
 };
 
-/* Gradients the cups and saucers share, defined once. */
+/* Gradients and blurs the cups and saucers share, defined once. */
 const SharedDefs = () => (
   <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true">
     <defs>
-      <linearGradient id="saucer-glaze" x1="18%" y1="12%" x2="85%" y2="92%">
-        <stop offset="0%" stopColor="#f6f1e6" />
-        <stop offset="55%" stopColor="#e4dccb" />
-        <stop offset="100%" stopColor="#c6baa3" />
-      </linearGradient>
+      <radialGradient id="saucer-glaze" cx="36%" cy="32%" r="72%">
+        <stop offset="0%" stopColor="#f5f0e5" />
+        <stop offset="60%" stopColor="#dcd3c0" />
+        <stop offset="100%" stopColor="#b6aa92" />
+      </radialGradient>
       <radialGradient id="saucer-well" cx="50%" cy="50%" r="50%">
-        <stop offset="72%" stopColor="rgba(48, 36, 33, 0)" />
-        <stop offset="100%" stopColor="rgba(48, 36, 33, 0.2)" />
+        <stop offset="70%" stopColor="rgba(30, 20, 14, 0)" />
+        <stop offset="100%" stopColor="rgba(30, 20, 14, 0.24)" />
       </radialGradient>
-      <linearGradient id="cup-glaze" x1="15%" y1="10%" x2="85%" y2="90%">
-        <stop offset="0%" stopColor="#faf6ee" />
-        <stop offset="50%" stopColor="#ebe4d6" />
-        <stop offset="100%" stopColor="#cbbfa9" />
-      </linearGradient>
-      <linearGradient id="cup-rim" x1="85%" y1="90%" x2="15%" y2="10%">
-        <stop offset="0%" stopColor="#f9f5ec" />
-        <stop offset="100%" stopColor="#d9d0bd" />
-      </linearGradient>
+      <radialGradient id="cup-glaze" cx="34%" cy="30%" r="74%">
+        <stop offset="0%" stopColor="#fcf9f2" />
+        <stop offset="55%" stopColor="#e9e2d2" />
+        <stop offset="100%" stopColor="#c4b9a2" />
+      </radialGradient>
       <radialGradient id="cup-wall" cx="50%" cy="50%" r="50%">
-        <stop offset="76%" stopColor="rgba(48, 36, 33, 0)" />
-        <stop offset="100%" stopColor="rgba(48, 36, 33, 0.28)" />
+        <stop offset="74%" stopColor="rgba(30, 20, 14, 0)" />
+        <stop offset="100%" stopColor="rgba(30, 20, 14, 0.34)" />
       </radialGradient>
-      <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur stdDeviation="1.4" />
+      <filter id="blur-s" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="0.5" />
       </filter>
-      <filter id="cup-soft" x="-30%" y="-30%" width="160%" height="160%">
-        <feGaussianBlur stdDeviation="1.2" />
+      <filter id="blur-m" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="1" />
+      </filter>
+      <filter id="blur-l" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="2.2" />
       </filter>
     </defs>
   </svg>
