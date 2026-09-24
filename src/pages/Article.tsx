@@ -24,6 +24,10 @@ const Article = () => {
   if (!article) return <Navigate to="/writing" replace />;
 
   const url = `${site.url.replace(/\/$/, "")}/writing/${article.slug}`;
+  // Substack's "cover" is usually just the first image in the piece. The
+  // cards use it either way; the page only shows it up top when the text
+  // doesn't already carry it where the author put it.
+  const showCover = Boolean(article.cover) && !article.body.includes(article.cover);
   const tweet = `https://twitter.com/intent/tweet?${new URLSearchParams({
     text: article.title,
     url,
@@ -51,7 +55,7 @@ const Article = () => {
 
         <div className="section-shell section-shell--tight">
           <Reveal as="article" className="article-paper">
-            {article.cover && (
+            {showCover && (
               <img src={article.cover} alt="" className="article-cover" loading="eager" />
             )}
 
