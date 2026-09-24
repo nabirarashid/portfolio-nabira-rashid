@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const navItems = [
   { name: "experience", id: "experience-section" },
@@ -14,6 +15,18 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("home");
   const cupRef = useRef<SVGSVGElement>(null);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const onHome = pathname === "/";
+
+  // Off the home page the section observer has nothing to watch, so the
+  // underline follows the route instead.
+  useEffect(() => {
+    if (onHome) return;
+    if (pathname.startsWith("/writing")) setActiveItem("writing");
+    else if (pathname.startsWith("/projects")) setActiveItem("projects");
+    else setActiveItem("");
+  }, [pathname, onHome]);
 
   // The cup drains as the visitor scrolls: full at the top of the page, empty
   // by the footer. Written straight to a CSS variable on the SVG, so scrolling
@@ -45,6 +58,7 @@ const Navbar = () => {
 
   // Keep the nav in sync with whatever section the visitor is actually reading.
   useEffect(() => {
+    if (!onHome) return;
     const sections = trackedSections
       .map((item) => document.getElementById(item.id))
       .filter((element): element is HTMLElement => element !== null);
@@ -66,10 +80,16 @@ const Navbar = () => {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [onHome]);
 
+  // On the home page the sections are right there to scroll to. From any
+  // other page, go home with the hash and let ScrollManager finish the job.
   const scrollToSection = (id: string, name: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    if (onHome) {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate(id === "home-section" ? "/" : `/#${id}`);
+    }
     setActiveItem(name);
     setMobileMenuOpen(false);
   };

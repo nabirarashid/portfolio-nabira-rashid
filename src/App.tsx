@@ -1,7 +1,12 @@
 import { useEffect, useRef } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import WritingIndex from "./pages/WritingIndex";
+import Article from "./pages/Article";
+import ProjectsIndex from "./pages/ProjectsIndex";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollManager from "./components/ScrollManager";
 import { ThemeProvider } from "./context/ThemeContext";
 import AudioControl from "./components/AudioControl";
 
@@ -111,13 +116,22 @@ const App = () => {
 
   return (
     <ThemeProvider>
-      <div className="coffee-bg min-h-screen transition-colors duration-500">
-        <div ref={cursorRef} className="bean-cursor" data-state="idle" aria-hidden="true" />
-        <Navbar />
-        <Home />
-        <Footer />
-        <AudioControl />
-      </div>
+      <BrowserRouter>
+        <div className="coffee-bg min-h-screen transition-colors duration-500">
+          <div ref={cursorRef} className="bean-cursor" data-state="idle" aria-hidden="true" />
+          <Navbar />
+          <ScrollManager />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/writing" element={<WritingIndex />} />
+            <Route path="/writing/:slug" element={<Article />} />
+            <Route path="/projects" element={<ProjectsIndex />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+          <Footer />
+          <AudioControl />
+        </div>
+      </BrowserRouter>
     </ThemeProvider>
   );
 };
