@@ -220,21 +220,31 @@ samp {
 .counter__board {
   position: relative;
   width: 100%;
-  max-width: 24rem;
+  max-width: 27rem;
   flex-shrink: 0;
 }
 
 /* ---- The doodle board ----
-   A section sign you can draw on. The sign class gives the frame, the
-   chalk rules and the corner crosses; the canvas fills the inside. */
-/* The whole board draws, frame included: the canvas is laid over the sign
-   rather than sat inside its padding, so the chalk rule is under the coffee. */
+   A section sign you can draw on, with four cups on saucers down its
+   right side. The sign class gives the frame, the chalk rules and the
+   corner crosses; the canvas fills the sign. */
+.doodle {
+  position: relative;
+}
+
+.doodle__row {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+}
+
 /* Specific enough to beat .section-sign's own padding (set later, in a
    media query) and its `> *` rule that makes children position: relative,
    which had been pulling the canvas in-flow inside the padding. */
 .section-sign.doodle__board {
   display: block;
-  width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
   height: 232px;
   padding: 0;
 }
@@ -251,15 +261,12 @@ samp {
   clip-path: inset(14.5px);
 }
 
-/* Labels stack on the left; the saucer and cup sit well clear on the right. */
 .doodle__foot {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.35rem;
+  align-items: baseline;
+  gap: 1.25rem;
   margin-top: 0.85rem;
   padding-inline: 0.25rem;
-  padding-right: 8rem; /* clear of the saucer */
   color: #f5f5dc;
   white-space: nowrap;
 }
@@ -275,39 +282,55 @@ samp {
   border-color: rgba(245, 245, 220, 0.8);
 }
 
-/* ---- The cup you draw with ----
-   Rests on a coaster at the board's bottom right corner. Picked up, it
-   follows the pointer (inline transform, no transition); let go, the
-   transform clears and it glides back. */
-.doodle {
-  position: relative;
-  /* room under the board for the saucer and cup */
-  padding-bottom: 3.25rem;
+/* ---- The cups ----
+   A column of saucers, spaced to match the board's height. Each cup rests
+   centred on its saucer; picked up, it follows the pointer (inline
+   transform, no transition); let go, the transform clears and it glides
+   back. On phones the column becomes a row under the board. */
+.cups {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+  padding: 2px 0;
 }
 
-.saucer,
-.cup-tool {
-  position: absolute;
-  bottom: 0;
+@media (max-width: 767px) {
+  .doodle__row {
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .cups {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.9rem;
+    padding: 0;
+  }
+}
+
+.cup-slot {
+  position: relative;
+  width: 52px;
+  height: 52px;
 }
 
 .saucer {
-  right: 0;
-  width: 96px;
-  height: 96px;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
 }
 
-/* Centred on the saucer at rest: the saucer is 12px bigger each way. */
+/* Centred on the saucer at rest: the saucer is 4px bigger each way. */
 .cup-tool {
-  right: 6px;
-  bottom: 6px;
-  width: 84px;
-  height: 84px;
+  position: absolute;
+  inset: 4px;
   cursor: grab;
   touch-action: none;
   user-select: none;
-  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
   transition: transform 520ms cubic-bezier(0.34, 1.2, 0.64, 1), filter 300ms ease;
   z-index: 3;
 }
@@ -319,10 +342,15 @@ samp {
   pointer-events: none;
 }
 
+.cup-tool:hover {
+  filter: drop-shadow(0 4px 7px rgba(0, 0, 0, 0.4));
+}
+
 .cup-tool.is-holding {
   cursor: grabbing;
   transition: filter 300ms ease; /* follows the pointer directly */
-  filter: drop-shadow(8px 22px 20px rgba(0, 0, 0, 0.55));
+  filter: drop-shadow(8px 20px 18px rgba(0, 0, 0, 0.55));
+  z-index: 4;
 }
 
 .cup-tool:focus-visible {
@@ -331,7 +359,7 @@ samp {
   border-radius: 9999px;
 }
 
-/* One cup at a time: the bean cursor steps aside while the real one is held. */
+/* One cup at a time: the bean cursor steps aside while a real one is held. */
 body.holding-cup .bean-cursor {
   opacity: 0 !important;
 }
