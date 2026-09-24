@@ -229,14 +229,17 @@ samp {
    chalk rules and the corner crosses; the canvas fills the inside. */
 /* The whole board draws, frame included: the canvas is laid over the sign
    rather than sat inside its padding, so the chalk rule is under the coffee. */
-.doodle__board {
+/* Specific enough to beat .section-sign's own padding (set later, in a
+   media query) and its `> *` rule that makes children position: relative,
+   which had been pulling the canvas in-flow inside the padding. */
+.section-sign.doodle__board {
   display: block;
   width: 100%;
   height: 232px;
   padding: 0;
 }
 
-.doodle__canvas {
+.section-sign.doodle__board > .doodle__canvas {
   position: absolute;
   inset: 0;
   z-index: 1;
