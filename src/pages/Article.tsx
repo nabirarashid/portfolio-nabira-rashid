@@ -9,6 +9,16 @@ import { getArticle } from "../lib/writing";
 import { formatDate } from "../lib/format";
 import site from "../../site.config.json";
 
+/** The file name at the end of an image url, decoded, so cdn variants match. */
+const imageKey = (url: string) => {
+  try {
+    const decoded = decodeURIComponent(url);
+    return decoded.slice(decoded.lastIndexOf("/") + 1).split("?")[0];
+  } catch {
+    return url;
+  }
+};
+
 /**
  * One piece of writing: the title on a chalkboard sign, the text on a sheet
  * of latte paper under it, and a line at the foot for sharing it on.
@@ -23,10 +33,11 @@ const Article = () => {
 
   if (!article) return <Navigate to="/writing" replace />;
 
-  // Substack's "cover" is usually just the first image in the piece. The
-  // cards use it either way; the page only shows it up top when the text
-  // doesn't already carry it where the author put it.
-  const showCover = Boolean(article.cover) && !article.body.includes(article.cover);
+  // Substack's "cover" is usually just the first image in the piece, served
+  // at a different cdn size, so the urls differ while the file is the same.
+  // Compare by file name; the page only shows the cover up top when the text
+  // doesn't already carry that image where the author put it.
+  const showCover = Boolean(article.cover) && !article.body.includes(imageKey(article.cover));
 
   return (
     <main>

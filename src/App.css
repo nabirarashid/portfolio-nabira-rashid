@@ -189,18 +189,8 @@ samp {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
   text-align: center;
-}
-
-@media (min-width: 768px) {
-  .counter {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 4rem;
-    text-align: left;
-  }
 }
 
 .counter__copy {
@@ -208,12 +198,6 @@ samp {
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-}
-
-@media (min-width: 768px) {
-  .counter__copy {
-    align-items: flex-start;
-  }
 }
 
 .brew {
@@ -232,11 +216,32 @@ samp {
   pointer-events: none;
 }
 
+/* Idle: a slow lift and settle, like the cup breathing with the steam.
+   Hover: a small wobble, the way a cup rocks when it is set down. */
 .brew__cup {
   position: relative;
   width: 140px;
   height: 150px;
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35));
+  animation: cupBreathe 6s ease-in-out infinite;
+  transform-origin: 50% 70%;
+}
+
+.brew__cup.cup-wobble {
+  animation: cupWobble 700ms cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes cupBreathe {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(-1.2deg); }
+}
+
+@keyframes cupWobble {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-5deg) scale(1.03); }
+  45% { transform: rotate(4deg) scale(1.02); }
+  70% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
 }
 
 /* Social links as receipt chips rather than bare icons. */
@@ -1686,6 +1691,10 @@ body {
 
   .steam-wisp {
     opacity: 0.18;
+  }
+
+  .brew__cup {
+    animation: none !important;
   }
 
 

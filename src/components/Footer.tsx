@@ -21,12 +21,12 @@ const wisps = [
 ];
 
 const Footer = () => {
-  // Same trick as the hero cup: a spin on hover, reset once it has run.
-  const [spinning, setSpinning] = useState(false);
-  const spin = () => {
-    if (spinning) return;
-    setSpinning(true);
-    window.setTimeout(() => setSpinning(false), 1000);
+  // A wobble on hover, reset once it has run so it can go again.
+  const [wobbling, setWobbling] = useState(false);
+  const wobble = () => {
+    if (wobbling) return;
+    setWobbling(true);
+    window.setTimeout(() => setWobbling(false), 750);
   };
 
   return (
@@ -49,7 +49,7 @@ const Footer = () => {
                 />
               ))}
             </div>
-            <div className={`brew__cup ${spinning ? "cup-spin" : ""}`} onMouseEnter={spin}>
+            <div className={`brew__cup ${wobbling ? "cup-wobble" : ""}`} onMouseEnter={wobble}>
               <img src="/assets/website/new coffee cup.webp" alt="" className="h-full w-full object-contain" />
             </div>
           </div>
