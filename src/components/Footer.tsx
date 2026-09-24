@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FaInstagram, FaGithub, FaEnvelope, FaXTwitter } from "react-icons/fa6";
 
 const socials = [
@@ -20,11 +21,19 @@ const wisps = [
 ];
 
 const Footer = () => {
+  // Same trick as the hero cup: a spin on hover, reset once it has run.
+  const [spinning, setSpinning] = useState(false);
+  const spin = () => {
+    if (spinning) return;
+    setSpinning(true);
+    window.setTimeout(() => setSpinning(false), 1000);
+  };
+
   return (
     <footer className="chalkboard border-t border-cafe-cream/15 px-6 py-20 transition-colors duration-500 md:py-24">
       <div className="mx-auto max-w-4xl">
         <div className="counter">
-          {/* A cup on its saucer, chalked on the board, still steaming. */}
+          {/* The hero's cup, back for the sign-off, still steaming. */}
           <div className="brew" aria-hidden="true">
             <div className="brew__steam">
               {wisps.map((wisp, index) => (
@@ -40,15 +49,9 @@ const Footer = () => {
                 />
               ))}
             </div>
-            <svg className="brew__cup" viewBox="0 0 64 64">
-              {/* bowl */}
-              <path d="M12 24h34l-3.6 22.5a5 5 0 0 1-5 4.3H20.6a5 5 0 0 1-5-4.3z" />
-              {/* handle */}
-              <path d="M46 29.5c7 0 10.5 3.2 10.5 8s-3.5 8-10.5 8" />
-              {/* saucer */}
-              <path d="M8 56.5h42" />
-              <path d="M14 60.5h30" opacity="0.6" />
-            </svg>
+            <div className={`brew__cup ${spinning ? "cup-spin" : ""}`} onMouseEnter={spin}>
+              <img src="/assets/website/new coffee cup.webp" alt="" className="h-full w-full object-contain" />
+            </div>
           </div>
 
           <div className="counter__copy">
