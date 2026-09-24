@@ -193,10 +193,10 @@ samp {
   text-align: center;
 }
 
-/* Wide: the words on the left, the cup off to the right on the counter. */
+/* Wide: the words on the left, the board on the right. */
 @media (min-width: 768px) {
   .counter {
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 3rem;
@@ -217,71 +217,131 @@ samp {
   }
 }
 
-.brew {
+.counter__board {
   position: relative;
-  width: 140px;
+  width: 100%;
+  max-width: 24rem;
   flex-shrink: 0;
 }
 
-/* Wisps rise from the rim; the box's bottom edge sits just inside it. */
-.brew__steam {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 2rem;
-  height: 0;
-  pointer-events: none;
+/* ---- The doodle board ----
+   A section sign you can draw on. The sign class gives the frame, the
+   chalk rules and the corner crosses; the canvas fills the inside. */
+.doodle__board {
+  display: block;
+  width: 100%;
+  padding: 1.1rem;
 }
 
-/* The cup rests on the counter; hovered, it lifts: up and a little to the
-   side, a longer shadow, a hair of tilt. */
-.brew__cup {
+.doodle__canvas {
   position: relative;
-  width: 140px;
-  height: 150px;
-  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35));
-  transform-origin: 50% 70%;
-  /* --rest-x/y: where it was last set down, written by Footer. */
-  transform: translate(var(--rest-x, 0px), var(--rest-y, 0px));
-  transition: transform 460ms cubic-bezier(0.34, 1.25, 0.64, 1), filter 460ms ease;
   z-index: 1;
+  display: block;
+  width: 100%;
+  height: 200px;
 }
 
-.brew__cup.is-lifted {
-  transform: translate(calc(var(--rest-x, 0px) + 8px), calc(var(--rest-y, 0px) - 26px))
-    rotate(4deg) scale(1.05);
-  filter: drop-shadow(10px 30px 28px rgba(0, 0, 0, 0.5));
-}
-
-/* The ring it leaves. Two thin uneven circles of coffee, blurred a touch,
-   sat where the cup's base was. Fades in as the cup lifts off it. */
-.brew__ring {
+.doodle__hint {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 118px;
-  height: 118px;
-  margin: -53px 0 0 -59px; /* the saucer's base sits a touch above centre */
-  border-radius: 48% 52% 50% 50% / 50% 48% 52% 50%;
-  /* Warm enough to read on the navy board. */
-  border: 5px solid rgba(176, 134, 88, 0.6);
-  box-shadow:
-    inset 0 0 0 2px rgba(120, 88, 52, 0.35),
-    0 0 0 1.5px rgba(176, 134, 88, 0.3);
-  filter: blur(0.6px);
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 1.125rem;
+  color: rgba(245, 245, 220, 0.35);
   pointer-events: none;
-  animation: ringSet 500ms ease-out both;
 }
 
-@keyframes ringSet {
-  from { opacity: 0; }
-  to { opacity: 0.95; }
+.doodle__foot {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.25rem;
+  margin-top: 0.75rem;
+  padding-inline: 0.25rem;
+  padding-right: 5.5rem; /* clear of the coaster */
+  color: #f5f5dc;
+  white-space: nowrap;
 }
 
-/* Rotate as a group with the cup's rest position. */
-.brew__cup,
-.brew__ring {
-  will-change: transform;
+.doodle__wipe {
+  opacity: 0.6;
+  border-bottom: 1px solid rgba(245, 245, 220, 0.3);
+  transition: opacity 300ms ease, border-color 300ms ease;
+}
+
+.doodle__wipe:hover {
+  opacity: 1;
+  border-color: rgba(245, 245, 220, 0.8);
+}
+
+/* ---- The cup you draw with ----
+   Rests on a coaster at the board's bottom right corner. Picked up, it
+   follows the pointer (inline transform, no transition); let go, the
+   transform clears and it glides back. */
+.doodle {
+  position: relative;
+  /* room under the board for the coaster and cup */
+  padding-bottom: 2.5rem;
+}
+
+.coaster,
+.cup-tool {
+  position: absolute;
+  right: 0.25rem;
+  bottom: 0;
+}
+
+.coaster {
+  width: 70px;
+  height: 70px;
+  margin-right: -3px;
+  margin-bottom: -3px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(245, 245, 220, 0.35);
+  box-shadow: inset 0 0 0 6px rgba(245, 245, 220, 0.05);
+  background-image: repeating-radial-gradient(
+    circle,
+    transparent 0 5px,
+    rgba(245, 245, 220, 0.06) 5px 6px
+  );
+}
+
+.cup-tool {
+  width: 64px;
+  height: 68px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.45));
+  transition: transform 520ms cubic-bezier(0.34, 1.2, 0.64, 1), filter 300ms ease;
+  z-index: 3;
+}
+
+.cup-tool img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.cup-tool.is-holding {
+  cursor: grabbing;
+  transition: filter 300ms ease; /* follows the pointer directly */
+  filter: drop-shadow(6px 18px 18px rgba(0, 0, 0, 0.5));
+}
+
+.cup-tool:focus-visible {
+  outline: 1px dashed rgba(245, 245, 220, 0.6);
+  outline-offset: 4px;
+  border-radius: 9999px;
+}
+
+/* One cup at a time: the bean cursor steps aside while the real one is held. */
+body.holding-cup .bean-cursor {
+  opacity: 0 !important;
 }
 
 /* Social links as receipt chips rather than bare icons. */
@@ -1733,9 +1793,6 @@ body {
     opacity: 0.18;
   }
 
-  .brew__cup {
-    transition: none !important;
-  }
 
 
 

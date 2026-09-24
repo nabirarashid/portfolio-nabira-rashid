@@ -1,6 +1,5 @@
-import { useState } from "react";
-import type React from "react";
 import { FaInstagram, FaGithub, FaEnvelope, FaXTwitter } from "react-icons/fa6";
+import DoodleBoard from "./DoodleBoard";
 
 const socials = [
   {
@@ -13,82 +12,11 @@ const socials = [
   { label: "email", href: "mailto:nabira.rashidm@gmail.com", Icon: FaEnvelope },
 ];
 
-/* Steam off the pot. Same wisps as the hero cup; staggered so there is
-   always one rising. */
-const wisps = [
-  { left: "36%", width: "7px", delay: "0s", duration: "5.6s" },
-  { left: "49%", width: "9px", delay: "1.9s", duration: "6.4s" },
-  { left: "62%", width: "7px", delay: "3.4s", duration: "5.9s" },
-];
-
 const Footer = () => {
-  // Every time the cup is picked up it leaves a ring where it sat and gets
-  // set down a little to one side, so the rings stay in view: a cup that has
-  // been lifted and moved around the counter all evening. A few rings stay.
-  type Spot = { x: number; y: number };
-  const [rest, setRest] = useState<Spot>({ x: 0, y: 0 });
-  const [lifted, setLifted] = useState(false);
-  const [rings, setRings] = useState<(Spot & { r: number; s: number })[]>([]);
-
-  const pickUp = () => {
-    if (lifted) return;
-    setLifted(true);
-    setRings((current) =>
-      [
-        ...current,
-        {
-          ...rest,
-          r: Math.round((Math.random() - 0.5) * 40),
-          s: 0.94 + Math.random() * 0.12,
-        },
-      ].slice(-4)
-    );
-    setRest({
-      x: Math.round((Math.random() - 0.5) * 56),
-      y: Math.round((Math.random() - 0.5) * 36),
-    });
-  };
-  const setDown = () => setLifted(false);
-
   return (
     <footer className="chalkboard border-t border-cafe-cream/15 px-6 py-20 transition-colors duration-500 md:py-24">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-5xl">
         <div className="counter">
-          {/* The hero's cup, back for the sign-off, still steaming. */}
-          <div className="brew" aria-hidden="true">
-            <div className="brew__steam">
-              {wisps.map((wisp, index) => (
-                <span
-                  key={index}
-                  className="steam-wisp"
-                  style={{
-                    left: wisp.left,
-                    width: wisp.width,
-                    animationDelay: wisp.delay,
-                    animationDuration: wisp.duration,
-                  }}
-                />
-              ))}
-            </div>
-            {rings.map((ring, index) => (
-              <span
-                key={index}
-                className="brew__ring"
-                style={{
-                  transform: `translate(${ring.x}px, ${ring.y}px) rotate(${ring.r}deg) scale(${ring.s})`,
-                }}
-              />
-            ))}
-            <div
-              className={`brew__cup ${lifted ? "is-lifted" : ""}`}
-              style={{ "--rest-x": `${rest.x}px`, "--rest-y": `${rest.y}px` } as React.CSSProperties}
-              onMouseEnter={pickUp}
-              onMouseLeave={setDown}
-            >
-              <img src="/assets/website/new coffee cup.webp" alt="" className="h-full w-full object-contain" />
-            </div>
-          </div>
-
           <div className="counter__copy">
             <p className="eyebrow text-cafe-cream opacity-70">last call</p>
 
@@ -115,6 +43,11 @@ const Footer = () => {
                 </a>
               ))}
             </div>
+          </div>
+
+          {/* The board, and the cup you draw on it with. */}
+          <div className="counter__board">
+            <DoodleBoard />
           </div>
         </div>
 
