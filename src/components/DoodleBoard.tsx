@@ -133,6 +133,8 @@ const DoodleBoard = () => {
     <div ref={wrapRef} className="doodle">
       <div className="section-sign doodle__board">
         <canvas ref={canvasRef} className="doodle__canvas" aria-label="a board to doodle on with the cup" />
+        {/* The chalk rule again, above the coffee, so the frame stays clean. */}
+        <span className="doodle__frame" aria-hidden="true" />
       </div>
 
       <div className="doodle__foot">
@@ -148,24 +150,25 @@ const DoodleBoard = () => {
           drawn top-down so the cup can leave the plate behind. */}
       <svg className="saucer" viewBox="0 0 100 100" aria-hidden="true">
         <defs>
-          <radialGradient id="saucer-face" cx="40%" cy="38%" r="65%">
-            <stop offset="0%" stopColor="#fcfaf3" />
-            <stop offset="55%" stopColor="#efe9da" />
-            <stop offset="100%" stopColor="#d2c6ae" />
-          </radialGradient>
+          <linearGradient id="saucer-glaze" x1="18%" y1="12%" x2="85%" y2="92%">
+            <stop offset="0%" stopColor="#fbf8f1" />
+            <stop offset="55%" stopColor="#ece5d5" />
+            <stop offset="100%" stopColor="#cfc3ab" />
+          </linearGradient>
           <radialGradient id="saucer-well" cx="50%" cy="50%" r="50%">
-            <stop offset="70%" stopColor="rgba(48, 36, 33, 0)" />
-            <stop offset="100%" stopColor="rgba(48, 36, 33, 0.16)" />
+            <stop offset="72%" stopColor="rgba(48, 36, 33, 0)" />
+            <stop offset="100%" stopColor="rgba(48, 36, 33, 0.2)" />
           </radialGradient>
+          <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1.4" />
+          </filter>
         </defs>
-        <circle cx="50" cy="50" r="47" fill="url(#saucer-face)" stroke="rgba(48, 36, 33, 0.2)" strokeWidth="1" />
-        {/* rim highlight */}
-        <circle cx="50" cy="50" r="43.5" fill="none" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="1.2" />
-        {/* the well the cup sits in */}
-        <circle cx="50" cy="50" r="32" fill="url(#saucer-well)" />
-        <circle cx="50" cy="50" r="32" fill="none" stroke="rgba(48, 36, 33, 0.12)" strokeWidth="1" />
-        {/* the ring the cup leaves on the plate */}
-        <circle cx="50" cy="50" r="27" fill="none" stroke="rgba(139, 111, 71, 0.3)" strokeWidth="2.4" />
+        <circle cx="50" cy="50" r="47" fill="url(#saucer-glaze)" />
+        <circle cx="50" cy="50" r="46.5" fill="none" stroke="rgba(48, 36, 33, 0.14)" strokeWidth="1" />
+        <circle cx="50" cy="50" r="44" fill="none" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1" />
+        <circle cx="50" cy="50" r="31" fill="url(#saucer-well)" />
+        <circle cx="50" cy="50" r="31" fill="none" stroke="rgba(48, 36, 33, 0.1)" strokeWidth="0.8" />
+        <circle cx="50" cy="50" r="26.5" fill="none" stroke="rgba(120, 90, 55, 0.32)" strokeWidth="2.2" filter="url(#soft)" />
       </svg>
       <div
         ref={cupRef}
@@ -180,34 +183,54 @@ const DoodleBoard = () => {
       >
         <svg viewBox="0 0 100 100" aria-hidden="true">
           <defs>
-            <radialGradient id="cup-face" cx="38%" cy="35%" r="68%">
+            {/* porcelain, lit from the top left */}
+            <linearGradient id="cup-glaze" x1="15%" y1="10%" x2="85%" y2="90%">
               <stop offset="0%" stopColor="#ffffff" />
-              <stop offset="70%" stopColor="#f3eee2" />
-              <stop offset="100%" stopColor="#d6ccb7" />
-            </radialGradient>
+              <stop offset="50%" stopColor="#f2ede1" />
+              <stop offset="100%" stopColor="#d3c8b3" />
+            </linearGradient>
+            {/* the rim, lit the other way so it reads as a lip */}
+            <linearGradient id="cup-rim" x1="85%" y1="90%" x2="15%" y2="10%">
+              <stop offset="0%" stopColor="#fffdf8" />
+              <stop offset="100%" stopColor="#e2dac8" />
+            </linearGradient>
             <radialGradient id="cup-wall" cx="50%" cy="50%" r="50%">
-              <stop offset="78%" stopColor="rgba(48, 36, 33, 0)" />
-              <stop offset="100%" stopColor="rgba(48, 36, 33, 0.22)" />
+              <stop offset="76%" stopColor="rgba(48, 36, 33, 0)" />
+              <stop offset="100%" stopColor="rgba(48, 36, 33, 0.28)" />
             </radialGradient>
-            <radialGradient id="cup-coffee" cx="42%" cy="40%" r="62%">
-              <stop offset="0%" stopColor="#5a3a22" />
-              <stop offset="55%" stopColor="#3a2312" />
-              <stop offset="100%" stopColor="#24140a" />
+            <radialGradient id="cup-coffee" cx="40%" cy="38%" r="65%">
+              <stop offset="0%" stopColor="#6a4527" />
+              <stop offset="45%" stopColor="#3d2513" />
+              <stop offset="100%" stopColor="#1f110a" />
             </radialGradient>
+            <filter id="cup-soft" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="1.2" />
+            </filter>
           </defs>
-          {/* handle: a loop with an edge and a highlight */}
-          <path d="M80 39c16 0 16 22 0 22" fill="none" stroke="rgba(48, 36, 33, 0.28)" strokeWidth="13" strokeLinecap="round" />
-          <path d="M80 39c16 0 16 22 0 22" fill="none" stroke="#f1ebdd" strokeWidth="10" strokeLinecap="round" />
-          <path d="M81 41.5c11 0 11 17 0 17" fill="none" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1.6" strokeLinecap="round" />
-          {/* body, rim, inner wall */}
-          <circle cx="50" cy="50" r="34" fill="url(#cup-face)" stroke="rgba(48, 36, 33, 0.22)" strokeWidth="1" />
-          <circle cx="50" cy="50" r="30.5" fill="none" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1" />
-          <circle cx="50" cy="50" r="28" fill="url(#cup-wall)" />
-          {/* coffee with crema at the edge and a glint */}
-          <circle cx="50" cy="50" r="25" fill="url(#cup-coffee)" />
-          <circle cx="50" cy="50" r="24" fill="none" stroke="#c48b4f" strokeWidth="2.4" opacity="0.9" />
-          <circle cx="50" cy="50" r="22" fill="none" stroke="#7a4d28" strokeWidth="0.8" opacity="0.6" />
-          <path d="M34 42a19 19 0 0 1 12-10" fill="none" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="2.2" strokeLinecap="round" />
+
+          {/* handle: a proper loop with thickness, the body sits over its root */}
+          <path
+            d="M79 34.5C104 37 104 63 79 65.5V57.5C94.5 56 94.5 44 79 42.5Z"
+            fill="url(#cup-glaze)"
+            stroke="rgba(48, 36, 33, 0.16)"
+            strokeWidth="0.8"
+          />
+          <path d="M81.5 39.5c9.5 1.5 9.5 19.5 0 21" fill="none" stroke="rgba(48, 36, 33, 0.14)" strokeWidth="1.2" />
+          <path d="M82 37.5c7 1 9.5 3 10.5 6" fill="none" stroke="rgba(255, 255, 255, 0.7)" strokeWidth="1.4" strokeLinecap="round" />
+
+          {/* body and rim */}
+          <circle cx="50" cy="50" r="34" fill="url(#cup-glaze)" />
+          <circle cx="50" cy="50" r="33.6" fill="none" stroke="rgba(48, 36, 33, 0.16)" strokeWidth="0.8" />
+          <circle cx="50" cy="50" r="30.5" fill="none" stroke="url(#cup-rim)" strokeWidth="5.5" />
+          <circle cx="50" cy="50" r="27.6" fill="none" stroke="rgba(48, 36, 33, 0.14)" strokeWidth="0.8" />
+          <circle cx="50" cy="50" r="27.5" fill="url(#cup-wall)" />
+
+          {/* coffee: crema at the edge, a slow swirl, and the light on it */}
+          <circle cx="50" cy="50" r="24.5" fill="url(#cup-coffee)" />
+          <circle cx="50" cy="50" r="23.6" fill="none" stroke="#b9834a" strokeWidth="2" opacity="0.85" />
+          <circle cx="50" cy="50" r="22" fill="none" stroke="#d9a66a" strokeWidth="0.9" opacity="0.35" />
+          <path d="M40 58c4-10 16-12 21-4" fill="none" stroke="#c9945a" strokeWidth="1.2" opacity="0.28" strokeLinecap="round" />
+          <ellipse cx="41" cy="40.5" rx="6.5" ry="3.6" fill="#ffffff" opacity="0.22" transform="rotate(-35 41 40.5)" filter="url(#cup-soft)" />
         </svg>
       </div>
     </div>

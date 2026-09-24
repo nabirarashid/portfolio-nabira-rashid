@@ -248,6 +248,24 @@ samp {
   height: 100%;
 }
 
+/* The sign draws its chalk rule in the background layer, under the canvas.
+   This is the same rule drawn again on top, and the corner crosses lifted
+   above too, so doodles pass under the frame rather than over it. */
+.section-sign.doodle__board > .doodle__frame {
+  position: absolute;
+  inset: 13px;
+  z-index: 2;
+  border: 1px solid rgba(245, 245, 220, 0.38);
+  outline: 1px solid rgba(245, 245, 220, 0.16);
+  outline-offset: 4px;
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+.section-sign.doodle__board::after {
+  z-index: 3;
+}
+
 /* Labels stack on the left; the saucer and cup sit well clear on the right. */
 .doodle__foot {
   display: flex;
