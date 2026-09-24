@@ -179,6 +179,46 @@ samp {
 }
 
 /* ============================================================
+   STILL BREWING
+   A moka pot chalked on the footer board, steam rising off it the way it
+   rises off the hero cup. Sits above the sign-off so the footer opens on
+   something moving rather than a line of text.
+   ============================================================ */
+.brew {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 1.75rem;
+}
+
+/* Wisps are positioned from the bottom of this box, which sits at the lid. */
+.brew__steam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 17px;
+  height: 0;
+  pointer-events: none;
+}
+
+.brew__pot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #f5f5dc;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.85;
+}
+
+.brew__pot circle {
+  fill: #f5f5dc;
+  stroke: none;
+}
+
+/* ============================================================
    PULL UP A CHAIR
    Footer line invites you to pull up a chair, so one slides in and settles
    when you hover it. Drawn and animated like the cup cursor: cream fill,

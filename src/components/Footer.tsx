@@ -11,11 +11,56 @@ const socials = [
   { label: "email", href: "mailto:nabira.rashidm@gmail.com", Icon: FaEnvelope },
 ];
 
+/* Steam off the pot. Same wisps as the hero cup; staggered so there is
+   always one rising. */
+const wisps = [
+  { left: "38%", width: "6px", delay: "0s", duration: "5.6s" },
+  { left: "50%", width: "8px", delay: "1.9s", duration: "6.4s" },
+  { left: "62%", width: "6px", delay: "3.4s", duration: "5.9s" },
+];
+
 const Footer = () => {
   return (
     <footer className="chalkboard border-t border-cafe-cream/15 px-6 py-20 transition-colors duration-500">
       <div className="mx-auto max-w-6xl">
         <div className="mb-14 text-center">
+          {/* A moka pot on the counter, chalked on the board, still brewing. */}
+          <div className="brew" aria-hidden="true">
+            <div className="brew__steam">
+              {wisps.map((wisp, index) => (
+                <span
+                  key={index}
+                  className="steam-wisp"
+                  style={{
+                    left: wisp.left,
+                    width: wisp.width,
+                    animationDelay: wisp.delay,
+                    animationDuration: wisp.duration,
+                  }}
+                />
+              ))}
+            </div>
+            <svg className="brew__pot" viewBox="0 0 64 64">
+              {/* bottom chamber */}
+              <path d="M20 60h24l2.5-18h-29z" />
+              {/* waist */}
+              <path d="M16 42h32" />
+              {/* top chamber */}
+              <path d="M19 39l-2.5-18h31l-2.5 18z" />
+              {/* lid, dome, knob */}
+              <path d="M15 21h34" />
+              <path d="M23 21c3-6 15-6 18 0" />
+              <path d="M32 14.5v-3" />
+              <circle cx="32" cy="10" r="1.6" />
+              {/* spout */}
+              <path d="M16.5 27l-6.5-4.5v7" />
+              {/* handle */}
+              <path d="M47.5 24c8 0 10.5 6.5 6 13.5" />
+              {/* hob line */}
+              <path d="M12 60h40" strokeDasharray="2 4" opacity="0.5" />
+            </svg>
+          </div>
+
           <p className="text-cafe-cream body-copy text-sm opacity-70">
             thanks for stopping by ⭑.ᐟ
           </p>
