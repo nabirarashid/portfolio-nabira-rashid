@@ -133,8 +133,6 @@ const DoodleBoard = () => {
     <div ref={wrapRef} className="doodle">
       <div className="section-sign doodle__board">
         <canvas ref={canvasRef} className="doodle__canvas" aria-label="a board to doodle on with the cup" />
-        {/* The chalk rule again, above the coffee, so the frame stays clean. */}
-        <span className="doodle__frame" aria-hidden="true" />
       </div>
 
       <div className="doodle__foot">

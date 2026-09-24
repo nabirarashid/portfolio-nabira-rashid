@@ -239,6 +239,8 @@ samp {
   padding: 0;
 }
 
+/* Fills the sign, but only paints inside the chalk rule (which sits at
+   13px): the coffee stops at the frame, never on or past it. */
 .section-sign.doodle__board > .doodle__canvas {
   position: absolute;
   inset: 0;
@@ -246,24 +248,7 @@ samp {
   display: block;
   width: 100%;
   height: 100%;
-}
-
-/* The sign draws its chalk rule in the background layer, under the canvas.
-   This is the same rule drawn again on top, and the corner crosses lifted
-   above too, so doodles pass under the frame rather than over it. */
-.section-sign.doodle__board > .doodle__frame {
-  position: absolute;
-  inset: 13px;
-  z-index: 2;
-  border: 1px solid rgba(245, 245, 220, 0.38);
-  outline: 1px solid rgba(245, 245, 220, 0.16);
-  outline-offset: 4px;
-  border-radius: 1px;
-  pointer-events: none;
-}
-
-.section-sign.doodle__board::after {
-  z-index: 3;
+  clip-path: inset(14.5px);
 }
 
 /* Labels stack on the left; the saucer and cup sit well clear on the right. */
