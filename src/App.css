@@ -438,7 +438,7 @@ samp {
 .article-title {
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+  font-size: clamp(1.375rem, 2.8vw, 2rem);
   line-height: 1.2;
   letter-spacing: -0.005em;
   text-wrap: balance;
@@ -485,8 +485,8 @@ samp {
 .prose-cafe {
   font-family: var(--font-sans);
   font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.8;
+  font-size: 0.9375rem;
+  line-height: 1.75;
   letter-spacing: 0.005em;
   max-width: 38rem;
   margin-inline: auto;
@@ -494,7 +494,7 @@ samp {
 
 @media (min-width: 768px) {
   .prose-cafe {
-    font-size: 1.0625rem;
+    font-size: 1rem;
   }
 }
 
@@ -514,17 +514,17 @@ samp {
 
 .prose-cafe h1,
 .prose-cafe h2 {
-  font-size: 1.5rem;
+  font-size: 1.3125rem;
   margin-top: 2.25em;
 }
 
 .prose-cafe h3 {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   margin-top: 2em;
 }
 
 .prose-cafe h4 {
-  font-size: 1.0625rem;
+  font-size: 1rem;
   margin-top: 1.75em;
 }
 
@@ -604,7 +604,7 @@ samp {
   border-left: 1px dashed rgba(48, 36, 33, 0.4);
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: 1.125em;
+  font-size: 1.0625em;
   line-height: 1.6;
   opacity: 0.85;
 }
