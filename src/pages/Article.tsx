@@ -41,7 +41,7 @@ const Article = () => {
               </Link>
             </p>
             <h1 className="article-title">{article.title}</h1>
-            <p className="section-tagline mt-3">
+            <p className="receipt-meta mt-4 opacity-60">
               {formatDate(article.date)} · {article.readingMinutes} min read
             </p>
             <div className="rule-short" />
@@ -49,7 +49,9 @@ const Article = () => {
         </div>
 
         <div className="section-shell section-shell--tight">
-          <Reveal as="article" className="article-paper">
+          {/* No Reveal on the paper: useReveal waits for 12% of the element
+              to be on screen, which a long piece on a phone never reaches. */}
+          <article className="article-paper">
             {showCover && (
               <img src={article.cover} alt="" className="article-cover" loading="eager" />
             )}
@@ -74,7 +76,7 @@ const Article = () => {
                 </a>
               )}
             </footer>
-          </Reveal>
+          </article>
         </div>
       </section>
     </main>

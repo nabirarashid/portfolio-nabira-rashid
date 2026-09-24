@@ -34,9 +34,11 @@
   --color-matcha: #a4b494;
   --color-terracotta: #e2725b;
 
-  /* Playfair is the only webfont. Body and mono use the system stacks, which is
-     what the site rendered with before and what reads best against Playfair. */
+  /* Playfair for display, Newsreader for long-form reading (Playfair's
+     hairlines are too fine for a thousand words). Body and mono use the
+     system stacks, which is what reads best against Playfair. */
   --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, serif;
+  --font-reading: "Newsreader", "Playfair Display", ui-serif, Georgia, serif;
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
@@ -179,16 +181,47 @@ samp {
 }
 
 /* ============================================================
-   STILL BREWING
-   A moka pot chalked on the footer board, steam rising off it the way it
-   rises off the hero cup. Sits above the sign-off so the footer opens on
-   something moving rather than a line of text.
+   THE COUNTER
+   The footer as the counter at closing: a moka pot on the hob, still
+   going, with the sign-off beside it. Mirrors the hero, which is a cup on
+   the left and the name on the right, so the page closes the way it opened.
    ============================================================ */
+.counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .counter {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    text-align: left;
+  }
+}
+
+.counter__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .counter__copy {
+    align-items: flex-start;
+  }
+}
+
 .brew {
   position: relative;
-  width: 76px;
-  height: 76px;
-  margin: 0 auto 1.75rem;
+  width: 132px;
+  flex-shrink: 0;
+  padding-bottom: 0.75rem;
 }
 
 /* Wisps are positioned from the bottom of this box, which sits at the lid. */
@@ -196,21 +229,23 @@ samp {
   position: absolute;
   left: 0;
   right: 0;
-  top: 17px;
+  top: 26px;
   height: 0;
   pointer-events: none;
 }
 
 .brew__pot {
   position: relative;
-  width: 100%;
-  height: 100%;
+  display: block;
+  width: 108px;
+  height: 108px;
+  margin-inline: auto;
   fill: none;
   stroke: #f5f5dc;
-  stroke-width: 1.7;
+  stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .brew__pot circle {
@@ -218,11 +253,80 @@ samp {
   stroke: none;
 }
 
+/* The hob it sits on: a chalk line with the ring marks of a stove. */
+.brew__hob {
+  height: 1px;
+  margin-top: -2px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(245, 245, 220, 0.55) 0 6px,
+    transparent 6px 10px
+  );
+  opacity: 0.8;
+}
+
+/* Social links as receipt chips rather than bare icons. */
+.counter__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .counter__links {
+    justify-content: flex-start;
+  }
+}
+
+.counter__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid rgba(245, 245, 220, 0.3);
+  border-radius: 2px;
+  color: #f5f5dc;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  opacity: 0.75;
+  transition: opacity 300ms ease, border-color 300ms ease, background-color 300ms ease;
+}
+
+.counter__link:hover {
+  opacity: 1;
+  border-color: rgba(245, 245, 220, 0.6);
+  background-color: rgba(245, 245, 220, 0.06);
+}
+
+/* Bottom line: the credit and the hours, either side on wide screens. */
+.counter__foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed rgba(245, 245, 220, 0.2);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .counter__foot {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
 /* ============================================================
    PULL UP A CHAIR
    Footer line invites you to pull up a chair, so one slides in and settles
-   when you hover it. Drawn and animated like the cup cursor: cream fill,
-   espresso stroke, drop shadow, and a tilt pivoting about the legs.
+   once the footer is on screen. Drawn and animated like the cup cursor:
+   cream fill, espresso stroke, drop shadow, and a tilt pivoting about the
+   legs.
    ============================================================ */
 .chair-line {
   position: relative;
@@ -247,7 +351,6 @@ samp {
   pointer-events: none;
   opacity: 0;
   transform: translateX(-16px) rotate(-18deg) scale(0.88);
-  transition: opacity 240ms ease-out, transform 300ms ease-out;
 }
 
 /* Decorative, and there is no room for it once the line wraps. */
@@ -257,11 +360,10 @@ samp {
   }
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .chair-line:hover .chair-icon {
-    opacity: 1;
-    animation: chairPullUp 520ms cubic-bezier(0.34, 1.35, 0.64, 1) forwards;
-  }
+/* Pulled up once the counter scrolls into view, a beat after the text. */
+.counter.is-visible .chair-icon {
+  opacity: 1;
+  animation: chairPullUp 520ms cubic-bezier(0.34, 1.35, 0.64, 1) 350ms both;
 }
 
 @keyframes chairPullUp {
@@ -488,7 +590,7 @@ samp {
 .article-paper {
   max-width: 44rem;
   margin-inline: auto;
-  border-top: 12px solid #8b6f47;
+  border-top: 6px solid #8b6f47;
   border-radius: 2px;
   background-color: #ebe1cb;
   box-shadow:
@@ -523,19 +625,32 @@ samp {
    Long-form text has different needs from the cards: a little larger,
    a generous measure, real paragraph spacing, and headings in the serif. */
 .prose-cafe {
-  font-family: var(--font-sans);
-  font-weight: 300;
-  font-size: 0.9375rem;
-  line-height: 1.75;
-  letter-spacing: 0.005em;
-  max-width: 38rem;
+  font-family: var(--font-reading);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  letter-spacing: 0.002em;
+  max-width: 36rem;
   margin-inline: auto;
+  /* Newsreader's optical size axis: ask for the text cut, not display. */
+  font-variation-settings: "opsz" 16;
 }
 
 @media (min-width: 768px) {
   .prose-cafe {
-    font-size: 1rem;
+    font-size: 1.125rem;
+    line-height: 1.72;
   }
+}
+
+/* A drop cap on the opening paragraph, in the display face. */
+.prose-cafe > p:first-of-type::first-letter {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  float: left;
+  font-size: 3.1em;
+  line-height: 0.82;
+  padding: 0.08em 0.14em 0 0;
 }
 
 .prose-cafe > * + * {
@@ -575,7 +690,7 @@ samp {
 }
 
 .prose-cafe p {
-  opacity: 0.88;
+  opacity: 0.92;
 }
 
 .prose-cafe a {
@@ -596,15 +711,13 @@ samp {
 }
 
 .prose-cafe em {
-  font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.04em;
 }
 
 .prose-cafe ul,
 .prose-cafe ol {
   padding-left: 1.4rem;
-  opacity: 0.88;
+  opacity: 0.92;
 }
 
 .prose-cafe ul {
@@ -644,7 +757,8 @@ samp {
   border-left: 1px dashed rgba(48, 36, 33, 0.4);
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: 1.0625em;
+  font-style: italic;
+  font-size: 1em;
   line-height: 1.6;
   opacity: 0.85;
 }
@@ -1665,7 +1779,7 @@ body {
     opacity: 0.18;
   }
 
-  .chair-line:hover .chair-icon {
+  .counter.is-visible .chair-icon {
     animation: none !important;
     transform: none;
   }
