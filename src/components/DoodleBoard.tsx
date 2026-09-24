@@ -20,10 +20,10 @@ interface Flavour {
 }
 
 const flavours: Flavour[] = [
-  { name: "mocha", smear: "196, 150, 96", light: "#6a4527", mid: "#3d2513", deep: "#1f110a", crema: "#b9834a" },
-  { name: "matcha", smear: "164, 180, 148", light: "#a3b58e", mid: "#6f8a5c", deep: "#46603c", crema: "#cbd8b6" },
-  { name: "ube", smear: "182, 150, 204", light: "#bda3d6", mid: "#7f5fa3", deep: "#4f3870", crema: "#dcc9ec" },
-  { name: "latte", smear: "232, 214, 184", light: "#f4e9d6", mid: "#dcc7a6", deep: "#b99b73", crema: "#faf1e2" },
+  { name: "mocha", smear: "186, 146, 100", light: "#5e4330", mid: "#3a2617", deep: "#21140c", crema: "#a67e52" },
+  { name: "matcha", smear: "158, 170, 142", light: "#96a484", mid: "#6f7e5e", deep: "#4c5843", crema: "#c1cab0" },
+  { name: "ube", smear: "168, 150, 184", light: "#a795b6", mid: "#7a678d", deep: "#554866", crema: "#cdc1d8" },
+  { name: "latte", smear: "222, 206, 180", light: "#ede2d0", mid: "#d2c0a3", deep: "#b09677", crema: "#f3eadb" },
 ];
 
 const Saucer = () => (
@@ -78,22 +78,22 @@ const SharedDefs = () => (
   <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true">
     <defs>
       <linearGradient id="saucer-glaze" x1="18%" y1="12%" x2="85%" y2="92%">
-        <stop offset="0%" stopColor="#fbf8f1" />
-        <stop offset="55%" stopColor="#ece5d5" />
-        <stop offset="100%" stopColor="#cfc3ab" />
+        <stop offset="0%" stopColor="#f6f1e6" />
+        <stop offset="55%" stopColor="#e4dccb" />
+        <stop offset="100%" stopColor="#c6baa3" />
       </linearGradient>
       <radialGradient id="saucer-well" cx="50%" cy="50%" r="50%">
         <stop offset="72%" stopColor="rgba(48, 36, 33, 0)" />
         <stop offset="100%" stopColor="rgba(48, 36, 33, 0.2)" />
       </radialGradient>
       <linearGradient id="cup-glaze" x1="15%" y1="10%" x2="85%" y2="90%">
-        <stop offset="0%" stopColor="#ffffff" />
-        <stop offset="50%" stopColor="#f2ede1" />
-        <stop offset="100%" stopColor="#d3c8b3" />
+        <stop offset="0%" stopColor="#faf6ee" />
+        <stop offset="50%" stopColor="#ebe4d6" />
+        <stop offset="100%" stopColor="#cbbfa9" />
       </linearGradient>
       <linearGradient id="cup-rim" x1="85%" y1="90%" x2="15%" y2="10%">
-        <stop offset="0%" stopColor="#fffdf8" />
-        <stop offset="100%" stopColor="#e2dac8" />
+        <stop offset="0%" stopColor="#f9f5ec" />
+        <stop offset="100%" stopColor="#d9d0bd" />
       </linearGradient>
       <radialGradient id="cup-wall" cx="50%" cy="50%" r="50%">
         <stop offset="76%" stopColor="rgba(48, 36, 33, 0)" />
