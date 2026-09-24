@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type React from "react";
 import { FaInstagram, FaGithub, FaEnvelope, FaXTwitter } from "react-icons/fa6";
 
 const socials = [
@@ -21,13 +22,33 @@ const wisps = [
 ];
 
 const Footer = () => {
-  // A wobble on hover, reset once it has run so it can go again.
-  const [wobbling, setWobbling] = useState(false);
-  const wobble = () => {
-    if (wobbling) return;
-    setWobbling(true);
-    window.setTimeout(() => setWobbling(false), 750);
+  // Every time the cup is picked up it leaves a ring where it sat and gets
+  // set down a little to one side, so the rings stay in view: a cup that has
+  // been lifted and moved around the counter all evening. A few rings stay.
+  type Spot = { x: number; y: number };
+  const [rest, setRest] = useState<Spot>({ x: 0, y: 0 });
+  const [lifted, setLifted] = useState(false);
+  const [rings, setRings] = useState<(Spot & { r: number; s: number })[]>([]);
+
+  const pickUp = () => {
+    if (lifted) return;
+    setLifted(true);
+    setRings((current) =>
+      [
+        ...current,
+        {
+          ...rest,
+          r: Math.round((Math.random() - 0.5) * 40),
+          s: 0.94 + Math.random() * 0.12,
+        },
+      ].slice(-4)
+    );
+    setRest({
+      x: Math.round((Math.random() - 0.5) * 56),
+      y: Math.round((Math.random() - 0.5) * 36),
+    });
   };
+  const setDown = () => setLifted(false);
 
   return (
     <footer className="chalkboard border-t border-cafe-cream/15 px-6 py-20 transition-colors duration-500 md:py-24">
@@ -49,7 +70,21 @@ const Footer = () => {
                 />
               ))}
             </div>
-            <div className={`brew__cup ${wobbling ? "cup-wobble" : ""}`} onMouseEnter={wobble}>
+            {rings.map((ring, index) => (
+              <span
+                key={index}
+                className="brew__ring"
+                style={{
+                  transform: `translate(${ring.x}px, ${ring.y}px) rotate(${ring.r}deg) scale(${ring.s})`,
+                }}
+              />
+            ))}
+            <div
+              className={`brew__cup ${lifted ? "is-lifted" : ""}`}
+              style={{ "--rest-x": `${rest.x}px`, "--rest-y": `${rest.y}px` } as React.CSSProperties}
+              onMouseEnter={pickUp}
+              onMouseLeave={setDown}
+            >
               <img src="/assets/website/new coffee cup.webp" alt="" className="h-full w-full object-contain" />
             </div>
           </div>

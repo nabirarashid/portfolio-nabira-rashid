@@ -193,11 +193,28 @@ samp {
   text-align: center;
 }
 
+/* Wide: the words on the left, the cup off to the right on the counter. */
+@media (min-width: 768px) {
+  .counter {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    text-align: left;
+  }
+}
+
 .counter__copy {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .counter__copy {
+    align-items: flex-start;
+  }
 }
 
 .brew {
@@ -216,32 +233,55 @@ samp {
   pointer-events: none;
 }
 
-/* Idle: a slow lift and settle, like the cup breathing with the steam.
-   Hover: a small wobble, the way a cup rocks when it is set down. */
+/* The cup rests on the counter; hovered, it lifts: up and a little to the
+   side, a longer shadow, a hair of tilt. */
 .brew__cup {
   position: relative;
   width: 140px;
   height: 150px;
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35));
-  animation: cupBreathe 6s ease-in-out infinite;
   transform-origin: 50% 70%;
+  /* --rest-x/y: where it was last set down, written by Footer. */
+  transform: translate(var(--rest-x, 0px), var(--rest-y, 0px));
+  transition: transform 460ms cubic-bezier(0.34, 1.25, 0.64, 1), filter 460ms ease;
+  z-index: 1;
 }
 
-.brew__cup.cup-wobble {
-  animation: cupWobble 700ms cubic-bezier(0.36, 0.07, 0.19, 0.97);
+.brew__cup.is-lifted {
+  transform: translate(calc(var(--rest-x, 0px) + 8px), calc(var(--rest-y, 0px) - 26px))
+    rotate(4deg) scale(1.05);
+  filter: drop-shadow(10px 30px 28px rgba(0, 0, 0, 0.5));
 }
 
-@keyframes cupBreathe {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-5px) rotate(-1.2deg); }
+/* The ring it leaves. Two thin uneven circles of coffee, blurred a touch,
+   sat where the cup's base was. Fades in as the cup lifts off it. */
+.brew__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 118px;
+  height: 118px;
+  margin: -53px 0 0 -59px; /* the saucer's base sits a touch above centre */
+  border-radius: 48% 52% 50% 50% / 50% 48% 52% 50%;
+  /* Warm enough to read on the navy board. */
+  border: 5px solid rgba(176, 134, 88, 0.6);
+  box-shadow:
+    inset 0 0 0 2px rgba(120, 88, 52, 0.35),
+    0 0 0 1.5px rgba(176, 134, 88, 0.3);
+  filter: blur(0.6px);
+  pointer-events: none;
+  animation: ringSet 500ms ease-out both;
 }
 
-@keyframes cupWobble {
-  0% { transform: rotate(0deg); }
-  20% { transform: rotate(-5deg) scale(1.03); }
-  45% { transform: rotate(4deg) scale(1.02); }
-  70% { transform: rotate(-2deg); }
-  100% { transform: rotate(0deg); }
+@keyframes ringSet {
+  from { opacity: 0; }
+  to { opacity: 0.95; }
+}
+
+/* Rotate as a group with the cup's rest position. */
+.brew__cup,
+.brew__ring {
+  will-change: transform;
 }
 
 /* Social links as receipt chips rather than bare icons. */
@@ -1694,7 +1734,7 @@ body {
   }
 
   .brew__cup {
-    animation: none !important;
+    transition: none !important;
   }
 
 

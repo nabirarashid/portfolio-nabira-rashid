@@ -43,9 +43,3 @@ everyone is on a different trajectory. everyone works at a different pace. and t
 so if you know something someone else doesn’t: congrats, genuinely. now say it like you want them to succeed. “consider Cloudflare, here’s why” costs you nothing. the condescension was never load-bearing.
 
 knowing about a tool three weeks early is not a personality. helping someone catch up? getting there.
-
-* * *
-
-*this pairs with* [a video i posted](https://www.instagram.com/reel/Da4SiiaAVVF/?igsh=bHhuenR6YjQ5NDY1) *where i say all of this but with more hand gestures.*
-
-*i’m going to be writing here regularly about tech culture, being a woman heading into CS, and patterns i keep noticing in this space. stick around if that’s your thing.*

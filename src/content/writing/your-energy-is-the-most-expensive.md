@@ -41,7 +41,3 @@ and here’s the kicker: i think that feeling is what i was looking for the enti
 you can’t always control what content exists, or how aggressively it’s pushed at you. but you can be intentional about what you let in. and i think the question worth asking about anything you’re consuming is really simple: is this narrative empowering me or disempowering me? is this making me more of who i want to be, or quietly convincing me to want less?
 
 your energy is the food you feed your soul. the algorithm is very happy to cater, buttt… maybe don’t let it pick the menu.
-
-* * *
-
-*if you’re new here, i also write about tech culture, like [my last post](https://nabirarashid.substack.com/p/knowing-about-a-tool-three-weeks) on why “you’re not gonna make it” content needs to be retired. i’m going to keep writing about patterns i notice in tech, media, and being a person on the internet. stick around if that’s your thing.*
