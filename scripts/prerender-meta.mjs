@@ -130,6 +130,10 @@ for (const page of pages) {
   }
 
   const html = template
+    // Drop the homepage's own open graph and twitter tags first: crawlers
+    // take the first og:title they meet, so leaving them in would make every
+    // article unfurl as the homepage.
+    .replace(/[ \t]*<meta\s+(?:property="og:|name="twitter:)[\s\S]*?\/>\n?/g, "")
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(page.title)}</title>`)
     .replace(
       /<meta\s+name="description"[\s\S]*?\/>/,
