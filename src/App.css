@@ -247,6 +247,16 @@ samp {
   min-width: 0;
   height: 232px;
   padding: 0;
+  /* A lighter board than the signs, so the coffee has something to show on. */
+  background-color: #6e5644;
+}
+
+.dark .section-sign.doodle__board {
+  background-color: #66503f;
+}
+
+.section-sign.doodle__board::before {
+  background-color: rgba(30, 20, 14, 0.1);
 }
 
 /* Fills the sign, but only paints inside the chalk rule (which sits at
