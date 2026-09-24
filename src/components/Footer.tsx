@@ -1,5 +1,4 @@
 import { FaInstagram, FaGithub, FaEnvelope, FaXTwitter } from "react-icons/fa6";
-import useReveal from "../hooks/useReveal";
 
 const socials = [
   {
@@ -21,14 +20,11 @@ const wisps = [
 ];
 
 const Footer = () => {
-  // The chair pulls itself up once the counter is on screen.
-  const counterRef = useReveal<HTMLDivElement>("0px 0px -10% 0px");
-
   return (
     <footer className="chalkboard border-t border-cafe-cream/15 px-6 py-20 transition-colors duration-500 md:py-24">
       <div className="mx-auto max-w-4xl">
-        <div ref={counterRef} className="counter">
-          {/* A moka pot on the hob, chalked on the board, still brewing. */}
+        <div className="counter">
+          {/* A cup on its saucer, chalked on the board, still steaming. */}
           <div className="brew" aria-hidden="true">
             <div className="brew__steam">
               {wisps.map((wisp, index) => (
@@ -44,25 +40,21 @@ const Footer = () => {
                 />
               ))}
             </div>
-            <svg className="brew__pot" viewBox="0 0 64 64">
-              <path d="M20 60h24l2.5-18h-29z" />
-              <path d="M16 42h32" />
-              <path d="M19 39l-2.5-18h31l-2.5 18z" />
-              <path d="M15 21h34" />
-              <path d="M23 21c3-6 15-6 18 0" />
-              <path d="M32 14.5v-3" />
-              <circle cx="32" cy="10" r="1.6" />
-              <path d="M16.5 27l-6.5-4.5v7" />
-              <path d="M47.5 24c8 0 10.5 6.5 6 13.5" />
+            <svg className="brew__cup" viewBox="0 0 64 64">
+              {/* bowl */}
+              <path d="M12 24h34l-3.6 22.5a5 5 0 0 1-5 4.3H20.6a5 5 0 0 1-5-4.3z" />
+              {/* handle */}
+              <path d="M46 29.5c7 0 10.5 3.2 10.5 8s-3.5 8-10.5 8" />
+              {/* saucer */}
+              <path d="M8 56.5h42" />
+              <path d="M14 60.5h30" opacity="0.6" />
             </svg>
-            <div className="brew__hob" />
           </div>
 
           <div className="counter__copy">
             <p className="eyebrow text-cafe-cream opacity-70">last call</p>
 
-            <p className="chair-line text-cafe-cream font-serif text-xl md:text-2xl font-normal tracking-[0.01em]">
-              <span className="chair-icon" aria-hidden="true" />
+            <p className="text-cafe-cream font-serif text-xl md:text-2xl font-normal tracking-[0.01em]">
               pull up a chair and let's create something together
             </p>
 
@@ -91,9 +83,6 @@ const Footer = () => {
         <div className="counter__foot">
           <p className="text-cafe-cream/70 body-copy text-xs tracking-[0.08em]">
             nabira's cafe • made with lots of coffee ◡̈
-          </p>
-          <p className="receipt-meta text-cafe-cream/60">
-            open · whenever the coffee's on
           </p>
         </div>
       </div>
