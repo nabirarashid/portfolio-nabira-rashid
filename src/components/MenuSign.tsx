@@ -4,6 +4,9 @@ import SectionHeading from "./SectionHeading";
 interface Props {
   /** Link the sign to the full projects page. */
   to?: string;
+  /** "the full menu" on the projects page; the home page shows a few, so
+      it says so. */
+  title?: string;
   tagline?: string;
   /** The "what's cooking" typewriter. Off on the home page, where it
       competed with the "see the full menu" cue under it. */
@@ -11,8 +14,13 @@ interface Props {
 }
 
 /** The projects sign, with the "what's cooking" typewriter inside it. */
-const MenuSign = ({ to, tagline = "everything on the board", typewriter = true }: Props) => (
-  <SectionHeading title="the full menu" tagline={tagline} to={to} cue="see the full menu">
+const MenuSign = ({
+  to,
+  title = "the full menu",
+  tagline = "everything on the board",
+  typewriter = true,
+}: Props) => (
+  <SectionHeading title={title} tagline={tagline} to={to} cue="see the full menu">
     {typewriter && (
     <div className="mt-8">
       <p className="eyebrow text-cafe-cream mb-3">what's cooking</p>

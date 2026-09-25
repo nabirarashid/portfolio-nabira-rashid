@@ -41,7 +41,7 @@ const Home = () => {
 
       {/* ===== THE FULL MENU ===== */}
       <section id="projects-section" className="coffee-bg relative">
-        <MenuSign to="/projects" tagline="a few things from the board" typewriter={false} />
+        <MenuSign to="/projects" title="the specials" tagline="three from the board, rotating" typewriter={false} />
 
         <CoffeeStains variant="projects" />
 
