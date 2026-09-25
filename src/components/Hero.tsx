@@ -81,7 +81,7 @@ const Hero = () => {
           <div className="typewriter-slot mt-14 flex min-h-8 items-center justify-center">
             {/* Widest of the five strings, measured. Stops the line jittering. */}
             <span
-              className="typewriter-sizer font-serif text-base font-light tracking-[0.02em]"
+              className="typewriter-sizer font-mono text-[0.8125rem] tracking-[0.12em]"
               aria-hidden="true"
             >
               brewing personal projects‸
@@ -101,7 +101,7 @@ const Hero = () => {
                 deleteSpeed: 25,
                 cursor: "‸",
                 wrapperClassName:
-                  "font-serif text-base font-light text-cafe-cream/85 tracking-[0.02em]",
+                  "font-mono text-[0.8125rem] text-cafe-cream/80 tracking-[0.12em]",
               }}
             />
           </div>

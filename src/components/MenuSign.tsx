@@ -32,7 +32,7 @@ const MenuSign = ({
           at the width it had before "magic" was trimmed.
         */}
         <span
-          className="typewriter-sizer font-serif text-base font-light tracking-[0.02em]"
+          className="typewriter-sizer font-mono text-[0.8125rem] tracking-[0.12em]"
           aria-hidden="true"
         >
           learning dsa and web dev magic‸
@@ -51,7 +51,7 @@ const MenuSign = ({
             deleteSpeed: 20,
             cursor: "‸",
             wrapperClassName:
-              "font-serif text-base font-light text-cafe-cream/90 tracking-[0.02em]",
+              "font-mono text-[0.8125rem] text-cafe-cream/80 tracking-[0.12em]",
           }}
         />
       </div>
