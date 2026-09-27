@@ -20,7 +20,7 @@ const Footer = () => {
           <div className="counter__copy">
             <p className="eyebrow text-cafe-cream opacity-70">last call</p>
 
-            <p className="text-cafe-cream font-serif text-xl md:text-2xl font-normal tracking-[0.01em]">
+            <p className="text-cafe-cream font-serif text-lg md:text-xl font-normal tracking-[0.01em]">
               pick up a cup and let's create something together
             </p>
 

@@ -57,16 +57,23 @@ const Hero = () => {
                   alt=""
                   className="h-full w-full object-contain"
                 />
+                {/* The photo as the surface of the coffee: a thin crema
+                    edge, then the porcelain rim, then the cup's shadow on it. */}
                 <img
                   src="/assets/website/pfp.jpg"
                   alt="nabira"
-                  className="absolute left-1/2 h-24 w-24 rounded-full border-4 object-cover shadow-lg"
+                  className="hero-photo absolute left-1/2 h-24 w-24 rounded-full object-cover"
                   style={{
-                    borderColor: "#A0826D",
                     transform: "translateX(-47.5%)",
                     top: "2.875rem",
                   }}
                 />
+              </div>
+
+              {/* The receipt, tucked under the saucer. */}
+              <div className="hero-chit" aria-hidden="true">
+                <span>order № 001</span>
+                <span>today's special</span>
               </div>
             </div>
 
