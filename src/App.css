@@ -1253,13 +1253,6 @@ body.holding-cup .bean-cursor {
 /* Long titles (the substack cards) in the body face. Playfair is a display
    face and gets clumsy at 19px across three wrapped lines, which short labels
    like a job title never hit. */
-.card-title {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 1.0625rem;
-  line-height: 1.45;
-  letter-spacing: -0.005em;
-}
 
 .section-tagline {
   font-family: var(--font-sans);
