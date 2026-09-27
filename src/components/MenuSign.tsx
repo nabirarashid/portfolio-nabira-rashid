@@ -30,15 +30,15 @@ const MenuSign = ({
           className="typewriter-sizer font-mono text-[0.8125rem] tracking-[0.12em]"
           aria-hidden="true"
         >
-          something with a goose in it‸
+          benchmarks for agentic search‸
         </span>
         <Typewriter
           options={{
             strings: [
               "agent evals and retrieval",
-              "mcp scrapers and langgraph",
-              "an obsidian plugin or two",
-              "hackathon builds at 4am",
+              "rag that cites its sources",
+              "benchmarks for agentic search",
+              "sleep-deprived building",
               "something with a goose in it",
             ],
             autoStart: true,

@@ -89,9 +89,9 @@ const Hero = () => {
             <Typewriter
               options={{
                 strings: [
-                  "benchmarking agents at csail",
-                  "first term at waterloo",
-                  "writing about tech culture",
+                  "benchmarking agents",
+                  "building @ waterloo",
+                  "thinking out loud on substack",
                   "rereading the classics",
                   "always down for a coffee chat",
                   "compounding quietly",
