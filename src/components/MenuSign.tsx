@@ -36,7 +36,7 @@ const MenuSign = ({
           options={{
             strings: [
               "agent evals and retrieval",
-              "rag that cites its sources",
+              "teaching agents to search",
               "benchmarks for agentic search",
               "sleep-deprived building",
               "something with a goose in it",

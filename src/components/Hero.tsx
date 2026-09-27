@@ -90,7 +90,7 @@ const Hero = () => {
               options={{
                 strings: [
                   "benchmarking agents",
-                  "building @ waterloo",
+                  "balding @ waterloo",
                   "thinking out loud on substack",
                   "rereading the classics",
                   "always down for a coffee chat",
