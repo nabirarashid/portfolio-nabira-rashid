@@ -70,11 +70,6 @@ const Hero = () => {
                 />
               </div>
 
-              {/* The receipt, tucked under the saucer. */}
-              <div className="hero-chit" aria-hidden="true">
-                <span>order № 001</span>
-                <span>today's special</span>
-              </div>
             </div>
 
             <div className="flex flex-col items-center sm:items-start">

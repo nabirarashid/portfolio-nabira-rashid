@@ -1207,38 +1207,10 @@ body.holding-cup .bean-cursor {
 .hero-photo {
   border: 0;
   box-shadow:
-    0 0 0 2px #b9834a,                 /* crema edge */
+    0 0 0 2px #a0826d,                 /* crema edge */
     0 0 0 6px #efe9db,                 /* porcelain rim */
     inset 0 0 0 1px rgba(0, 0, 0, 0.2),
     0 4px 10px rgba(0, 0, 0, 0.45);
-}
-
-/* A slip of receipt paper poking out from under the saucer. */
-.hero-chit {
-  position: absolute;
-  left: -3.4rem;
-  bottom: 0.35rem;
-  z-index: -1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  padding: 0.45rem 0.6rem 0.4rem;
-  background: #f5f5dc;
-  color: #302421;
-  font-family: var(--font-mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.1em;
-  line-height: 1.3;
-  white-space: nowrap;
-  transform: rotate(-7deg);
-  transform-origin: right bottom;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);
-  /* torn top edge */
-  clip-path: polygon(0 4px, 6% 0, 14% 4px, 24% 1px, 34% 4px, 46% 0, 58% 4px, 70% 1px, 82% 4px, 92% 0, 100% 4px, 100% 100%, 0 100%);
-}
-
-.hero-chit span + span {
-  opacity: 0.6;
 }
 
 .display-xl {
