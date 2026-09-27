@@ -25,25 +25,21 @@ const MenuSign = ({
     <div className="mt-8">
       <p className="eyebrow text-cafe-cream mb-3">what's cooking</p>
       <div className="typewriter-slot">
-        {/*
-          Hidden width reservation, so the board never resizes as the
-          typewriter cycles. Deliberately wider than the longest live
-          string ("exploring rag and langchain", 179px) to hold the board
-          at the width it had before "magic" was trimmed.
-        */}
+        {/* Widest of the strings, so the board never resizes as it cycles. */}
         <span
           className="typewriter-sizer font-mono text-[0.8125rem] tracking-[0.12em]"
           aria-hidden="true"
         >
-          learning dsa and web dev magic‸
+          something with a goose in it‸
         </span>
         <Typewriter
           options={{
             strings: [
-              "learning dsa and web dev",
-              "exploring rag and langchain",
-              "building cool projects",
-              "crafting the perfect stack",
+              "agent evals and retrieval",
+              "mcp scrapers and langgraph",
+              "an obsidian plugin or two",
+              "hackathon builds at 4am",
+              "something with a goose in it",
             ],
             autoStart: true,
             loop: true,

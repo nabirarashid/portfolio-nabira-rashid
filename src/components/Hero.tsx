@@ -79,21 +79,22 @@ const Hero = () => {
           </div>
 
           <div className="typewriter-slot mt-14 flex min-h-8 items-center justify-center">
-            {/* Widest of the five strings, measured. Stops the line jittering. */}
+            {/* Widest of the strings, so the line never jitters. */}
             <span
               className="typewriter-sizer font-mono text-[0.8125rem] tracking-[0.12em]"
               aria-hidden="true"
             >
-              brewing personal projects‸
+              always down for a coffee chat‸
             </span>
             <Typewriter
               options={{
                 strings: [
-                  "brewing personal projects",
-                  "exploring hackathons",
-                  "crafting with code",
-                  "making new friends",
-                  "finding coffee chats",
+                  "benchmarking agents at csail",
+                  "first term at waterloo",
+                  "writing about tech culture",
+                  "rereading the classics",
+                  "always down for a coffee chat",
+                  "compounding quietly",
                 ],
                 autoStart: true,
                 loop: true,
