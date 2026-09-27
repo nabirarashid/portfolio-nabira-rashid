@@ -52,7 +52,7 @@ const PostCard = ({ post, tag }: Props) => {
           )}
         </div>
 
-        <h3 className="entry-title coffee-text">{post.title}</h3>
+        <h3 className="card-title coffee-text">{post.title}</h3>
 
         <p className="body-copy coffee-text text-sm opacity-65">{post.excerpt}</p>
 
