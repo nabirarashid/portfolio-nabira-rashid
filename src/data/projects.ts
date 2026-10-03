@@ -57,6 +57,14 @@ const projects: Project[] = [
     details: `generates photo prompts tied to where you are, then collects the shots people take chasing them.`,
   },
   {
+    title: "grandma's bakery",
+    description: "an agent-based simulation of a bakery price war.",
+    link: "https://github.com/nabirarashid/grandma-socratica",
+    tag: "socratica x ramp buildathon",
+    techStack: ["python", "fastapi", "numpy", "pydantic", "react", "typescript", "mantine"],
+    details: `400 heterogeneous agents pick a shop each day while the rival reprices on lagged prices with a cost floor.`,
+  },
+  {
     title: "segmentation registration research",
     description: "an ablation study on medical image registration.",
     link: "https://github.com/nabirarashid/medical-image-registration-ablation",
@@ -83,14 +91,6 @@ const projects: Project[] = [
     link: "https://rythmhacks-site.vercel.app/",
     techStack: ["next.js", "react", "typescript", "tailwindcss", "mongodb", "jwt auth"],
     details: `applications, hacker dashboards, schedules, and organizer tooling for a hackathon, in one platform.`,
-  },
-  {
-    title: "grandma's bakery",
-    description: "an agent-based simulation of a bakery price war.",
-    link: "https://github.com/nabirarashid/grandma-socratica",
-    tag: "socratica x ramp buildathon",
-    techStack: ["python", "fastapi", "numpy", "pydantic", "react", "typescript", "mantine"],
-    details: `400 heterogeneous agents pick a shop each day while the rival reprices on lagged prices with a cost floor.`,
   },
 ];
 
