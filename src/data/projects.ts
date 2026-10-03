@@ -90,7 +90,7 @@ const projects: Project[] = [
     link: "https://github.com/nabirarashid/grandma-socratica",
     tag: "socratica x ramp buildathon",
     techStack: ["python", "fastapi", "numpy", "pydantic", "react", "typescript", "mantine"],
-    details: `400 generated customers choose between a family bakery and the chain next door, and the chain reprices in response.`,
+    details: `400 heterogeneous agents pick a shop each day while the rival reprices on lagged prices with partial adjustment and a cost floor, measured against a static-competitor baseline.`,
   },
 ];
 
