@@ -67,7 +67,7 @@ const experience: ExperienceEntry[] = [
     org: "University of Toronto",
     dates: "2025",
     location: "hybrid",
-    description: "neuroimaging data preprocessing for sentiment analysis research",
+    description: "emotion signal pipelines for brain imaging research",
   },
 ];
 

@@ -84,6 +84,14 @@ const projects: Project[] = [
     techStack: ["next.js", "react", "typescript", "tailwindcss", "mongodb", "jwt auth"],
     details: `applications, hacker dashboards, schedules, and organizer tooling for a hackathon, in one platform.`,
   },
+  {
+    title: "grandma's bakery",
+    description: "an agent-based simulation of a bakery price war.",
+    link: "https://github.com/nabirarashid/grandma-socratica",
+    tag: "socratica x ramp buildathon",
+    techStack: ["python", "fastapi", "numpy", "pydantic", "react", "typescript", "mantine"],
+    details: `400 generated customers choose between a family bakery and the chain next door, and the chain reprices in response.`,
+  },
 ];
 
 export default projects;
