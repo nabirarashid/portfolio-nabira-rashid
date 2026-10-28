@@ -65,6 +65,14 @@ const projects: Project[] = [
     details: `400 heterogeneous agents pick a shop each day while the rival reprices on lagged prices with a cost floor.`,
   },
   {
+    title: "darwin",
+    description: "an agentic optimizer for cad parts, driven by live simulation.",
+    link: "https://github.com/nabirarashid/calhacks-2026",
+    tag: "cal hacks",
+    techStack: ["python", "fastapi", "onshape api", "aerosandbox", "neuralfoil", "react", "websockets", "openrouter"],
+    details: `rebuilds an onshape wing from its parameters, scores each hypothesis with a 15 ms vortex-lattice sim, and writes the winner back.`,
+  },
+  {
     title: "segmentation registration research",
     description: "an ablation study on medical image registration.",
     link: "https://github.com/nabirarashid/medical-image-registration-ablation",
