@@ -24,7 +24,7 @@ const experience: ExperienceEntry[] = [
   {
     role: "research engineer",
     org: "MIT Computer Science and Artificial Intelligence Laboratory (CSAIL)",
-    dates: "since 2026",
+    dates: "2026",
     location: "remote",
     description: "agent reasoning, retrieval evaluation & benchmarking",
     paper: {
