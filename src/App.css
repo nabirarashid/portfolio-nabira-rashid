@@ -938,17 +938,13 @@ body.holding-cup .bean-cursor {
   }
 }
 
-/* The intro is a statement, not body copy: set in the serif so it reads as
-   the line chalked at the top of the board rather than a paragraph of small
-   print underneath the title. */
+/* Same sans as the rule notes. The serif is reserved for the titles that type
+   themselves out, so the paragraphs around them stay in one hand. */
 .section-sign--board .house-board__intro {
-  font-family: var(--font-serif);
-  font-weight: 300;
   /* A step under the rule names (1.0625rem), so it introduces them rather
      than competing with them, and so it runs six lines on a phone, not nine. */
   font-size: 0.9375rem;
   line-height: 1.7;
-  letter-spacing: 0.005em;
   opacity: 0.85;
   max-width: 36rem;
   margin-inline: auto;
@@ -1104,7 +1100,7 @@ body.holding-cup .bean-cursor {
 }
 
 .house-board__closing {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-weight: 300;
   font-size: 0.9375rem;
   line-height: 1.7;
