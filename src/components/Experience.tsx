@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import experience, { programs } from "../data/experience";
+import Now from "./Now";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 import CoffeeStains from "./CoffeeStains";
@@ -9,19 +10,17 @@ const Experience = () => {
     <section id="experience-section" className="coffee-bg relative">
       <CoffeeStains variant="experience" />
 
-      <SectionHeading title="experience" tagline="where i've been brewing" />
+      <SectionHeading title="experience" tagline="what's brewing, and where it's been" />
 
       <div className="section-shell section-shell--tight">
-        {/* Order history receipt */}
-        <div className="mx-auto max-w-2xl">
-          <Reveal className="coffee-text">
-            <div className="receipt-meta flex items-baseline justify-end opacity-50">
-              <span>{experience.length} items</span>
-            </div>
-            <hr className="receipt-rule mt-4 mb-4" />
-          </Reveal>
+        <div className="mx-auto max-w-3xl">
+          {/* Same left edge as the timeline text, so the two current things
+              read as the top of the receipt rather than a block above it. */}
+          <div className="pl-7 md:pl-8">
+            <Now />
+          </div>
 
-          <ol className="timeline">
+          <ol className="timeline mt-12">
             <div className="timeline-line coffee-text" aria-hidden="true" />
 
             {experience.map((entry, index) => (

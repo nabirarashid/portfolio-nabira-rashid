@@ -26,7 +26,8 @@ const experience: ExperienceEntry[] = [
     org: "MIT Computer Science and Artificial Intelligence Laboratory (CSAIL)",
     dates: "2026",
     location: "remote",
-    description: "agent reasoning, retrieval evaluation & benchmarking",
+    description:
+      "first-authored a paper on surface-form bias in structural retrieval, from math problems to agent trajectories. retrieval over those trajectories lands below chance once the wording is controlled.",
     paper: {
       fullTitle:
         "Retrieved but not ranked: surface-form bias in structural retrieval, from mathematics to agent trajectories",
@@ -39,7 +40,8 @@ const experience: ExperienceEntry[] = [
     org: "DevFortress",
     dates: "2025",
     location: "hybrid",
-    description: "built an obsidian plugin & agent workflows",
+    description:
+      "built the obsidian surface for a multi-app ai assistant, then a langgraph pipeline for the notes. shipped to paying customers.",
   },
   {
     role: "ml research intern",
@@ -47,7 +49,7 @@ const experience: ExperienceEntry[] = [
     dates: "2025",
     location: "remote",
     description:
-      "medical registration and segmentation | joint project with carnegie mellon university",
+      "sole-authored an ablation of medical image registration and segmentation on brain mri, with carnegie mellon. regularization on the deformation field mattered more than the extra architecture.",
     paper: {
       fullTitle:
         "Architectural and Regularization Components in Deep Learning Medical Image Registration: Systematic Ablation Study",
@@ -60,14 +62,16 @@ const experience: ExperienceEntry[] = [
     org: "RythmHacks",
     dates: "2025",
     location: "hybrid",
-    description: "algorithm-themed hackathon | 100+ attendees, 20+ sponsors",
+    description:
+      "an algorithm-themed hackathon for high schoolers. 100+ attendees, 20+ sponsors.",
   },
   {
     role: "research assistant",
-    org: "University of Toronto",
+    org: "University of Toronto and Sunnybrook",
     dates: "2025",
     location: "hybrid",
-    description: "emotion signal pipelines for brain imaging research",
+    description:
+      "turned movie dialogue into a second-by-second emotion signal on the fmri scanner's clock, so the team could line language up against brain responses.",
   },
 ];
 

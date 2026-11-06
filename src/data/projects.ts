@@ -35,11 +35,11 @@ const projects: Project[] = [
   },
   {
     title: "homegrown",
-    description: "swipe local, support community.",
+    description: "swiped local, supported community.",
     techStack: ["react", "typescript", "tailwindcss", "firebase", "firestore"],
     link: "https://github.com/nabirarashid/homegrown-new",
     tag: "900+ users · house of commons",
-    details: `swipe through 120+ local shops and restaurants, like what you love, and get recommendations that keep money nearby.`,
+    details: `swiped through 150+ local shops and restaurants. the likes turned into recommendations that kept money nearby.`,
   },
   {
     title: "snapquest",
@@ -77,7 +77,7 @@ const projects: Project[] = [
     description: "an ablation study on medical image registration.",
     link: "https://github.com/nabirarashid/medical-image-registration-ablation",
     techStack: ["python", "pytorch", "numpy", "scipy", "nibabel", "wandb"],
-    details: `ablation on oasis brain mri separating architecture from regularization: 21.3% better mse, 99% fewer unrealistic deformations.`,
+    details: `ablation on oasis brain mri, separating architecture from regularization. 25.8% relative mse improvement, 99% fewer implausible deformations.`,
   },
   {
     title: "codecompass",

@@ -12,22 +12,17 @@ const mediaItems: MediaItem[] = [
   {
     title: "classics",
     category: "books",
-    note: "sense and sensibility, the picture of dorian gray, jane eyre. the kind of books that have survived for a reason",
+    note: "currently reading jane eyre. sense and sensibility and the picture of dorian gray too, the kind of books that have survived for a reason",
   },
   {
     title: "cinema across genres",
     category: "film",
-    note: "rom-coms, murder mysteries, 80s shows. different genres all circling the same human experiences",
+    note: "currently watching friends. rom-coms, murder mysteries, 80s shows. different genres all circling the same human experiences",
   },
   {
     title: "social media doomscrolling",
-    category: "linkedin, substack & instagram",
-    note: "substack for literature and philosophy, linkedin and insta for ai takes. a different me on every feed",
-  },
-  {
-    title: "yc startup podcast",
-    category: "podcast",
-    note: "absorbing how startups actually get built, the messy parts included",
+    category: "substack & twitter",
+    note: "substack for literature and philosophy, twitter for ai takes",
   },
 ];
 
