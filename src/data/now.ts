@@ -12,7 +12,7 @@ const now: NowEntry[] = [
     title: "precedent",
     status: "currently",
     description:
-      "an open source tool that searches agent runs by what the agent did, not how the log is worded. each run becomes a structural signature, so search matches behavior instead of wording.",
+      "an open source tool that searches agent runs by what the agent did, not how the log is worded. indexes by the shape of the behavior.",
     link: "https://github.com/nabirarashid/precedent",
     linkLabel: "github",
   },
