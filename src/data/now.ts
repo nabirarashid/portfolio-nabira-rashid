@@ -20,7 +20,7 @@ const now: NowEntry[] = [
     title: "rankllm",
     status: "currently",
     description:
-      "an open source reranking library in jimmy lin's castorini group. a model sees a set of search results together and puts the ones that actually answer the query on top.",
+      "an open source reranking library in jimmy lin's castorini group. a model sees a set of results together and puts the ones that answer the query on top.",
     link: "https://github.com/castorini/rank_llm",
     linkLabel: "github",
   },
