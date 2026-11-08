@@ -12,7 +12,7 @@ const mediaItems: MediaItem[] = [
   {
     title: "classics",
     category: "books",
-    note: "currently reading jane eyre. sense and sensibility and the picture of dorian gray too, the kind of books that have survived for a reason",
+    note: "currently reading jane eyre. sense and sensibility and frankenstein too, the kind of books that have survived for a reason",
   },
   {
     title: "cinema across genres",
