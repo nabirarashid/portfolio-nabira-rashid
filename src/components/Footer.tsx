@@ -1,12 +1,7 @@
-import { FaInstagram, FaGithub, FaEnvelope, FaXTwitter } from "react-icons/fa6";
+import { FaGithub, FaEnvelope, FaXTwitter } from "react-icons/fa6";
 import DoodleBoard from "./DoodleBoard";
 
 const socials = [
-  {
-    label: "instagram",
-    href: "https://www.instagram.com/techwithnabira/",
-    Icon: FaInstagram,
-  },
   { label: "x", href: "https://x.com/nabirarashid", Icon: FaXTwitter },
   { label: "github", href: "https://github.com/nabirarashid/", Icon: FaGithub },
   { label: "email", href: "mailto:nabira.rashidm@gmail.com", Icon: FaEnvelope },
